@@ -15,11 +15,15 @@ O oceano vermelho representa mercados que já existem e são tomados por muitos 
 
 Para uma melhor visualização dessa ideia, veja o quadro abaixo:
 
+<div align="center">
+
 Quadro 1 - Estratégia do oceano vermelho *versus* estratégia do oceano azul
 
 ![Tabela](../../../static/img/Tabela.png)
 
 Fonte: Kim e Mauborgne (2005, p.37)
+
+</div>  
 
 ## Matriz de oceano azul
 
