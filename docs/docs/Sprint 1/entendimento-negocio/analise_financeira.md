@@ -5,11 +5,11 @@ Durante o desenvolvimento de um projeto, a análise financeira desempenha um pap
 ## Planejamento de Gastos Fixos
 
 O parceiro não forneceu um valor específico para o desenvolvimento do projeto. No entanto, ao analisar as especificações do projeto e examinar o mercado de braços articulados, o custo estimado de um braço mecanizado varia entre R$25.000,00 e R$32.000,00.
-Como recomendação para implementação do projeto, um modelo ideal seria o MG400, com seu valor de R$ 32.000,00, pois duas robustês e facilidade de uso permitem uma fácil instação e utilização, com custos reduzisos de manutenção.
+Como recomendação para implementação do projeto, um modelo ideal seria o MG400, com seu valor de R$ 32.000,00, pois sua robustês e facilidade de uso permitem uma fácil instalação e utilização, com custos reduzisos de manutenção.
 
 ## Projeções de Custo
 
-Considerando a utilização contínua do braço robótico 24/7, com exceção de períodos de manutenção e atualizações, estima-se que o custo mensal de energia seja inferior a R$50,00, com o preço do KWH a R$0,92.
+Considerando a utilização contínua do braço robótico 24 horas por dia e sete dias por semana. Com exceção de períodos de manutenção e atualizações, estima-se que o custo mensal de energia seja inferior a R$50,00, com o preço do KWH a R$0,92.
 Outros custo que devem ser colocas são os de manutenção do braço mecânico, como troca de peças, cajo haja a necessidade, juntamente com o pagamento de quem fará essa tarefa.
 
 ## Projeção de Receita

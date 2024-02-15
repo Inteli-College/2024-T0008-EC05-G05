@@ -54,8 +54,7 @@ Tabela 1: Atributos do Projeto *versus* Processo Manual
 | Praticidade | 10 | 5 |
 | Segurança | 8 | 5 |
 | Qualidade do ambiente de trabalho | 10 | 6 |
-| Desgaste interpessoal dos colaboradores | 0 | 10 |
-| Automatização |  |  |
+| Desgaste físico dos colaboradores | 0 | 10 |
 
 - **Custo:**  Atualmente, o processo manual conta com uma equipe de 92 pessoas apenas para a montagem dos kits médicos, sem contar os custos de possíveis erros de manuseio dos medicamentos. Com o processo sendo realizado por um robô, grande parte do custo com a mão de obra seria minimizado, pois a quantidade de trabalhadores designados para essa tarefa específica seria muito menor.
 - **Tempo gasto:**  O tempo necessário para a montagem dos kits também seria diminuído, pois o robô possui uma movimentação precisa e computadorizada, fazendo com que a separação dos medicamentos aconteça de forma muito mais rápida.
