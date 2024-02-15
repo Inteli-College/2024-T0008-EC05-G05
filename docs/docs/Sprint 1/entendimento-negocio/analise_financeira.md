@@ -14,10 +14,16 @@ Outros custo que devem ser colocas são os de manutenção do braço mecânico, 
 
 ## Projeção de Receita
 
-Assumindo a presença mínima de três funcionários ao longo de 8 horas para cobrir 24 horas de produção de kits, a receita gerada seria equivalente ao salário mensal dos funcionários, descontando o custo energético associado ao uso do braço robótico. A finalidade do braço é reduzir o tempo de produção e mitigar falhas humanas.
+Assumindo a presença mínima de três funcionários ao longo de 8 horas para cobrir 24 horas de produção de kits, e que o salário médio de um auxilia de famácia é de R$ 3.261,00(1) receita gerada seria equivalente ao salário mensal dos funcionários, descontando o custo energético associado ao uso do braço robótico. A finalidade do braço é reduzir o tempo de produção e mitigar falhas humanas.
 
 Essas projeções formam a base para uma análise financeira abrangente, permitindo uma visão mais clara dos custos e benefícios associados ao desenvolvimento e implementação do projeto para o hospital Sírio Libanês.
 
 
 
 É preciso ressaltar que a projeção atual dos valores são imprecisas, pois ainda não foram fornecidos dados de, quantos funcionais trabalham atualmente no processo dos kits, ou de quantos kits são produzidos diariamente, além do valor limite de investimento do parceiro de projetos. Por isso, esses valores são vaseados em pesquisa de mercado e estimativas feitas em cima delas.
+
+
+
+###### Referências
+
+(1) WEBSITE GLASSDOR. **Salários do cargo de Auxiliar de Farmácia - Brasil**.2024. Disponível em :  [glassdor.com.br](https://www.glassdoor.com.br/Sal%C3%A1rios/auxiliar-de-farm%C3%A1cia-sal%C3%A1rio-SRCH_KO0,20.htm#:~:text=A%20m%C3%A9dia%20salarial%20de%20Auxiliar,%24%20323%20e%20R%24%206.000.). Acesso em 15 de fevereiro.
