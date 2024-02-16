@@ -1,6 +1,6 @@
 ---
 title: "Análise de Mercado: Estratégia do Oceano Azul."
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # Avaliação de mercado

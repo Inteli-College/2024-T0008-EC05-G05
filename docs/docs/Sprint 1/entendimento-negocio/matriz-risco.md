@@ -1,6 +1,6 @@
 ---
 title: Matriz de Risco
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 A matriz de risco tem como objetivo identificar riscos e oportunidades que foram encontradas em relação ao projeto. 

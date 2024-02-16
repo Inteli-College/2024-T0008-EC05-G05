@@ -1,3 +1,8 @@
+---
+title: Análise financeira
+sidebar_position: 2
+---
+
 # Análise financeira
 
 Durante o desenvolvimento de um projeto, a análise financeira desempenha um papel crucial, permitindo que a equipe estime os gastos envolvidos no desenvolvimento e na implementação da solução. Esta etapa requer uma análise cuidadosa dos produtos disponíveis no mercado para realizar uma estimativa precisa dos custos finais do projeto, considerando a possibilidade de cortes de custos para tornar o produto mais competitivo ou incorporar novas funcionalidades ao projeto, mantendo-se alinhado com os preços de mercado.
