@@ -36,11 +36,13 @@ Para que consigamos criar nosso oceano azul, há alguns aspectos que precisamos 
 
 E para facilitar a visualização da resposta dessas perguntas, separamos em uma matriz em quais aspectos nosso projeto pode reduzir, eliminar, criar e elevar.
 
+<div align="center">
 Matriz 1 - Eliminar, Elevar, Reduzir e Criar
 
 ![matriz 1](../../../static/img/Matriz%20eliminar%20elevar%20reduzir%20criar.png)
 
-Fonte: criado pelos autores
+Fonte: Elaborado pela equipe Cardio-Bot
+</div>
 
 Para justificar as características apresentadas acima, fizemos uma análise entre o que o nosso projeto traria para a farmácia hospitalar do Sírio Libanês em comparação com o processo manual que é implementado atualmente, conforme a tabela a seguir:
 
@@ -56,6 +58,8 @@ Tabela 1: Atributos do Projeto *versus* Processo Manual
 | Qualidade do ambiente de trabalho | 10 | 6 |
 | Desgaste físico dos colaboradores | 0 | 10 |
 
+Fonte: Elaborado pela equipe Cardio-Bot
+
 - **Custo:**  Atualmente, o processo manual conta com uma equipe de 92 pessoas apenas para a montagem dos kits médicos, sem contar os custos de possíveis erros de manuseio dos medicamentos. Com o processo sendo realizado por um robô, grande parte do custo com a mão de obra seria minimizado, pois a quantidade de trabalhadores designados para essa tarefa específica seria muito menor.
 - **Tempo gasto:**  O tempo necessário para a montagem dos kits também seria diminuído, pois o robô possui uma movimentação precisa e computadorizada, fazendo com que a separação dos medicamentos aconteça de forma muito mais rápida.
 - **Precisão:** Atualmente o processo está suscetível ao erro humano, que seria erradicado através da automatização, pois o robô faria os movimentos programados com uma precisão muito elevada. Como os medicamentos estariam organizados em um layout fixo, também diminuiria o risco de alguém confundir duas ampolas muito parecidas.
@@ -65,7 +69,7 @@ Tabela 1: Atributos do Projeto *versus* Processo Manual
 - **Desgaste interpessoal dos colaboradores:** Foi mencionado na entrevista com  o parceiro que há alguns desentendimentos entre os colaboradores pois a montagem dos kits é maçante, fazendo com que os funcionários de um turno deixem a montagem para o turno seguinte, gerando desentendimentos. Como a maior parte da montagem seria realizada pelo robô, essas discussões seriam erradicadas.
 - **Automatização:** Atualmente, o processo de automatização dentro desse nicho de montagem dos kits ainda não existe, e com a entrada do nosso projeto, esse aspecto seria criado, aumentando a tecnologia no setor.
 
-Referências para a escrita dessa seção:
+## Referências
 
 OLIVEIRA, R. D. de. **Análise Comparativa e Relacional entre a Estratégia do Oceano Azul e o Design Thinking para Gestão de Inovação.** 2017. 23f. Revista Brasileira de Gestão e Inovação – Brazilian Journal of Management & Innovation, 2018.
 
