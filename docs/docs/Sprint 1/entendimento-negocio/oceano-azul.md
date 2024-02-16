@@ -11,9 +11,7 @@ Antes de tudo, é muito importante compreender o método de análise que está s
 
 O oceano vermelho representa mercados que já existem e são tomados por muitos concorrentes, simbolizando uma batalha sangrenta onde tudo que se busca é superar e se diferenciar  dos adversários. Já o oceano azul é um mercado que ainda não existe e/ou não foi explorado, onde as águas são calmas e não há concorrência, pois é algo completamente novo.
 
-“(…) a Estratégia do Oceano Azul se apresenta como uma forma inovadora de pensar o planejamento estratégico dentro das empresas, tendo como pilar a inovação de valor que consiste em reduzir custos e ampliar o valor para o comprador.” (Oliveira, 2017, p. 2 )
-
-Para uma melhor visualização dessa ideia, veja o quadro abaixo:
+“(…) a Estratégia do Oceano Azul se apresenta como uma forma inovadora de pensar o planejamento estratégico dentro das empresas, tendo como pilar a inovação de valor que consiste em reduzir custos e ampliar o valor para o comprador.” (Oliveira, 2017, p. 2 ). Para uma melhor visualização dessa ideia, veja o quadro abaixo:
 
 <div align="center">
 
