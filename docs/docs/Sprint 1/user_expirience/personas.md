@@ -11,7 +11,7 @@ Na criação desta solução, foi necessário pensar na elaboração de personas
 
 ![Tabela](../../../static/img/jefferson.png)
 
-**Fonte:** Autoria do grupo cardio-bot
+**Fonte:** Elaborado pela equipe Cardio Bot
 
 </div> 
 
@@ -21,7 +21,7 @@ Na criação desta solução, foi necessário pensar na elaboração de personas
 
 ![Tabela](../../../static/img/persona_camila.png)
 
-**Fonte:** Autoria do grupo cardio-bot
+**Fonte:** Elaborado pela equipe Cardio Bot
 
 </div> 
 

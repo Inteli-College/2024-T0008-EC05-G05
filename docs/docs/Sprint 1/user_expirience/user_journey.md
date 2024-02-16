@@ -13,7 +13,7 @@ Com a ajuda das jornadas do usuário podemos compreender melhor como as nossas p
 
 ![Tabela](../../../static/img/jefferson_user_journey.png)
 
-**Fonte:** Autoria do grupo cardio-bot
+**Fonte:** Elaborado pela equipe Cardio Bot
 
 </div> 
 
@@ -23,8 +23,8 @@ Com a ajuda das jornadas do usuário podemos compreender melhor como as nossas p
 
 ![Tabela](../../../static/img/camila_user_journey.png)
 
-**Fonte:** Autoria do grupo cardio-bot
+**Fonte:** Elaborado pela equipe Cardio Bot
 
 </div> 
 
-Com a ajuda das jornadas do usuário, conclui-se que precisa haver uma interface para manter o controle dos itens usados nos kits afim de facilitar o controle da localização e qualidade dos itens. Além disso, é notório que o processo de bipagem é uma dor forte da nossa primeira persona (Jefferson), então conclui-se que é uma oportunidade grande de melhora a qual pode agregar valor no projeto. 
+Com a ajuda das jornadas do usuário, conclui-se que precisa haver uma interface para manter o controle dos itens usados nos kits afim de facilitar o controle da localização e qualidade dos itens. Outra conclusão inferida é a notoriedade da dor do processo de bipagem para a nossa primeira persona (Jefferson), tornando-se assim uma oportunidade grande de melhora que pode agregar valor ao projeto. 
