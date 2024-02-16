@@ -67,7 +67,7 @@ Importância – Crucial.
 
 ---
 
-Título – Trocar tipo de kit.
+Título – Ativar.
 
 ---
 
@@ -75,31 +75,31 @@ Persona – Jefferson.
 
 ---
 
-Estimativa de esforço – Alto.
+Estimativa de esforço – Médio.
 
 ---
 
-História – Como usuário quero trocar o tipo de kit que será montado para que eu possa montar kits variados.
+História – Como usuário quero ativar o robô para ele montar o kit.
 
 ---
 
-Critério de aceitação - CA.01 – Trocar o tipo de kit na interface.
+Critério de aceitação - CA.01 – Ativação.
 
-Validação – O tipo de kit foi trocado.
+Validação – O robô manteve ativado pela montagem do kit inteiro.
 
 ---
 
-Testes de aceitação – CA.01 – a) A interface indica que o tipo de kit foi trocado.
+Testes de aceitação – CA.01 – a) O robô ativou.
 
-Aconteceu: Sim, foi indicado.
+Aconteceu: Sim, o robô ativou.
 
-Não aconteceu: Não foi indicado, há um erro.
+Não aconteceu: Não ativou, há um erro.
 
-CA.01 - b) O braço do robô está se mexendo conforme o tipo de kit novo. 
+CA.01 - b) O robô parou seu funcionamento no meio.
 
-Aconteceu: Sim, está se mexendo conforme o tipo de kit novo.
+Aconteceu: Sim, o robô parou seu funcionamento, há um erro.
 
-Não aconteceu: Não está se mexendo conforme o tipo de kit novo, há um erro.
+Não aconteceu: Não, o robô manteve seu funcionamento até o fim.
 
 ---
 
@@ -162,51 +162,8 @@ Aconteceu: Sim, o robô soltou o item no lugar correto.
 Não aconteceu: Não, o robô não soltou o item no lugar correto, há um erro.
 
 ---
+
 ## Identificação - UH004.A
-
----
-
-Importância – Crucial.
-
----
-
-Título – Ativar.
-
----
-
-Persona – Jefferson.
-
----
-
-Estimativa de esforço – Médio.
-
----
-
-História – Como usuário quero ativar o robô para ele montar o kit.
-
----
-
-Critério de aceitação - CA.01 – Ativação.
-
-Validação – O robô manteve ativado pela montagem do kit inteiro.
-
----
-
-Testes de aceitação – CA.01 – a) O robô ativou.
-
-Aconteceu: Sim, o robô ativou.
-
-Não aconteceu: Não ativou, há um erro.
-
-CA.01 - b) O robô parou seu funcionamento no meio.
-
-Aconteceu: Sim, o robô parou seu funcionamento, há um erro.
-
-Não aconteceu: Não, o robô manteve seu funcionamento até o fim.
-
----
-
-## Identificação - UH005.A
 
 ---
 
@@ -257,6 +214,50 @@ CA.02 – a) O robô interrompeu suas ações.
 Aconteceu: Sim, o robô interrompeu suas ações.
 
 Não aconteceu: Não interrompeu suas ações, há um erro.
+
+---
+
+## Identificação - UH005.A
+
+---
+
+Importância – Crucial.
+
+---
+
+Título – Trocar tipo de kit.
+
+---
+
+Persona – Jefferson.
+
+---
+
+Estimativa de esforço – Alto.
+
+---
+
+História – Como usuário quero trocar o tipo de kit que será montado para que eu possa montar kits variados.
+
+---
+
+Critério de aceitação - CA.01 – Trocar o tipo de kit na interface.
+
+Validação – O tipo de kit foi trocado.
+
+---
+
+Testes de aceitação – CA.01 – a) A interface indica que o tipo de kit foi trocado.
+
+Aconteceu: Sim, foi indicado.
+
+Não aconteceu: Não foi indicado, há um erro.
+
+CA.01 - b) O braço do robô está se mexendo conforme o tipo de kit novo. 
+
+Aconteceu: Sim, está se mexendo conforme o tipo de kit novo.
+
+Não aconteceu: Não está se mexendo conforme o tipo de kit novo, há um erro.
 
 ---
 
@@ -328,37 +329,74 @@ Estimativa de esforço – Alto.
 
 ---
 
-História – Como usuária quero manter o rastreamento dos itens usados nos kits que o robô está montando a fim de manter o controle de localização, uso e qualidade dos itens.
+História – Como usuária quero tornar o processo de montagem de kits mais seguro a fim de evitar acidentes.
 
 ---
 
-Critério de aceitação - CA.01 – Os itens que serão usados nos kits são bipados.
+Critério de aceitação - CA.01 – Os kits montados apresentam apenas os itens corretos.
 
-Validação – Os itens são bipados e atualizam o sistema.
+Validação – Somente os itens corretos estão presentes no kit.
+
+CA.01 – Os itens do kit foram montados no lugar certo.
+
+Validação – Os itens do kit estão posicionados de forma correta.
+
+---
+
+Testes de aceitação – CA.01 – a) O kit montado apresenta todos os itens.
+
+Aconteceu: Sim, o kit apresenta todos os itens.
+
+Não aconteceu: Não apresenta, há um erro.
+
+CA.01 - b) Os itens estão posicionados de forma correta.
+
+Aconteceu: Sim, estão posicionados de forma correta.
+
+Não aconteceu: Não estão posicionados, há um erro.
 
 ---
 
-Testes de aceitação – CA.01 – a) Os itens são bipados.
-
-Aconteceu: Sim, os itens são bipados.
-
-Não aconteceu: Não foram bipados, há um erro.
-
-CA.01 – b) O mesmo item não foi bipado múltiplas vezes.
-
-Aconteceu: Sim, o mesmo item foi bipado várias vezes, há um erro.
-
-Não aconteceu: Não foi bipado várias vezes.
-
-CA.01 - c) O sistema foi atualizado.
-
-Aconteceu: Sim, o sistema foi atualizado.
-
-Não aconteceu: Não foi atualizado, há um erro.
-
----
 
 ## Identificação - UH008.A
+
+---
+
+Importância – Alta.
+
+---
+
+Título – Esforço.
+
+---
+
+Persona – Camila.
+
+---
+
+Estimativa de esforço – Médio.
+
+---
+
+História – Como usuária quero reduzir o esforço total dos colaboradores a fim de otimizar recursos e tempo na farmácia.
+
+---
+
+Critério de aceitação - CA.01 – O robô simplifica o processo de montagem de kits.
+
+Validação – O robô simplifica o processo diminuindo a carga de esforço.
+
+---
+
+Testes de aceitação – CA.01 – a) O robô permite que colaboradores realizem tarefas simultâneas à montagem dos kits.
+
+Aconteceu: Sim, o robô permite.
+
+Não aconteceu: Não, o robô não permite, há um erro.
+
+---
+
+## Identificação - UH009.A
 
 ---
 
@@ -396,7 +434,8 @@ Não aconteceu: Não é menor, há um erro.
 
 ---
 
-## Identificação - UH009.A
+
+## Identificação - UH010.A
 
 ---
 
@@ -416,68 +455,32 @@ Estimativa de esforço – Alto.
 
 ---
 
-História – Como usuária quero tornar o processo de montagem de kits mais seguro a fim de evitar acidentes.
+História – Como usuária quero manter o rastreamento dos itens usados nos kits que o robô está montando a fim de manter o controle de localização, uso e qualidade dos itens.
 
 ---
 
-Critério de aceitação - CA.01 – Os kits montados apresentam apenas os itens corretos.
+Critério de aceitação - CA.01 – Os itens que serão usados nos kits são bipados.
 
-Validação – Somente os itens corretos estão presentes no kit.
-
-CA.01 – Os itens do kit foram montados no lugar certo.
-
-Validação – Os itens do kit estão posicionados de forma correta.
+Validação – Os itens são bipados e atualizam o sistema.
 
 ---
 
-Testes de aceitação – CA.01 – a) O kit montado apresenta todos os itens.
+Testes de aceitação – CA.01 – a) Os itens são bipados.
 
-Aconteceu: Sim, o kit apresenta todos os itens.
+Aconteceu: Sim, os itens são bipados.
 
-Não aconteceu: Não apresenta, há um erro.
+Não aconteceu: Não foram bipados, há um erro.
 
-CA.01 - b) Os itens estão posicionados de forma correta.
+CA.01 – b) O mesmo item não foi bipado múltiplas vezes.
 
-Aconteceu: Sim, estão posicionados de forma correta.
+Aconteceu: Sim, o mesmo item foi bipado várias vezes, há um erro.
 
-Não aconteceu: Não estão posicionados, há um erro.
+Não aconteceu: Não foi bipado várias vezes.
 
----
+CA.01 - c) O sistema foi atualizado.
 
-## Identificação - UH010.A
+Aconteceu: Sim, o sistema foi atualizado.
 
----
-
-Importância – Alta.
-
----
-
-Título – Esforço.
-
----
-
-Persona – Camila.
-
----
-
-Estimativa de esforço – Médio.
-
----
-
-História – Como usuária quero reduzir o esforço total dos colaboradores a fim de otimizar recursos e tempo na farmácia.
-
----
-
-Critério de aceitação - CA.01 – O robô simplifica o processo de montagem de kits.
-
-Validação – O robô simplifica o processo diminuindo a carga de esforço.
-
----
-
-Testes de aceitação – CA.01 – a) O robô permite que colaboradores realizem tarefas simultâneas à montagem dos kits.
-
-Aconteceu: Sim, o robô permite.
-
-Não aconteceu: Não, o robô não permite, há um erro.
+Não aconteceu: Não foi atualizado, há um erro.
 
 ---
