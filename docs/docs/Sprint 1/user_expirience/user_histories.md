@@ -5,6 +5,10 @@ sidebar_position: 4
 
 ---
 
+## Introdução
+
+User stories são descrições curtas e simples de uma funcionalidade contada do ponto de vista do usuário final. Elas ajudam a focar no que é importante para o usuário, facilitando a priorização e a entrega de valor real. São úteis porque tornam claras as necessidades dos usuários, permitindo um desenvolvimento mais direcionado e eficiente. Dentro desse contexto, aqui apresentaremos as user stories que criamos e entendemos como importantes para a entrega de valor de nosso projeto.
+
 ## Identificação - UH001.A
 
 ---
