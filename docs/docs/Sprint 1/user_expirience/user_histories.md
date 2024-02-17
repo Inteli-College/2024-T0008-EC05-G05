@@ -488,3 +488,7 @@ Aconteceu: Sim, o sistema foi atualizado.
 Não aconteceu: Não foi atualizado, há um erro.
 
 ---
+
+## Conclusão
+
+Concluindo, estas user stories representam uma visão das necessidades e expectativas dos nossos usuários. Elas servirão como um guia valioso para o desenvolvimento, assegurando que estejamos alinhados com o que realmente importa para eles, maximizando a entrega de valor e a satisfação do usuário.
