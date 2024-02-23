@@ -34,7 +34,7 @@ def conectar_dobot():
     # print(f"Conectando ao dobot na porta: {port}")
 
     try:
-        device = pydobot.Dobot(port=port, verbose=True)
+        device = pydobot.Dobot(port=port, verbose=False)
         print("Conectado ao dobot com sucesso.")
         return device
     except Exception as e:
