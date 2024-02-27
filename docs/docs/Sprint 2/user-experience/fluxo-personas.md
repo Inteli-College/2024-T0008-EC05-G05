@@ -2,6 +2,8 @@
 title: Fluxo de utilização da solução
 sidebar_position: 1
 ---
+import ReactPlayer from 'react-player'
+import MyVideoUrl from '../../../static/video/ExecucaoRoboBlocos.mp4';
 
 # Mapeamento do Fluxo de Utilização da Solução
 
@@ -15,3 +17,10 @@ A compreensão do fluxo de utilização da solução é fundamental para entende
 
 ![Fluxo de Utilização da Solução - Camila](../../../static/img/mapaFluxoUsuario-Camila.png)
 
+## Fluxo de Utilização da Solução - Persona: Jefferson
+
+![Fluxo de Utilização da Solução - Jefferson](../../../static/img/mapaFluxoUsuario-Jefferson.png)
+
+Para representar a ação 7 do fluxo de utilização da solução para a persona Jefferson, colocamos um vídeo demonstrativo de como seria a execução do robô montando os kits.
+
+<ReactPlayer playing controls url={MyVideoUrl} />
