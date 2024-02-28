@@ -29,3 +29,14 @@
   --ifm-background-color: #000000;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+/* Modificando o tamanho das telas do wireframe mobile */
+img[alt="Tela de login mobile"] { width: 200px; }
+img[alt="Página principal mobile"] { width: 200px; }
+img[alt="Continuação da Página Inicial mobile"] { width: 200px; }
+img[alt="Menu mobile"] { width: 200px; }
+img[alt="Descrição do kit mobile"] { width: 200px; }
+img[alt="Página de editar kit mobile"] { width: 200px; }
+img[alt="Página de adicionar um modelo de kit mobile"] { width: 200px; }
+img[alt="Página de estoque mobile"] { width: 200px; }
+img[alt="Página de editar o componente do estoque mobile"] { width: 200px; }
