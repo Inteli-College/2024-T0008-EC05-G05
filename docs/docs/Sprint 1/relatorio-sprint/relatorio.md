@@ -9,7 +9,7 @@ Nesta tabela, temos as atividades realizadas na sprint 1 e em qual dias trabalha
 
 ![Tabela de relatório da sprint 1](../../../static/img/relatorio-sprint1.png)
 
-A seguir temos o slide de apresetação da sprint 1:
+A seguir temos o slide de aprensetação da sprint 1:
 
 [Clique para acessar a apresetação](../../../static/img/CardioBotApresentacaoSprint1.pdf)
 
