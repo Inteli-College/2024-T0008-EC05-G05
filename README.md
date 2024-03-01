@@ -25,7 +25,7 @@
 ## 📜 Descrição
 
 O desafio do módulo 5 é descrito por: Concepção de sistema de automação industrial e Simulação de robôs para aplicações diversas.
-O nosso parceiro de módulo é o [Hospital Sírio Lbanês](https://hospitalsiriolibanes.org.br/), que nos trouxe a necessidade de aumentar a segurança, precisão e rapidez na montagem de kits hospitalares, automatizando assim esse processo.
+O nosso parceiro de módulo é o [Hospital Sírio Libanês](https://hospitalsiriolibanes.org.br/), que nos trouxe a necessidade de aumentar a segurança, precisão e rapidez na montagem de kits hospitalares, automatizando assim esse processo.
 Dessa forma, desenvolvemos um sistema que por meio de uma aplicação web, é possível configurar diversos layouts para montar kits por meio de um braço robótico. A implementação deste protótipo demonstra os avanços que a robótica pode trazer em termos de produtividade, segurança, escalabilidade e diminuição do tempo gasto na reposição dos kits.
 
 Para acessar a nossa [documentação](https://inteli-college.github.io/2024-T0008-EC05-G05/) e inteirar-se não apenas sobre o funcionamento do robô e da interface, como também sobre todo os nossos processos de pesquisa e desenvolvimento, não deixe de acessar [esse link!!](https://inteli-college.github.io/2024-T0008-EC05-G05/)
@@ -45,7 +45,7 @@ Dentre os arquivos e pastas presentes na raiz do projeto, definem-se:
 
 - <b>.github/workflows</b>: aqui estão os workflows utilizados para atualizar nossa documentação automaticamente na web assim que uma atualização é commitada na *main* do nosso repositório.
 
-- <b>docs</b>: aqui está toda a estrutura do [docusaurus](https://docusaurus.io/), que utilizamos para construir a nossa [documentação](https://inteli-college.github.io/2024-T0008-EC05-G05/)
+- <b>docs</b>: aqui está toda a estrutura do [docusaurus](https://docusaurus.io/), que utilizamos para construir a nossa [documentação](https://inteli-college.github.io/2024-T0008-EC05-G05/).
 
 - <b>media</b>: onde ficarão assets, imagens e vídeos, se aplicado.
 
@@ -53,7 +53,7 @@ Dentre os arquivos e pastas presentes na raiz do projeto, definem-se:
 
 ## 🔧 Instalação
 
-Para direcionamentos sobre a instalação e uso do nosso projeto, acesse nossa [Documentação](https://inteli-college.github.io/2024-T0008-EC05-G05/)!
+Para direcionamentos sobre a instalação e uso do nosso projeto, acesse nossa [documentação](https://inteli-college.github.io/2024-T0008-EC05-G05/)!
 
 
 
