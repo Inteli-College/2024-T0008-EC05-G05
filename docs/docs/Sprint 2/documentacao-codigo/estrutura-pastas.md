@@ -10,7 +10,6 @@ Dentro do nosso [repositório do GitHub](https://github.com/Inteli-College/2024-
 ```
 .
 ├── .github/workflows
-├── LICENSE
 ├── docs
 ├── media
 └── src

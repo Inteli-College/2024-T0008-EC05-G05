@@ -1,0 +1,8 @@
+{
+    "label": "Relatório da Sprint",
+    "position": 3,
+    "link": {
+        "type": "generated-index",
+        "description": "Nesta seção está a tabela com as atividades realizadas na Sprint e em quais dias respsctivos foram realizadas."
+    }
+}

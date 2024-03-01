@@ -7,10 +7,10 @@ sidebar_position: 1
 
 Nesta tabela, temos as atividades realizadas na sprint 1 e em qual dias trabalhamos nelas:
 
-![Tabela de relatório da sprint 1](../../../static/img/relatorio-sprint1.png)
+![Relatório Sprint 1](../../../static/img/relatorios-sprint/relatorio-sprint1.png)
 
 A seguir temos o slide de aprensetação da sprint 1:
 
-[Clique para acessar a apresetação](../../../static/img/CardioBotApresentacaoSprint1.pdf)
+[Clique para acessar a apresentação](../../../static/img/CardioBotApresentacaoSprint1.pdf)
 
 
