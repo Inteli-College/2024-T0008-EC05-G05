@@ -14,4 +14,9 @@ Nessa segunda sprint, houve um aprofundamento maior no desenvolvimento do fluxo 
 ![Relatório Sprint 2](../../../static/img/relatorios-sprint/relatorio-sprint2.png)
 
 ****Fonte:**** Elaborado pela equipe Cardio-Bot
+
+A seguir temos o slide de aprensetação da sprint 2:
+
+[Clique para acessar a apresentação](../../../static/img/ApresentacaoSprint2-Cardiobot.pdf)
+
 </div>
