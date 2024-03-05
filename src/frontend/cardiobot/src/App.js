@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'; // Import Routes
+import LoginForm from './pages/LoginForm/LoginForm';
 
 import Dashboard from './pages/dashboard/dashboard.js';
 import Supplies from './pages/supplies/supplies.js';
@@ -17,22 +18,11 @@ function App() {
     </Router>
   );
 }
-
 // Define a Home component to render when no specific route is matched
 function Home() {
   return (
     <div>
-      <nav>
-      <h1>Bem vindo a página inicial</h1>
-        <ul>
-          <li>
-            <Link to="/dashboard">Dashboard</Link>
-          </li>
-          <li>
-            <Link to="/supplies">Supplies</Link>
-          </li>
-        </ul>
-      </nav>
+      <LoginForm />
     </div>
   );
 }
