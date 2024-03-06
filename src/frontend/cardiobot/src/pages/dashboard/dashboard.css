@@ -1,44 +1,15 @@
-/* DashboardPage.css */
+/* dashboard.css */
 .dashboard {
-    display: flex;
-  }
-  
+  display: flex;
+}
+
+
 .dashboard-content {
-  margin-left: 300px;
-  padding: 20px; 
-  width: calc(100% - 250px);
+  padding-top: 2rem;
+  padding-left: 5rem;
 }
 
-.menu-icon {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 5;
-  cursor: pointer;
-  font-size: 30px;
-  padding: 10px;
-}
 
-/* Sidebar.css */
-.sidebar {
-  width: 250px;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: -250px; /* Inicia escondida */
-  transition: left 0.3s;
-  /* ... */
-}
-
-.sidebar.open {
-  left: 0; /* Sidebar visível */
-}
-
-.main-content {
-  transition: margin-left 0.3s;
-  /* ... */
-}
-
-.main-content.expanded {
-  margin-left: 250px; /* Espaço para a sidebar quando ela estiver aberta */
+.blurred {
+  filter: blur(2px); /* Desfoca o conteúdo quando a sidebar estiver aberta */
 }
