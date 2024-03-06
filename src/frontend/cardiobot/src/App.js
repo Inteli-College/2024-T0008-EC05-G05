@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'; // Import Routes
 import LoginForm from './pages/LoginForm/LoginForm';
 
-import Dashboard from './pages/dashboard/dashboard.js';
+import Dashboard from './pages/dashboard/dashboard.jsx';
 import Supplies from './pages/supplies/supplies.js';
 
 function App() {
+
   return (
     <Router>
       <div>
@@ -18,6 +19,7 @@ function App() {
     </Router>
   );
 }
+
 // Define a Home component to render when no specific route is matched
 function Home() {
   return (
