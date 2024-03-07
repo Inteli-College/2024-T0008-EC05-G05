@@ -1,203 +1,114 @@
-from modules import *
-bot = CardioBot("src/data.json")
-
-def main():
-    bot.read_db()
-
-    inputs = [
-        inquirer.List("Inputs", choices=["Connect", "Move", "Go to Position","Get position", "Sequantial", "Save Position", "Save Item", "Save Kit", "Restart", "Disconnect", "Exit"])
-        ]
-
-    answer = inquirer.prompt(inputs)
-    action = answer["Inputs"]
+from  modules import *
 
 
-    def move_bot():
-                print("Iniciando leirura")
-                bot.loader.start()
-                sleep(1.5)
-                bot.loader.stop()
+def __connect(): # connects the arm to the computer
+    start_spiner("Connecting Arm...", 1.5)
+    try:
+        available_ports = list_ports.comports() 
+        port = available_ports[0].device 
 
+        global bot # Globalize the variable 
+        bot = CardioBot(port, False)
+
+        success_message("Arm connected with success :)")
+    except KeyError as e:
+        fail_message(f'{e}')
+
+
+def main(): # Loop
+
+    start_spiner("Carregando commandos")
+
+    # Command options
+    options = inquirer.prompt([
+        inquirer.List("CLI", "Chose your command", ["Connect Arm", "Home", "Acutal Position", "Move Linear", "Move Join", "Tougle Tool Status", "Diconnect Arm", "Exit Program"])
+    ])["CLI"]
+
+
+    match options: # Matchs the command
+        case "Connect Arm":
+            __connect()
+        
+        case "Home":
+            start_spiner("Backing to home position...", 1)
+            try:
+                bot.home()
+            except Exception as e:
+                fail_message(f"{e}", 1.5)
+                __connect()
+                bot.home()
+
+        case "Acutal Position":
+            start_spiner("Getting arm actual positions...", 1)
+            try:
+                x,y,z,r,j1,j2,j3,j4 = bot.pose()
+                print(f"Arm in --> X:{x} Y:{y} Z:{z} R:{r}")
+            except:
+                __connect()
+                x,y,z,r,j1,j2,j3,j4 = bot.pose()
+                print(f"Arm in --> X:{x} Y:{y} Z:{z} R:{r}")
+
+
+        case "Move Linear":
+            try:
                 x = float(input("X : "))
                 y = float(input("Y : "))
                 z = float(input("Z : "))
                 r = float(input("R : "))
 
-                movement = {
-                    "x" : x,
-                    "y" : y,
-                    "z" : z,
-                    "r" : r
-                }
-            
+                bot._move_l(x,y,z,r)
+                success_message()
+                
+            except Exception as e:
+                fail_message(f"{e}", 1.5)
+                __connect()
+                bot._move_l(x,y,z,r)
+                
+
+        case "Move Join":
+            try:
+                x = float(input("X : "))
+                y = float(input("Y : "))
+                z = float(input("Z : "))
+                r = float(input("R : "))
+
+                bot._move_j(x,y,z,r)
+            except Exception as e:
+                fail_message(f"{e}", 1.5)
                 try:
-                    bot.move(movement)
+                    __connect()
                 except:
-                    bot.loader.fail("❌ Dispositivo desconectado")
-                    sleep(1.5)
-                    bot.connect()
-                    main()
+                    bot
+                bot._move_j(x,y,z,r)
 
 
-    match action:
+        case "Tougle Tool Status":
+            try:
+                # Displays the tools choice to be tougled
+                tool = inquirer.prompt(
+                    [inquirer.List("Tool", message="Chose the current tool", choices=["Suck", "Grip"])]
+                )["Tool"].lower()
 
-    
-        case "Disconnect":
-            bot.disconnect()
+                bot.tougle_tool(tool=tool)
+            except Exception as e:
+                fail_message(f"{e}", 1.5)
+                __connect()
         
 
-        case "Connect":
-            bot.connect()
-        
+        case "Exit Program":
+            start_spiner("Exiting...", 1.5)
+            try:
+                bot.home()
+                exit()
+            except Exception as e:
+                fail_message(f"{e}", 1.5)
+                __connect()
+                bot.home()
+                exit()
+                
 
-        case "Move":
-            move_bot()
+    main() # Recursive to mantain the loop
 
-        case "Go to Position":
-            seted_position = bot.read_data("Positions")
-            positions = []
-            for i in seted_position:
-                positions.append(i["name"])
-
-            position_choice = [
-                inquirer.List(
-                    "Position", choices=positions
-                )
-            ]
-
-            prompt = inquirer.prompt(position_choice)
-            position = prompt["Position"]
-
-            print(position)
-
-            movement = bot.get_data(index="Positions", element=position)
-            
-            index = movement["cordenates"]
-            jump  = movement["jump-factor"]
-            
-            cordenates = {
-                "x" : index["x"],
-                "y" : index["y"],
-                "z" : index["z"],
-                "r" : index["r"]
-            }
-
-            bot.move(cordenates, jump)
-
-
-        case "Get position":
-            print(bot.get_position())
-            
-
-        case "Save Position":
-            actual_position = bot.get_position()
-            name = input("\nQual o nome da posição : ")
-            jump_factor = float(input("Fator de pulo da movimentação : "))
-
-
-            position_data = {
-                "name" : name,
-                "cordenates" : actual_position,
-                "jump-factor" : jump_factor
-            }
-
-            bot.save_data("Positions", position_data)
-
-        
-        case "Save Item":
-            name = input("\nNome do item : ")
-            seted_position = bot.read_data("Positions")
-
-            positions = []
-            for i in seted_position:
-                positions.append(i["name"])
-
-            position_choice = [
-                inquirer.List(
-                    "Position", choices=positions
-                )
-            ]
-
-            prompt = inquirer.prompt(position_choice)
-            item_position = prompt["Position"]
-
-            new_item = {
-                "name" : name,
-                "position" : item_position,
-                "cad-date" : localtime()
-            }
-
-            bot.save_data("Itens", new_item)
-
-
-        
-        case "Save Kit":
-            add:bool = True
-
-            print("\nCriando um novo kit\n")
-            sleep(0.5)
-            name = input("Nome do kit : ")
-            saved_itens = bot.read_data("Itens")
-            
-            itens_to_select = ["Finalizar", "Adicionar novo item"]
-            for i in saved_itens:
-                itens_to_select.append(i["name"])
-
-
-            itens = [
-                inquirer.List(
-                    "Itens",
-                    choices=itens_to_select)
-            ]
-
-            selected_itens:list = []
-
-            # while add == True:
-            #     prompt = inquirer.prompt(itens)
-            #     if(prompt["Itens"] == "Finalizar"):
-            #         add = False
-            #     elif(prompt["Itens"] == "Adicionar novo item"):
-            #         pass
-
-            #     quant = int(input("Quantidade desse item no kit : "))
-
-            # itens_quant:dict = {
-            #     "item" : prompt["Itens"],
-            #     "quant" : quant
-            # }
-
-            # selected_itens.append(itens_quant)
-
-
-
-
-
-            kit_to_save:dict = {
-                "name" : name,
-                "itens" : selected_itens
-            }    
-            
-            print(kit_to_save)
-
-            bot.save_data("Kits", kit_to_save)
-
-
-        case "Restart":
-            python = sys.executable
-            os.execl(python, python, * sys.argv)
-
-
-        case "Exit":
-            print("Fechando programa")
-            bot.loader.start()
-            sleep(1.2)
-            bot.loop = False
-            bot.disconnect()
-            bot.loader.stop()
-            sleep(0.1)
-            exit()
-        
 
 if __name__ == "__main__":
-    while(bot.loop == True):
-        main()
+    main()

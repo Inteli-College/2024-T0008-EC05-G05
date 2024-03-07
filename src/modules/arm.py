@@ -1,123 +1,57 @@
-import pydobot, math
-from time import sleep, time
-from yaspin import yaspin
-from .file_menager import DataMenager  # Importando DataMenager para gerenciamento de dados
-from serial.tools import list_ports  # Importando list_ports para listar portas seriais disponíveis
+import pydobot
+import pydobot.enums as pdn
+from .visuals import *
+
+class CardioBot(pydobot.Dobot):
+    def __init__(self, port, verbose):
+        super().__init__(port=port, verbose=verbose)
+        self.tool_status:bool = False
 
 
-class CardioBot(DataMenager):
-    def __init__(self, db_path) -> None:
-        super().__init__(db_path)
-        self.loader = yaspin()  # Inicializando um spinner para mostrar o status de carregamento
-        self.connection_status = False  # Status da conexão com o robô
-        self.loop = True  # Variável de controle para manter um loop
-        self.tool_status = None  # Status da ferramenta do robô
-        self.attemptions = 1  # Número de tentativas de conexão
+    def _disconnect(self): # Disconnects the arm
+        self.home()
+        self.close()
 
-    #A função timer cria um temporizador que imprime a contagem regressiva em segundos.
-    def timer(self, seconds):
-        seconds = seconds
-        start_time = time()
 
-        while True:
-            elapsed_time = time() - start_time
-            remaining_time = max(0, seconds - elapsed_time)
-
-            remaining_time = math.trunc(remaining_time)
-
-            print(f"Conecte o dispositivo: {remaining_time} segundos", end='\r')
-
-            if elapsed_time >= seconds:
-                break
-
-    #A função connect tenta conectar ao robô. Se a conexão falhar, espera por um tempo e tenta novamente.
-    def connect(self):
-        print("\nConectando Robô")
-        self.loader.start()
-        sleep(1)
-        if(self.attemptions <= 2):
-            try:
-                available_ports = list_ports.comports()  # Verifica as portas do computador
-                port = available_ports[0].device  # Seta a porta disponível
-                self.device = pydobot.Dobot(port=port, verbose=False)
-                self.connection_status = True  # Conecta ao braço à porta
-                self.loader.ok("✅ Robô conectado\n")
-            except:
-                self.loader.fail(f"\n\n💥 Não foi possível achar dispositívos conectados.\nTentativa:{self.attemptions}\n")
-
-                self.timer(20)  # Espera 20 segundos antes de tentar novamente
-
-                self.attemptions += 1
-                sleep(2)
-                self.connect()  # Tentativa de reconexão
-
-            sleep(1.5)
-        else:
-            self.loader.fail("☠︎︎ Ecesso de tentativas. O programa será parado\n")
-            sleep(1.5)
-            exit()
-        
-    # A função disconnect desconecta o robô, movendo-o para uma posição específica e fechando a conexão.
-    def disconnect(self):
-        print("\nDesconectando Robô\n")
-        self.loader.start()
-        sleep(0.25)
-        
+    def _move_l(self, x,y,z,r): # Moves the arm in linear way
+        start_spiner("Starting move...")
         try:
-            self.device.suck(False)
-            self.device.move_to(243, 0, 150, 0, True)
-            self.device.close()
-            self.loader.ok("✅ Robô desconectado\n")
-        except:
-            self.loader.fail("💥 Nenhum robô encontrado\n")
-
-        sleep(1.25)
-
-    # A função move move o robô para as coordenadas especificadas, com um fator de salto opcional.
-    def move(self, cordenates:dict, jump_factor:float):
-        print("Iniciando movimentação")
-        self.loader.start()
-        sleep(1)
-        try:
-            actual_position = self.get_position()
-            if jump_factor and actual_position["z"]+jump_factor <= 135:
-                self.device.move_to(actual_position["x"], actual_position["y"], actual_position["z"]+jump_factor, actual_position["r"], True)
-
-            self.device.move_to(cordenates["x"], cordenates["y"], cordenates["z"]+jump_factor, cordenates["r"], True)
-            self.device.move_to(cordenates["x"], cordenates["y"], cordenates["z"], cordenates["r"], True)
-            self.loader.ok("✅ Movimentação concluída\n")
-        except:
-            self.loader.fail("💥 Braço desconecato\n")
-            sleep(1.25)
+            self._set_ptp_cmd(x, y, z, r, mode=pdn.PTPMode.MOVL_XYZ, wait=True)
+        except Exception as e:
+            fail_message(f"{e}")
             self.connect()
+            self._set_ptp_cmd(x, y, z, r, mode=pdn.PTPMode.MOVL_XYZ, wait=True)
+    
 
-    #A função get_position obtém a posição atual do robô.
-    def get_position(self):
-        print("Pegando posições")
-        self.loader.start()
-        sleep(1)
+    def _move_j(self, x , y, z, r): # Moves the arm in join way
+        try:
+            self._set_ptp_cmd(x, y, z, r, mode=pdn.PTPMode.MOVJ_XYZ, wait=True)
+        except Exception as e:
+            fail_message(f"{e}")
+            self.connect()
+            self._set_ptp_cmd(x, y, z, r, mode=pdn.PTPMode.MOVJ_XYZ, wait=True)
+
+
+    def home(self): # Put the arm in the home position
+        start_spiner("Moving to home...")
+        try:
+            self._move_j(243, 0, 150, 0)
+            success_message("Robot in home :)")
+        except:
+            self._move_l(243, 0, 150, 0)
+            success_message("Robot in home :)")
+
+
+
+    def tougle_tool(self, tool:str="suck"): # Tougles the tool status
+        self.tool_status = not self.tool_status
 
         try:
-            x,y,z,r,j1,j2,j3,j4 = self.device.pose()
-        except:
-            self.loader.fail("💥 Braço desconectado")
-            sleep(1.25)
-
+            match tool:
+                case "suck":
+                    self.suck(self.tool_status)
+                case "grip":
+                    self.grip(self.tool_status)
+        except Exception as e:
+            fail_message(f"{e}")
             self.connect()
-
-        x,y,z,r,j1,j2,j3,j4 = self.device.pose() 
-        
-        saved_position = {
-            "x" : x,
-            "y" : y,
-            "z" : z,
-            "r" : r,
-            "j1" : j1,
-            "j2" : j2,
-            "j3" : j3,
-            "j4" : j4,
-        }
-
-        sleep(1)
-
-        return saved_position
