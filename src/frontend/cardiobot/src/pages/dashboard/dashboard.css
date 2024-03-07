@@ -1,12 +1,15 @@
-/* DashboardPage.css */
+/* dashboard.css */
 .dashboard {
-    display: flex;
-  }
-  
-  .dashboard-content {
-    margin-left: 250px; /* Ajuste conforme a largura do seu Sidebar */
-    padding: 20px; /* Ajuste conforme necessário */
-    width: calc(100% - 250px); /* Ajuste conforme a largura do seu Sidebar */
-    /* Mais estilizações para o seu dashboard */
-  }
-  
+  display: flex;
+}
+
+
+.dashboard-content {
+  padding-top: 2rem;
+  padding-left: 5rem;
+}
+
+
+.blurred {
+  filter: blur(2px); /* Desfoca o conteúdo quando a sidebar estiver aberta */
+}
