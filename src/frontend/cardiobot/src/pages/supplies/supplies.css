@@ -13,8 +13,25 @@
   }
   
   .Item {
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
     margin: 0 10px; /* Add some space between items */
+    border: 1px solid #000; /* Add a border */
+    width: 12vw;
+    height: 12vw;
+    background-color: #F1F1F0;
   }
+  
+  #home_button {
+    width: 6vw;
+    height: 6vw;
+    background-image: url('../../assets/imgs/icone_supplie.png');
+    background-size: cover;
+    border: none;
+  }
+  
+  
   
   /* You might need to adjust the styles for the modal and overlay according to your needs */
   .modal {

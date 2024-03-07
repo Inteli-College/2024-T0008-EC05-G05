@@ -1,25 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Popup.css';
 
-const Modal = () => {
-  const [showModal, setShowModal] = useState(false);
-
-  const openModal = () => {
-    setShowModal(true);
-  };
-
-  const closeModal = () => {
-    setShowModal(false);
-  };
-
+const ModalCreated = ({ isOpen, onRequestClose }) => {
   return (
     <div>
-      <button onClick={openModal}>Open Modal</button>
-      {showModal && (
+      {isOpen && (
         <div className="modal">
           <div className="modal-content">
             <h4>This is a test </h4>
-            <span className="close" onClick={closeModal}>&times;</span>
+            <span className="close" onClick={onRequestClose}>&times;</span>
             <p>Hello!</p>
           </div>
         </div>
@@ -28,4 +17,4 @@ const Modal = () => {
   );
 };
 
-export default Modal;
+export default ModalCreated;

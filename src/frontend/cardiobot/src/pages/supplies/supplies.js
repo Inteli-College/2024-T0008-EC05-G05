@@ -1,28 +1,28 @@
 import React, { useState } from "react";
 import ModalCreated from "../../components/Supplies_popup/supplie-popup.js";
 import "./supplies.css";
-import Sidebar from "../../components/Sidebar/Sidebar.js"; 
+import Sidebar from "../../components/Sidebar/Sidebar.js";
 
 const Supplies = () => {
-  // Variavel de estado para a sidebar
+  // State for sidebar
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  // Função para abrir e fechar a sidebar
+  // Function to toggle sidebar
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
-  // Variavel de estado para o modal
+  // State for modals
   const [modalOpen, setModalOpen] = useState(Array(8).fill(false));
 
-  // Abre o modal especifico para cada caixa
+  // Function to open a specific modal
   const openModal = (index) => {
     const newModalOpen = [...modalOpen];
     newModalOpen[index] = true;
     setModalOpen(newModalOpen);
   };
 
-  // Fecha o modal especifico para cada caixa
+  // Function to close a specific modal
   const closeModal = (index) => {
     const newModalOpen = [...modalOpen];
     newModalOpen[index] = false;
@@ -31,38 +31,37 @@ const Supplies = () => {
 
   return (
     <div className="Container">
-    {/* Sidebar component */}
-    <Sidebar open={sidebarOpen} toggleSidebar={toggleSidebar} />
+      {/* Sidebar component */}
+      <Sidebar open={sidebarOpen} toggleSidebar={toggleSidebar} />
 
-    <div className="Row">
-      {[0, 1, 2, 3].map((index) => (
-        <div key={index} className="Item">
-          <button onClick={() => openModal(index)}>Open Modal {index + 1}</button>
-          <ModalCreated
-            isOpen={openModal}
-            onRequestClose={closeModal}
-            className="modal"
-            overlayClassName="overlay"
-          ></ModalCreated>
-        </div>
-      ))}
+      <div className="Row">
+        {[0, 1, 2, 3].map((index) => (
+          <div key={index} className="Item">
+            <button id="home_button" onClick={() => openModal(index)}></button>
+            <ModalCreated
+              isOpen={modalOpen[index]} // Pass the modal state value here
+              onRequestClose={() => closeModal(index)} // Pass the function to close the modal
+              className="modal"
+              overlayClassName="overlay"
+            ></ModalCreated>
+          </div>
+        ))}
+      </div>
+      <div className="Row">
+        {[4, 5, 6, 7].map((index) => (
+          <div key={index} className="Item">
+            <button id="home_button" onClick={() => openModal(index)}></button>
+            <ModalCreated
+              isOpen={modalOpen[index]} // Pass the modal state value here
+              onRequestClose={() => closeModal(index)} // Pass the function to close the modal
+              className="modal"
+              overlayClassName="overlay"
+            ></ModalCreated>
+          </div>
+        ))}
+      </div>
     </div>
-    <div className="Row">
-      {[4, 5, 6, 7].map((index) => (
-        <div key={index} className="Item">
-          <button onClick={() => openModal(index)}>Open Modal {index + 1}</button>
-          <ModalCreated
-            isOpen={openModal}
-            onRequestClose={closeModal}
-            className="modal"
-            overlayClassName="overlay"
-          ></ModalCreated>
-        </div>
-      ))}
-    </div>
-  </div>
-);
+  );
 };
-
 
 export default Supplies;
