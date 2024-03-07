@@ -1,6 +1,7 @@
 /* dashboard.css */
 .dashboard {
-  display: flex;
+  display: grid;
+  grid-template-columns: 15em 10fr 5fr;
 }
 
 
@@ -12,4 +13,13 @@
 
 .blurred {
   filter: blur(2px); /* Desfoca o conteúdo quando a sidebar estiver aberta */
+}
+
+
+.small-space{
+  width: 50px;
+}
+
+.big-space{
+  width: 15em;
 }

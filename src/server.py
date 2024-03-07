@@ -10,7 +10,7 @@ hydro.create(
     columns=[
         ['position_name','x','y','z','r','j1','j2','j3','j4'],
         ['item_position', "item_name", 'item_code', "val"],
-        ['kit_name', 'kit_itens', "kit_code"]
+        ['kit_name', 'kit_itens', "kit_code", "kit_img", "kit_desc"]
     ],
     primary_key=['id', "item_code", 'kit_code']
 )
@@ -54,6 +54,16 @@ def get_itens():
     except Exception as e:
         print(f"Error fetching data: {e}")
         return jsonify([])  # Return an empty array if there is an error 
+    
+
+@server.route('/api/get-kits')
+def get_kits():
+    try:
+        kits_table = hydro.get_table("Kits")
+        return jsonify(kits_table["rows"])
+    except Exception as e:
+        print(f"ERROR ==> {e}")
+        return jsonify([])
 
 
 server.run()

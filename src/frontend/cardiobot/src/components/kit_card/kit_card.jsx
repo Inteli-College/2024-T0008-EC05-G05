@@ -8,7 +8,7 @@ const KitCard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/get-itens');
+        const response = await axios.get('http://localhost:5000/api/get-kits');
         setData(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -22,21 +22,19 @@ const KitCard = () => {
   //   JSON.stringify(item)
   // ))
 
-  return (
-    <div>
+  return ( 
+    <section className='kit-card area'>
       <h1>Data from Flask Backend</h1>
-      <section className='kits-area'>
         {Array.isArray(data) ? (
           data.map(item => (
-            <div className='kit-card'>
-              <p key={item.id}>{item.item_name}</p>
+            <div className='kit-card item'>
+              <p key={item.id}>{item.kit_name}</p>
             </div>
           ))
         ) : (
           <p>Data is not an array.</p>
         )}
-      </section>
-    </div>
+    </section>
   );
 };
 
