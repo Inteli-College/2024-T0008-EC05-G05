@@ -1,0 +1,10 @@
+.kit-area{
+    display: grid;
+    grid-template-columns:auto auto auto ;
+}
+
+.kit-card{
+    display: block;
+    border: 2px solid black;
+    max-width: 50%;
+}
