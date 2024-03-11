@@ -3,6 +3,7 @@ import './dashboard.css'; // Crie um arquivo de CSS para estilizações específ
 import { FaBars } from "react-icons/fa"; // Ícone de menu (hambúrguer)
 import Sidebar from '../../components/Sidebar/Sidebar.js';
 import KitCard from '../../components/kit_card/kit_card.jsx';
+import KitsProdStatus from '../../components/KitsProd/KitsProdStatus.js';
 
 
 function Dashboard() {
@@ -10,6 +11,26 @@ function Dashboard() {
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
+
+  const kitsInfo = [
+    {
+      name: 'Kit 1',
+      image: 'https://via.placeholder.com/150',
+      startTime: '03/11/2024 14:30:00',
+    },
+    {
+      name: 'Kit 2',
+      image: 'https://via.placeholder.com/150',
+      startTime: '03/11/2024 14:30:00',
+    },
+    {
+      name: 'Kit 3',
+      image: 'https://via.placeholder.com/150',
+      startTime: '03/11/2024 14:30:00',
+    },
+  ];
+
+
   return (
     <div className="dashboard">
         <Sidebar open={sidebarOpen} toggleSidebar={toggleSidebar} />
@@ -20,6 +41,18 @@ function Dashboard() {
         
         <div className={sidebarOpen ? 'blurred' : 'banana'}>
           <h1>Bem-vindo à Dashboard</h1>
+        </div>
+
+        <div className="production-kits-section">
+          <h2>Kits em produção  </h2>
+          {kitsInfo.map((kit, index) => (
+            <KitsProdStatus 
+              kitName={kit.name}
+              imageUrl={kit.image}
+              startTime={kit.startTime}
+              isFirst={index === 0}
+            />
+          ))}
         </div>
     </div>
   );
