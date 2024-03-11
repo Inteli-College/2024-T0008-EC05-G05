@@ -1,0 +1,25 @@
+.kitProd {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px; /* Espaçamento entre os itens de produção */
+  }
+  
+  .kit-photo img {
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%; /* Foto circular */
+    margin-right: 10px;
+  }
+  
+  /* .kit-info {
+
+  } */
+  
+  .kit-info h3 {
+    margin: 0;
+  }
+  
+  .kit-info p {
+    margin: 0;
+  }
+  
