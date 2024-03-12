@@ -17,14 +17,15 @@ hydro.create(
 
 start_spiner("Connecting Arm...", 1.5)
 available_ports = list_ports.comports()
-if available_ports != []:
+try :
+    available_ports != []
     port = available_ports[0].device
     global bot # Globalize the variable 
     bot = CardioBot(port, False)
 
     success_message("Arm connected with success :)")
 
-else:
+except Exception as e:
     fail_message('Non available ports')
         
 
