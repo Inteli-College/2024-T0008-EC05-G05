@@ -1,0 +1,120 @@
+{
+    "Itens": {
+        "1": {
+            "item_code": "123",
+            "name": "Seringa",
+            "initial_position": "A1",
+            "final_position": "B2"
+        },
+        "2": {
+            "item_code": "123",
+            "name": "Seringa",
+            "initial_position": "A1",
+            "final_position": "B2"
+        },
+        "3": {
+            "item_code": "123",
+            "name": "Seringa",
+            "initial_position": "A1",
+            "final_position": "B2"
+        },
+        "4": {
+            "item_code": "123",
+            "name": "Seringa",
+            "initial_position": "A1",
+            "final_position": "B2"
+        },
+        "5": {
+            "item_code": "123",
+            "name": "Seringa",
+            "initial_position": "A1",
+            "final_position": "B2"
+        },
+        "6": {
+            "item_code": "123",
+            "name": "Seringa",
+            "initial_position": "A1",
+            "final_position": "B2"
+        }
+    },
+    "Kits": {
+        "1": {
+            "kit_code": "K1",
+            "name": "Kit Cirurgia",
+            "items": [
+                "123",
+                "456"
+            ]
+        },
+        "2": {
+            "kit_code": "K1",
+            "name": "Kit Cirurgia",
+            "items": [
+                "123",
+                "456"
+            ]
+        },
+        "3": {
+            "kit_code": "K1",
+            "name": "Kit Cirurgia",
+            "items": [
+                "123",
+                "456"
+            ]
+        },
+        "4": {
+            "kit_code": "K1",
+            "name": "Kit Cirurgia",
+            "items": [
+                "123",
+                "456"
+            ]
+        },
+        "5": {
+            "kit_code": "K1",
+            "name": "Kit Cirurgia",
+            "items": [
+                "123",
+                "456"
+            ]
+        },
+        "6": {
+            "kit_code": "K1",
+            "name": "Kit Cirurgia",
+            "items": [
+                "123",
+                "456"
+            ]
+        }
+    },
+    "Positions": {
+        "1": {
+            "position_code": "A1",
+            "x": 298.98,
+            "y": 88.68,
+            "z": -42.57,
+            "r": 0
+        },
+        "2": {
+            "position_code": "A2",
+            "x": 277,
+            "y": -131.06,
+            "z": -17.08,
+            "r": -25.26
+        },
+        "3": {
+            "position_code": "posicaoVerificacaoAlta",
+            "x": 309,
+            "y": 4,
+            "z": 108,
+            "r": 0
+        },
+        "4": {
+            "position_code": "posicaoVerificacaoBaixa",
+            "x": 308,
+            "y": 5,
+            "z": -45.57,
+            "r": 0
+        }
+    }
+}
