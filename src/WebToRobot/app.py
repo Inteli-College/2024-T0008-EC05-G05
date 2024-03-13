@@ -89,6 +89,16 @@ async def mover_para_posicoes(posicao_inicial: str, posicao_final: str):
 
     dados_qr = await capturar_qr_code()
 
+    # dados_ultrasoico = await capturar_dados_ultrassonico()
+
+    # if dados_ultrasoico > 10:
+    #     return {"status": "erro", "mensagem": "Item não foi pego {e}"}
+    #     status_ultrasoico = "Item não foi pego, distancia: " + str(dados_ultrasoico)
+    # else:
+    #     status_ultrasoico = "Item foi pego, distancia: " + str(dados_ultrasoico)
+    #     return {"status": "sucesso", "mensagem": "Item pego com sucesso."}
+
+
     seguranca_baixa = posicao_seguranca_baixa[0]
     try :
         dobot.mover_para(seguranca_baixa['x'], seguranca_baixa['y'], seguranca_baixa['z'], seguranca_baixa['r'])
