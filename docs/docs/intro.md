@@ -19,5 +19,6 @@ O modelo de desenvolvimento das soluções é realizado em sprints. Cada sprint 
 ### Sprint 1 
 O objetivo desta primeira iteração foi entender a fundo o problema e criar uma fundação sólida para o desenvolvimento de uma solução eficiente e completa, que irá reduzir custos e aumentar a satisfação do cliente. Para isso, foram realizados artefatos relacionados ao entendimento do negócio, arquitetura do sistema e user experience. 
 
+
 ### Sprint 2
 Nessa segunda sprint, houve um aprofundamento maior no desenvolvimento do fluxo de utilização do nosso projeto, além de uma concepção um pouco mais estruturada das features da nossa interface e avanços no funcionamento do braço robótico (já podendo ser controlado e desempenhar a função de ordenação de itens por CLI).
