@@ -53,8 +53,33 @@ Dentre os arquivos e pastas presentes na raiz do projeto, definem-se:
 
 ## 🔧 Instalação
 
-Para direcionamentos sobre a instalação e uso do nosso projeto, acesse nossa [documentação](https://inteli-college.github.io/2024-T0008-EC05-G05/)!
+Para direcionamentos sobre a instalação e uso do projeto independente do release a [documentação](https://inteli-college.github.io/2024-T0008-EC05-G05/)!
 
+#### Sprint 1 
+Na primeira sprint não houve desenvolvimento de código, foi trabalhado todo o entendimento do problema e o esboço inicial da solução. Assim, caso queira rodar a documentação localmente utilizando o docusaurus é necessário seguir os seguintes passos no terminal. 
+
+**Acessar a pasta que contém a build do docusaurus** 
+```
+cd docs
+```
+**Instalar os pacote de node que foram utilizados**
+
+```
+npm install
+```
+
+**Buildar a página web**
+
+```
+npm run build
+```
+
+**Iniciar o servidor web**
+
+```
+npm run serve
+```
+Pronto a documentação desenvolvida durante a primeira sprint já pode ser acessada localmente. 
 
 
 ## 📋 Licença/License
