@@ -1,0 +1,15 @@
+{
+    "table_name": "Kits",
+    "meta_data": null,
+    "table_columns": [
+        "id",
+        "data_log",
+        "kit_name",
+        "kit_itens",
+        "kit_code",
+        "kit_img",
+        "kit_desc"
+    ],
+    "pk": "kit_code",
+    "rows": []
+}
