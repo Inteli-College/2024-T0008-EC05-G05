@@ -1,10 +1,17 @@
 from fastapi import FastAPI, Request, Form, Depends, HTTPException
 from tinydb import TinyDB, Query
 from dobot import Dobot
+from qreader import QReader
+import cv2
+import os
+from datetime import datetime
 
 app = FastAPI()
 
 dobot = Dobot()
+
+qreader = QReader()
+
 
 # Inicializa o banco de dados
 db = TinyDB('db.json', indent=4)
@@ -70,6 +77,25 @@ async def mover_para_posicoes(posicao_inicial: str, posicao_final: str):
         print(f"Erro ao mover para a posição inicial: {e}")
         return {"status": "erro", "mensagem": f"Erro ao mover para a posição de segurança baixa: {e}"}
     
+
+    try :
+        dobot.mover_para(seguranca_alta['x'], seguranca_alta['y'], seguranca_alta['z'], seguranca_alta['r'])
+    except Exception as e: 
+        print(f"Erro ao mover para a posição inicial: {e}")
+        return {"status": "erro", "mensagem": f"Erro ao mover para a posição de segurança alta: {e}"}
+    
+
+    # Foto de escaneamento do QRcode
+
+    dados_qr = await capturar_qr_code()
+
+    seguranca_baixa = posicao_seguranca_baixa[0]
+    try :
+        dobot.mover_para(seguranca_baixa['x'], seguranca_baixa['y'], seguranca_baixa['z'], seguranca_baixa['r'])
+    except Exception as e: 
+        print(f"Erro ao mover para a posição inicial: {e}")
+        return {"status": "erro", "mensagem": f"Erro ao mover para a posição de segurança baixa: {e}"}
+
     try :
         dobot.mover_para(seguranca_alta['x'], seguranca_alta['y'], seguranca_alta['z'], seguranca_alta['r'])
     except Exception as e: 
@@ -83,3 +109,30 @@ async def mover_para_posicoes(posicao_inicial: str, posicao_final: str):
     except Exception as e: 
         print(f"Erro ao mover para a posição final: {e}")
         return {"status": "erro", "mensagem": f"Erro ao mover para a posição inicial: {e}"}
+    
+    return {"status": "sucesso", "dados_qr": dados_qr}
+    
+
+@app.get('/capturar')
+async def capturar_qr_code():
+    # Capture an image from the webcam
+    camera = cv2.VideoCapture(1)
+    _, image = camera.read()
+    camera.release()
+
+    # Save the image
+    cv2.imwrite("qrcode.png", image)
+
+    # Get the image that contains the QR code
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+
+    # Use the detect_and_decode function to get the decoded QR data
+    decoded_text = qreader.detect_and_decode(image=image)
+
+    # Return the decoded text
+    return {'Dados': decoded_text}
+
+@app.get('/mostrar_dados_qr')
+async def mostrar_dados_qr():
+    # Return the dictionary containing QR code data
+    return qr_code_data
