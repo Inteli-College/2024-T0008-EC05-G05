@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Modal from '../kit_description_popup/KitDescriptionPopup.js';
 
 
-const KitCard = () => {
+const KitCard = ({kitId, renderContent}) => {
   const [data, setData] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const change_page = useNavigate();
@@ -17,7 +17,7 @@ const KitCard = () => {
       try {
         const response = await axios.get('http://localhost:8000/posts/');
         setData(response.data);
-        console.log(response.data)
+        console.log("iteeeeemmmmm ->>>", response.data)
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -34,15 +34,11 @@ const KitCard = () => {
     setShowModal(false);
   };
 
-  // const rows = data.map(item => (
-  //   JSON.stringify(item)
-  // ))
-
   return ( 
     <section className='kit-card-area'>
         {Array.isArray(data) ? (
           data.map(item => (
-            <div className='kit-card-item' key={item.id}>
+            <div className='kit-card-item' key={item.id_kit}>
               <h3 className='kit-card-title'>{item.nome_kit}</h3>
               {/* Todo adicionar a descrição de cada kit  */}
               {/* <p className='kit-car-dec'>{item.id_kit}</p> */}
@@ -53,12 +49,14 @@ const KitCard = () => {
                 <button type="button" >Edit</button>
                 <button type="button" onClick={handleStartClick}>Start</button>
               </div>
+              <Modal showModal={showModal} closeModal={closeModal} kitId={item.id_kit}  renderContent={renderContent} />
             </div>
+            
           ))
         ) : (
           <p>Data is not an array.</p>
         )}
-        <Modal showModal={showModal} closeModal={closeModal} />
+     
     </section>
   );
 };
