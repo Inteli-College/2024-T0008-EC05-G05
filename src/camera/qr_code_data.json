@@ -1,0 +1,54 @@
+{
+    "QR_Code_1": {
+        "data": "texto_decodificado_do_QR_code",
+        "data_hora": "2024-03-11 15:30:00"
+    },
+    "QR_Code_2": {
+        "data": "outro_texto_decodificado_do_QR_code",
+        "data_hora": "2024-03-11 15:35:00"
+    },
+    "QR_Code_3": {
+        "data": [
+            "Some data here"
+        ],
+        "data_hora": "2024-03-11 17:30:44"
+    },
+    "QR_Code_4": {
+        "data": [
+            null
+        ],
+        "data_hora": "2024-03-11 17:31:38"
+    },
+    "QR_Code_5": {
+        "data": [
+            "Some data here"
+        ],
+        "data_hora": "2024-03-11 17:32:41"
+    },
+    "QR_Code_6": {
+        "data": [
+            "Some data here",
+            null
+        ],
+        "data_hora": "2024-03-11 17:33:50"
+    },
+    "QR_Code_7": {
+        "data": [
+            null
+        ],
+        "data_hora": "2024-03-11 17:34:37"
+    },
+    "QR_Code_8": {
+        "data": [
+            "equWDaG",
+            null
+        ],
+        "data_hora": "2024-03-11 17:35:31"
+    },
+    "QR_Code_9": {
+        "data": [
+            null
+        ],
+        "data_hora": "2024-03-11 17:36:06"
+    }
+}
