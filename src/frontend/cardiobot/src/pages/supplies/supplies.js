@@ -42,7 +42,7 @@ const Supplies = () => {
   };
 
   // Essa é a função que envia os dados para o backend 
-  const displayValues = () => {
+  const sendValues = () => {
     console.log(inputValues);
     axios.post('http://localhost:8000/posts/', {
       nome_kit : 'Kit 1',
@@ -56,6 +56,16 @@ const Supplies = () => {
         console.log(error);
       });
   };
+
+  const fetchItems = () => {
+    try { 
+      const items = axios.get('http://localhost:8000/posts/${id}');
+      console.log(items);
+    }
+    catch (error) {
+      console.log("error : ", error);
+    }
+  }
 
   const options = [
     ['Curativo adesivo', 'Vazio'],
@@ -72,6 +82,14 @@ const Supplies = () => {
   return (
     <div className="Container">
       <Sidebar open={sidebarOpen} toggleSidebar={toggleSidebar} />
+      {/* Escolhe o número do kit:  */}
+      <select value={selectedNumber} onChange={(event) => setSelectedNumber(event.target.value)}>
+        <option value="">Select a number</option>
+        {[1, 2, 3, 4, 5].map((number) => (
+          <option key={number} value={number}>{number}</option>
+        ))}
+      </select>
+      <button onClick={() => fetchItems(selectedNumber)}>Show inventory</button>
       <div className="Row">
         {[0, 1, 2, 3].map((index) => (
           <div key={index} className="Item">
@@ -123,7 +141,7 @@ const Supplies = () => {
         ))}
       </div>
       <div>
-        <button onClick={displayValues}>Enviar dados</button>
+        <button onClick={sendValues}>Enviar dados</button>
       </div>
     </div>
   );
