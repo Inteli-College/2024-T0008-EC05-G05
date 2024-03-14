@@ -23,12 +23,19 @@ const KitCard = () => {
   // ))
 
   return ( 
-    <section className='kit-card area'>
-      <h1>Data from Flask Backend</h1>
+    <section className='kit-card-area'>
         {Array.isArray(data) ? (
           data.map(item => (
-            <div className='kit-card item'>
-              <p key={item.id}>{item.kit_name}</p>
+            <div className='kit-card-item' key={item.id}>
+              <h3 className='kit-card-title'>{item.kit_name}</h3>
+              <p className='kit-car-dec'>{item.kit_desc}</p>
+              <div className='kit-carad-img-area'>
+                <img src={item.kit_img} alt="" className='kit-card-img'/>
+              </div>
+              <div className='kit-card-buttons-area'>
+                <button type="button">Edit</button>
+                <button type="button">Start</button>
+              </div>
             </div>
           ))
         ) : (
