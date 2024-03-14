@@ -3,10 +3,12 @@ import "./kit_card.css"
 import axios from 'axios';
 import kitImage from '../../assets/imgs/imagem_kits.png';
 import { useNavigate } from "react-router-dom";
+import Modal from '../kit_description_popup/KitDescriptionPopup.js';
 
 
 const KitCard = () => {
   const [data, setData] = useState([]);
+  const [showModal, setShowModal] = useState(false);
   const change_page = useNavigate();
 
 
@@ -23,6 +25,14 @@ const KitCard = () => {
 
     fetchData();
   }, []);
+
+  const handleStartClick = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
 
   // const rows = data.map(item => (
   //   JSON.stringify(item)
@@ -41,13 +51,14 @@ const KitCard = () => {
               </div>
               <div className='kit-card-buttons-area'>
                 <button type="button" >Edit</button>
-                <button type="button">Start</button>
+                <button type="button" onClick={handleStartClick}>Start</button>
               </div>
             </div>
           ))
         ) : (
           <p>Data is not an array.</p>
         )}
+        <Modal showModal={showModal} closeModal={closeModal} />
     </section>
   );
 };
