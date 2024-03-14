@@ -5,6 +5,8 @@ from qreader import QReader
 import cv2
 import os
 from datetime import datetime
+from pydantic import BaseModel
+import httpx
 
 app = FastAPI()
 
@@ -12,6 +14,12 @@ dobot = Dobot()
 
 qreader = QReader()
 
+ativacao_sensor = False
+data_recebida = ""
+
+# Modelo de dados para a entrada de dados Raspberry Pi Pico
+class PicoData(BaseModel): # BaseModel para validar e tratar dados JSON recebidos automaticamente
+    pegou: str
 
 # Inicializa o banco de dados
 db = TinyDB('db.json', indent=4)
@@ -37,7 +45,7 @@ async def conectar_dobot(porta: str):
         print(f"Falha ao conectar ao robô: {e}")
         return {"status": "erro", "mensagem": f"Falha ao conectar ao robô: {e}"}
 
-# http://127.0.0.1:8000/conectar_dobot/mover_para_posicoes/?posicao_inicial=A1&posicao_final=A2
+# http://127.0.0.1:8000/mover_para_posicoes/?posicao_inicial=A1&posicao_final=A2
 @app.get('/mover_para_posicoes/')
 async def mover_para_posicoes(posicao_inicial: str, posicao_final: str):
     print(f"Movendo dobot para as posições {posicao_inicial} e {posicao_final}.")
@@ -56,6 +64,7 @@ async def mover_para_posicoes(posicao_inicial: str, posicao_final: str):
 
     try :
         dobot.mover_para(inicial['x'], inicial['y'], inicial['z'], inicial['r'])
+        dobot.atuador("suck", "On")
     except Exception as e: 
         print(f"Erro ao mover para a posição inicial: {e}")
         return {"status": "erro", "mensagem": f"Erro ao mover para a posição inicial: {e}"}
@@ -73,6 +82,7 @@ async def mover_para_posicoes(posicao_inicial: str, posicao_final: str):
     seguranca_baixa = posicao_seguranca_baixa[0]
     try :
         dobot.mover_para(seguranca_baixa['x'], seguranca_baixa['y'], seguranca_baixa['z'], seguranca_baixa['r'])
+        dobot.atuador("suck", "Off")
     except Exception as e: 
         print(f"Erro ao mover para a posição inicial: {e}")
         return {"status": "erro", "mensagem": f"Erro ao mover para a posição de segurança baixa: {e}"}
@@ -84,24 +94,29 @@ async def mover_para_posicoes(posicao_inicial: str, posicao_final: str):
         print(f"Erro ao mover para a posição inicial: {e}")
         return {"status": "erro", "mensagem": f"Erro ao mover para a posição de segurança alta: {e}"}
     
-
     # Foto de escaneamento do QRcode
 
+    async with httpx.AsyncClient() as client:
+        await client.get("http://10.128.0.8/ativar_sensor")
+
+    print(data_recebida)
+
+    if data_recebida == "Pegou":
+        print("Item não foi pego")
+    else:
+        print("Item foi pego!")
+
+    async with httpx.AsyncClient() as client:
+        await client.get("http://10.128.0.8/desativar_sensor")
+
+    print(data_recebida)
+
     dados_qr = await capturar_qr_code()
-
-    # dados_ultrasoico = await capturar_dados_ultrassonico()
-
-    # if dados_ultrasoico > 10:
-    #     return {"status": "erro", "mensagem": "Item não foi pego {e}"}
-    #     status_ultrasoico = "Item não foi pego, distancia: " + str(dados_ultrasoico)
-    # else:
-    #     status_ultrasoico = "Item foi pego, distancia: " + str(dados_ultrasoico)
-    #     return {"status": "sucesso", "mensagem": "Item pego com sucesso."}
-
 
     seguranca_baixa = posicao_seguranca_baixa[0]
     try :
         dobot.mover_para(seguranca_baixa['x'], seguranca_baixa['y'], seguranca_baixa['z'], seguranca_baixa['r'])
+        dobot.atuador("suck", "On")
     except Exception as e: 
         print(f"Erro ao mover para a posição inicial: {e}")
         return {"status": "erro", "mensagem": f"Erro ao mover para a posição de segurança baixa: {e}"}
@@ -116,17 +131,18 @@ async def mover_para_posicoes(posicao_inicial: str, posicao_final: str):
     final = posicao_final_data[0]
     try :
         dobot.mover_para(final['x'], final['y'], final['z'], final['r'])
+        dobot.atuador("suck", "Off")
     except Exception as e: 
         print(f"Erro ao mover para a posição final: {e}")
         return {"status": "erro", "mensagem": f"Erro ao mover para a posição inicial: {e}"}
     
-    return {"status": "sucesso", "dados_qr": dados_qr}
+    return {"status": "sucesso", "dados_qr": dados_qr, "dados_ultra": data_recebida}
     
 
 @app.get('/capturar')
 async def capturar_qr_code():
     # Capture an image from the webcam
-    camera = cv2.VideoCapture(1)
+    camera = cv2.VideoCapture(0)
     _, image = camera.read()
     camera.release()
 
@@ -146,3 +162,77 @@ async def capturar_qr_code():
 async def mostrar_dados_qr():
     # Return the dictionary containing QR code data
     return qr_code_data
+
+# Endpoint para receber dados do Raspberry Pi Pico
+@app.post("/pico_data")
+async def receive_pico_data(data: PicoData):
+    # Processar ou salvar os dados recebidos
+
+    global data_recebida
+    data_recebida = data.pegou
+
+    print(f"Data Rasp Pico: Status={data.pegou}")
+
+    return {data_recebida}
+
+@app.get("/check")
+async def check_activation():
+    global ativacao_sensor
+    print(f"Status do ativacao_sensor: {ativacao_sensor}")
+
+    if ativacao_sensor:
+        return "Ativar"
+    else:
+        return "Espere"
+
+@app.get("/ativar_sensor")
+async def ativar_sensor():
+    global ativacao_sensor
+    ativacao_sensor = True
+    return {"message": "Sensor ativado"}
+
+@app.get("/desativar_sensor")
+async def desativar_sensor():
+    global ativacao_sensor
+    ativacao_sensor = False
+    return {"message": "Sensor desativado"}
+
+# Endpoint para rodar a montagem de um kit
+# http://IP/montar_kit/?kit_code=K1
+@app.get("/montar_kit/")
+async def montar_kit(kit_code: str):
+    # Buscar o kit no banco de dados
+    kit = kits.search(Query().kit_code == kit_code)
+    print(kit)
+
+    if not kit:
+        raise HTTPException(status_code=404, detail="Kit não encontrado")
+
+    # Montar o kit
+    for item_code in kit[0]['items']:
+        # Buscar o item no banco de dados
+        item = itens.search(Query().item_code == item_code)
+
+        if not item:
+            raise HTTPException(status_code=404, detail="Item não encontrado")
+        
+        # Mover o dobot para a posição inicial do item
+        posicao_inicial = item[0]['initial_position']
+        posicao_final = item[0]['final_position']
+        item_name = item[0]['name']
+
+        print(f"Pegando o item: {item_name}...")
+        print(posicao_inicial)
+        print(posicao_final)
+
+        # Rodar a sequência de movimentos pelo endpoint /mover_para_posicoes/
+        await mover_para_posicoes(posicao_inicial, posicao_final)
+
+
+
+@app.get('/teste')
+async def teste():
+    return{"Dados": "Testeeeee"}
+
+
+# uvicorn app:app --host 0.0.0.0 --reload --port 80

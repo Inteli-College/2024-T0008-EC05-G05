@@ -4,13 +4,13 @@
             "item_code": "123",
             "name": "Seringa",
             "initial_position": "A1",
-            "final_position": "B2"
+            "final_position": "A2"
         },
         "2": {
-            "item_code": "123",
-            "name": "Seringa",
+            "item_code": "456",
+            "name": "Remedio",
             "initial_position": "A1",
-            "final_position": "B2"
+            "final_position": "A2"
         },
         "3": {
             "item_code": "123",
@@ -47,7 +47,7 @@
             ]
         },
         "2": {
-            "kit_code": "K1",
+            "kit_code": "K2",
             "name": "Kit Cirurgia",
             "items": [
                 "123",
@@ -55,7 +55,7 @@
             ]
         },
         "3": {
-            "kit_code": "K1",
+            "kit_code": "K3",
             "name": "Kit Cirurgia",
             "items": [
                 "123",
@@ -63,7 +63,7 @@
             ]
         },
         "4": {
-            "kit_code": "K1",
+            "kit_code": "K4",
             "name": "Kit Cirurgia",
             "items": [
                 "123",
@@ -71,7 +71,7 @@
             ]
         },
         "5": {
-            "kit_code": "K1",
+            "kit_code": "K5",
             "name": "Kit Cirurgia",
             "items": [
                 "123",
@@ -79,7 +79,7 @@
             ]
         },
         "6": {
-            "kit_code": "K1",
+            "kit_code": "K6",
             "name": "Kit Cirurgia",
             "items": [
                 "123",
