@@ -41,8 +41,7 @@ const Supplies = () => {
     });
   };
 
-  // Essa é a função que envia os dados para o backend 
-  // TODO ajeitar 
+  // Essa é a função que atualiza os dados para o backend 
   const sendValues = () => {
     console.log(inputValues);
     axios.put(`http://localhost:8000/posts/${selectedNumber}`, {
@@ -93,6 +92,8 @@ const Supplies = () => {
     <div className="Container">
       <Sidebar open={sidebarOpen} toggleSidebar={toggleSidebar} />
       {/* Escolhe o número do kit:  */}
+
+      <div className="Header">
       <p>Escolha um kit</p>
       <select value={selectedNumber} onChange={(event) => setSelectedNumber(event.target.value)}>
         <option value="">Escolha um kit</option>
@@ -101,6 +102,7 @@ const Supplies = () => {
         ))}
       </select>
       <button onClick={() => fetchItems(selectedNumber)}>Mostrar estoque</button>
+      </div>
       <div className="Row">
         {[0, 1, 2, 3].map((index) => (
           <div key={index} className="Item">

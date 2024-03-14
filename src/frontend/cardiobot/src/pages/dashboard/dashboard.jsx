@@ -42,7 +42,7 @@ function Dashboard() {
         <div className={sidebarOpen ? 'blurred' : 'banana'}>
           <h1>Bem-vindo à Dashboard</h1>
         </div>
-
+        <KitCard />
         <div className="production-kits-section">
           <h2>Kits em produção  </h2>
           {kitsInfo.map((kit, index) => (

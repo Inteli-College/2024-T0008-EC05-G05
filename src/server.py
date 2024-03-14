@@ -67,4 +67,17 @@ def get_kits():
         return jsonify([])
 
 
+hydro.add(
+    tables_names=["Kits", "Kits", "Kits"],
+    into=(
+        ["kit_name", "kit_itens", "Kit_code", "kit_img", "kit_desc"],
+        ["kit_name", "kit_itens", "Kit_code", "kit_img", "kit_desc"],
+        ["kit_name", "kit_itens", "Kit_code", "kit_img", "kit_desc"]
+    ),
+    values=(
+        ["Kit_1", ["seringa", "agulha", "luvas"], 1, "logo192.png", "kit de uso geral"],
+        ["Kit_2", ["luvas", "mascara", "protetor ocular", "touca"], 1, "logo192.png", "kit uso emergencia"],
+        ["Kit_3", ["morfina", "agulha", "seringa"], 1, "logo192.png", "kit de anestesico"]
+    )
+)
 server.run()
