@@ -59,3 +59,17 @@ def read_post(post_id: int):
 @app.get("/posts/")
 def read_all_posts():
     return posts_table.all()
+
+# Endpoint to update an existing post
+@app.put("/posts/{post_id}")
+def update_post(post_id: int, post_data: Post):
+    post_dict = post_data.dict()
+    existing_post = posts_table.get(doc_id=post_id)
+    if existing_post:
+        posts_table.update(post_dict, doc_ids=[post_id])
+        return {"message": "Post updated successfully", "post_id": post_id, **post_dict}
+    else:
+        raise HTTPException(status_code=404, detail="Post not found")
+
+
+# Para rodar o código, basta rodar o comando "uvicorn warehouse:app --reload" no terminal.

@@ -42,11 +42,12 @@ const Supplies = () => {
   };
 
   // Essa é a função que envia os dados para o backend 
+  // TODO ajeitar 
   const sendValues = () => {
     console.log(inputValues);
-    axios.post('http://localhost:8000/posts/', {
-      nome_kit : 'Kit 1',
-      id_kit : 1,
+    axios.put(`http://localhost:8000/posts/${selectedNumber}`, {
+      nome_kit : 'Kit {selectedNumber}',
+      id_kit : selectedNumber,
       item_1 : inputValues
     })
       .then((response) => {
@@ -57,15 +58,24 @@ const Supplies = () => {
       });
   };
 
-  const fetchItems = () => {
-    try { 
-      const items = axios.get('http://localhost:8000/posts/${id}');
-      console.log(items);
-    }
-    catch (error) {
+  const fetchItems = async () => {
+    try {
+      const response = await axios.get(`http://localhost:8000/posts/${selectedNumber}`);
+      console.log(response.data.item_1); // Accessing item_1 directly
+      // Update inputValues based on API response
+      const newInputValues = [...inputValues];
+      response.data.item_1.forEach((item, index) => {
+        newInputValues[index] = item;
+      });
+      setInputValues(newInputValues);
+      // Or if you want to open the modal for each item:
+      response.data.item_1.forEach((item, index) => {
+        openModal(index);
+      });
+    } catch (error) {
       console.log("error : ", error);
     }
-  }
+  };
 
   const options = [
     ['Curativo adesivo', 'Vazio'],
@@ -83,13 +93,14 @@ const Supplies = () => {
     <div className="Container">
       <Sidebar open={sidebarOpen} toggleSidebar={toggleSidebar} />
       {/* Escolhe o número do kit:  */}
+      <p>Escolha um kit</p>
       <select value={selectedNumber} onChange={(event) => setSelectedNumber(event.target.value)}>
-        <option value="">Select a number</option>
+        <option value="">Escolha um kit</option>
         {[1, 2, 3, 4, 5].map((number) => (
           <option key={number} value={number}>{number}</option>
         ))}
       </select>
-      <button onClick={() => fetchItems(selectedNumber)}>Show inventory</button>
+      <button onClick={() => fetchItems(selectedNumber)}>Mostrar estoque</button>
       <div className="Row">
         {[0, 1, 2, 3].map((index) => (
           <div key={index} className="Item">
@@ -97,8 +108,8 @@ const Supplies = () => {
               <button id="home_button" ></button>
             </div>
             <ModalCreated
-              isOpen={modalOpen[index]}
-              onRequestClose={() => closeModal(index)}
+              // isOpen={modalOpen[index]}
+              // onRequestClose={() => closeModal(index)}
               className="modal"
               overlayClassName="overlay"
               placeholder="Enter something"
@@ -122,8 +133,8 @@ const Supplies = () => {
               <button id="home_button" ></button>
             </div>
             <ModalCreated
-              isOpen={modalOpen[index]}
-              onRequestClose={() => closeModal(index)}
+              // isOpen={modalOpen[index]}
+              // onRequestClose={() => closeModal(index)}
               className="modal"
               overlayClassName="overlay"
               placeholder="Enter something"
@@ -141,7 +152,7 @@ const Supplies = () => {
         ))}
       </div>
       <div>
-        <button onClick={sendValues}>Enviar dados</button>
+        <button onClick={sendValues}>Salvar estoque</button>
       </div>
     </div>
   );
