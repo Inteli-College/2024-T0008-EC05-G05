@@ -37,18 +37,16 @@ class Dobot:
         db.close()
 
     # Função para salvar a posição atual do dobot
-    def salvar_posicao(self, nomePosicao):
+    def obter_posicao(self):
         # Instanciar o banco de dados
-        db = self.conectar_DB()
         if self.device:
             try:
                 # Pegar a posição atual do dobot e inserir no banco de dados
                 posicao = self.device.pose()
-
-                db.insert({'nomePosicao': nomePosicao, 'x': posicao[0], 'y': posicao[1], 'z': posicao[2], 'r': posicao[3]})
-                print("Posição salva com sucesso.")
+                
+                return(posicao[0], posicao[1], posicao[2], posicao[3])
             except Exception as e:
-                print("Erro ao salvar posição:" + str({e}))
+                print("Erro ao obter a posição:" + str({e}))
         else:
             print('Conecte ao dobot primeiro.')
     

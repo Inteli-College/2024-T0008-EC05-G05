@@ -3,38 +3,38 @@
         "1": {
             "item_code": "123",
             "name": "Seringa",
-            "initial_position": "A1",
-            "final_position": "A2"
+            "initial_position": "P1",
+            "final_position": "posicaoSaco"
         },
         "2": {
             "item_code": "456",
             "name": "Remedio",
-            "initial_position": "A1",
-            "final_position": "A2"
+            "initial_position": "P2",
+            "final_position": "posicaoSaco"
         },
         "3": {
-            "item_code": "123",
-            "name": "Seringa",
-            "initial_position": "A1",
-            "final_position": "B2"
+            "item_code": "789",
+            "name": "Soro",
+            "initial_position": "P3",
+            "final_position": "posicaoSaco"
         },
         "4": {
-            "item_code": "123",
-            "name": "Seringa",
-            "initial_position": "A1",
-            "final_position": "B2"
+            "item_code": "458",
+            "name": "Dipirona",
+            "initial_position": "P4",
+            "final_position": "posicaoSaco"
         },
         "5": {
-            "item_code": "123",
-            "name": "Seringa",
-            "initial_position": "A1",
-            "final_position": "B2"
+            "item_code": "678",
+            "name": "Dreno",
+            "initial_position": "P5",
+            "final_position": "posicaoSaco"
         },
         "6": {
-            "item_code": "123",
-            "name": "Seringa",
-            "initial_position": "A1",
-            "final_position": "B2"
+            "item_code": "892",
+            "name": "Agulha",
+            "initial_position": "P6",
+            "final_position": "posicaoSaco"
         }
     },
     "Kits": {
@@ -43,7 +43,9 @@
             "name": "Kit Cirurgia",
             "items": [
                 "123",
-                "456"
+                "456",
+                "789",
+                "458"
             ]
         },
         "2": {
@@ -104,17 +106,73 @@
         },
         "3": {
             "position_code": "posicaoVerificacaoAlta",
-            "x": 309,
-            "y": 4,
-            "z": 108,
-            "r": 0
+            "x": 268.9991760253906,
+            "y": -16.802045822143555,
+            "z": 119.29292297363281,
+            "r": -3.574127197265625
         },
         "4": {
             "position_code": "posicaoVerificacaoBaixa",
-            "x": 308,
-            "y": 5,
-            "z": -45.57,
-            "r": 0
+            "x": 319.626220703125,
+            "y": 15.941283226013184,
+            "z": -50.60128402709961,
+            "r": 2.855247735977173
+        },
+        "5": {
+            "position_code": "P1",
+            "x": 153.93016052246094,
+            "y": 159.9375457763672,
+            "z": -38.43504333496094,
+            "r": 46.09649658203125
+        },
+        "6": {
+            "position_code": "P2",
+            "x": 239.88148498535156,
+            "y": 131.925048828125,
+            "z": -45.925209045410156,
+            "r": 28.808998107910156
+        },
+        "7": {
+            "position_code": "P3",
+            "x": 314.23797607421875,
+            "y": 119.89840698242188,
+            "z": -50.036495208740234,
+            "r": 20.884498596191406
+        },
+        "8": {
+            "position_code": "P4",
+            "x": 336.0519714355469,
+            "y": 128.32745361328125,
+            "z": -38.109291076660156,
+            "r": 20.900249481201172
+        },
+        "9": {
+            "position_code": "P5",
+            "x": 331.7964172363281,
+            "y": 54.503204345703125,
+            "z": -20.367259979248047,
+            "r": 9.328495025634766
+        },
+        "10": {
+            "position_code": "P6",
+            "x": 266.88104248046875,
+            "y": 54.2927131652832,
+            "z": -22.759220123291016,
+            "r": 11.499000549316406
+        },
+        "11": {
+            "position_code": "P7",
+            "x": 197.56533813476562,
+            "y": 53.268829345703125,
+            "z": -23.954452514648438,
+            "r": 15.089622497558594
+        },
+        "12": {
+            "position_code": "posicaoSaco",
+            "x": 290.19976806640625,
+            "y": -132.4596710205078,
+            "z": 44.51446533203125,
+            "r": -24.53399658203125
         }
     }
 }

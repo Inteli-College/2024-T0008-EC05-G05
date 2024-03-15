@@ -7,6 +7,7 @@ import os
 from datetime import datetime
 from pydantic import BaseModel
 import httpx
+import time
 
 app = FastAPI()
 
@@ -62,6 +63,13 @@ async def mover_para_posicoes(posicao_inicial: str, posicao_final: str):
     # Movendo para a posição inicial
     inicial = posicao_inicial_data[0]
 
+    seguranca_alta = posicao_seguranca_alta[0]
+    try :
+        dobot.mover_para(seguranca_alta['x'], seguranca_alta['y'], seguranca_alta['z'], seguranca_alta['r'])
+    except Exception as e: 
+        print(f"Erro ao mover para a posição inicial: {e}")
+        return {"status": "erro", "mensagem": f"Erro ao mover para a posição de segurança alta: {e}"}
+
     try :
         dobot.mover_para(inicial['x'], inicial['y'], inicial['z'], inicial['r'])
         dobot.atuador("suck", "On")
@@ -71,7 +79,6 @@ async def mover_para_posicoes(posicao_inicial: str, posicao_final: str):
     
     # Posições de segurança
 
-    seguranca_alta = posicao_seguranca_alta[0]
     try :
         dobot.mover_para(seguranca_alta['x'], seguranca_alta['y'], seguranca_alta['z'], seguranca_alta['r'])
     except Exception as e: 
@@ -101,10 +108,15 @@ async def mover_para_posicoes(posicao_inicial: str, posicao_final: str):
 
     print(data_recebida)
 
-    if data_recebida == "Pegou":
-        print("Item não foi pego")
+    time.sleep(3)
+
+    async with httpx.AsyncClient() as client:
+        await client.get("http://10.128.0.8/check")
+
+    if data_recebida == "True":
+        print("Item foi pego") 
     else:
-        print("Item foi pego!")
+        print("Item não foi pego!")
 
     async with httpx.AsyncClient() as client:
         await client.get("http://10.128.0.8/desativar_sensor")
@@ -171,7 +183,7 @@ async def receive_pico_data(data: PicoData):
     global data_recebida
     data_recebida = data.pegou
 
-    print(f"Data Rasp Pico: Status={data.pegou}")
+    print(f"Data Rasp Pico: Status={data_recebida}")
 
     return {data_recebida}
 
@@ -233,6 +245,27 @@ async def montar_kit(kit_code: str):
 @app.get('/teste')
 async def teste():
     return{"Dados": "Testeeeee"}
+
+# http://10.128.0.8/salvar_posicao/?position_code=P1
+@app.get('/salvar_posicao/')
+async def salvar_posicao(position_code: str,):
+    # Verificar se existe uma posição com o mesmo nome
+    posicao = positions.search(Query().position_code == position_code)
+
+    dobot_pos = dobot.obter_posicao()
+
+    if posicao:
+        print(dobot_pos)
+        # Atualizar a posição
+        positions.update({'position_code': position_code, 'x': dobot_pos[0], 'y': dobot_pos[1], 'z': dobot_pos[2], 'r': dobot_pos[3]}, Query().position_code == position_code)
+        return {"status": "sucesso", "mensagem": "Posição atualizada com sucesso."}
+    else:
+        print(dobot_pos)
+
+        positions.insert({'position_code': position_code, 'x': dobot_pos[0], 'y': dobot_pos[1], 'z': dobot_pos[2], 'r': dobot_pos[3]})
+
+        return {"status": "sucesso", "mensagem": "Posição salva com sucesso."}
+    
 
 
 # uvicorn app:app --host 0.0.0.0 --reload --port 80
