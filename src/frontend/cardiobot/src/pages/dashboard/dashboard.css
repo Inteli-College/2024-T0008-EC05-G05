@@ -23,3 +23,14 @@
 .big-space{
   width: 15em;
 }
+
+.production-kits-section{
+  grid-column-start: 3;
+  grid-column-end: 4;
+  padding: 1rem;
+  border: 1px solid #000000;
+}
+
+.production-kits-section h2{
+  margin-bottom: 1em;
+}
