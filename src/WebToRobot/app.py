@@ -110,12 +110,20 @@ async def mover_para_posicoes(posicao_inicial: str, posicao_final: str):
 
     time.sleep(3)
 
+    # async with httpx.AsyncClient() as client:
+    #     await client.get("http://10.128.0.8/check")
+
+
     async with httpx.AsyncClient() as client:
-        await client.get("http://10.128.0.8/check")
+        await client.get("http://10.128.0.8/pico_data")
 
     if data_recebida == "True":
+        print(f'Valor data_recebida (funcao mover posicoes): {data_recebida}')
         print("Item foi pego") 
     else:
+        # Robo vai tentar pegar o item novamente
+        
+        print(f'Valor data_recebida (funcao mover posicoes): {data_recebida}')
         print("Item não foi pego!")
 
     async with httpx.AsyncClient() as client:
@@ -123,7 +131,9 @@ async def mover_para_posicoes(posicao_inicial: str, posicao_final: str):
 
     print(data_recebida)
 
-    dados_qr = await capturar_qr_code()
+    # dados_qr = await capturar_qr_code()
+    dados_qr = "teste"
+    time.sleep(3)
 
     seguranca_baixa = posicao_seguranca_baixa[0]
     try :
@@ -135,6 +145,13 @@ async def mover_para_posicoes(posicao_inicial: str, posicao_final: str):
 
     try :
         dobot.mover_para(seguranca_alta['x'], seguranca_alta['y'], seguranca_alta['z'], seguranca_alta['r'])
+    except Exception as e: 
+        print(f"Erro ao mover para a posição inicial: {e}")
+        return {"status": "erro", "mensagem": f"Erro ao mover para a posição de segurança alta: {e}"}
+    
+
+    try :
+        dobot.mover_para(seguranca_alta['x'], seguranca_alta['y'] - 130, seguranca_alta['z'], seguranca_alta['r'])
     except Exception as e: 
         print(f"Erro ao mover para a posição inicial: {e}")
         return {"status": "erro", "mensagem": f"Erro ao mover para a posição de segurança alta: {e}"}
@@ -154,7 +171,7 @@ async def mover_para_posicoes(posicao_inicial: str, posicao_final: str):
 @app.get('/capturar')
 async def capturar_qr_code():
     # Capture an image from the webcam
-    camera = cv2.VideoCapture(0)
+    camera = cv2.VideoCapture(1)
     _, image = camera.read()
     camera.release()
 
@@ -175,36 +192,58 @@ async def mostrar_dados_qr():
     # Return the dictionary containing QR code data
     return qr_code_data
 
-# Endpoint para receber dados do Raspberry Pi Pico
+# # Endpoint para receber dados do Raspberry Pi Pico
+# @app.post("/pico_data")
+# async def receive_pico_data(data: PicoData):
+#     # Processar ou salvar os dados recebidos
+
+#     global data_recebida
+#     data_recebida = data.pegou
+
+#     print(f"DATA Rasp Pico (pico_data endpoint): Status={data_recebida}")
+
+#     return {data_recebida}
+
 @app.post("/pico_data")
 async def receive_pico_data(data: PicoData):
-    # Processar ou salvar os dados recebidos
-
     global data_recebida
     data_recebida = data.pegou
+    print(f"DATA Rasp Pico (pico_data endpoint): Status={data_recebida}")
+    return {"status": "Dados recebidos"}
 
-    print(f"Data Rasp Pico: Status={data_recebida}")
-
-    return {data_recebida}
+@app.get("/pico_data")
+async def get_pico_data():
+    if data_recebida is not None:
+        print(f"DATA Rasp Pico (get_pico_data endpoint): Status={data_recebida}")
+        return {"data": data_recebida}
+    else:
+        return {"error": "Nenhum dado disponível"}
 
 @app.get("/check")
 async def check_activation():
     global ativacao_sensor
-    print(f"Status do ativacao_sensor: {ativacao_sensor}")
+    print(f"Status do ativacao_sensor (Funcao Check): {ativacao_sensor}")
 
     if ativacao_sensor:
+        async with httpx.AsyncClient() as client:
+            await client.get("http://10.128.0.8/ativar_sensor")
+
         return "Ativar"
     else:
+        async with httpx.AsyncClient() as client:
+            await client.get("http://10.128.0.8/desativar_sensor")
         return "Espere"
 
 @app.get("/ativar_sensor")
 async def ativar_sensor():
+    print("Ativar sensor Endpoint")
     global ativacao_sensor
     ativacao_sensor = True
     return {"message": "Sensor ativado"}
 
 @app.get("/desativar_sensor")
 async def desativar_sensor():
+    print("Desativar sensor Endpoint")
     global ativacao_sensor
     ativacao_sensor = False
     return {"message": "Sensor desativado"}

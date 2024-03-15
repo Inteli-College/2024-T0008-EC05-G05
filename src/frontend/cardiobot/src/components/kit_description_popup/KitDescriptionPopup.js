@@ -5,6 +5,27 @@ import "./KitDescriptionPopup.css"
 const Modal = ({ showModal, closeModal, kitId }) => {
   const [kitData, setKitData] = useState(null);
 
+  const montarKit = async (kitCode) => {
+    try {
+      const response = await axios.get(`http://10.128.0.8/montar_kit/`, {
+        params: { kit_code: "K1" }
+      });
+      console.log(response.data);
+      // Lógica adicional aqui (e.g., atualizar o estado do componente)
+    } catch (error) {
+      if (error.response) {
+        // A requisição foi feita e o servidor respondeu com um status code fora do range 2xx
+        console.error("Erro na resposta do servidor:", error.response.data);
+      } else if (error.request) {
+        // A requisição foi feita mas não houve resposta
+        console.error("Nenhuma resposta recebida:", error.request);
+      } else {
+        // Algum erro ocorreu ao montar a requisição
+        console.error("Erro ao fazer a requisição:", error.message);
+      }
+    }
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -42,7 +63,7 @@ const Modal = ({ showModal, closeModal, kitId }) => {
           ) : (
             <p>Loading...</p>
           )}
-          <button onClick={closeModal}>Iniciar</button>
+          <button onClick={montarKit}>Iniciar</button>
         </div>
       </div>
   );

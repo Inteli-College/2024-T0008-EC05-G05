@@ -78,8 +78,8 @@ const Supplies = () => {
 
   const options = [
     ['Curativo adesivo', 'Vazio'],
-    ['Pinça', 'Vazio'],
-    ['Solução salina', 'Vazio'],
+    ['Agulha', 'Vazio'],
+    ['Ampola Lidocaína', 'Vazio'],
     ['Luva de cirurgia', 'Vazio'],
     ['Gaze estéril', 'Vazio'],
     ['Antisséptico', 'Vazio'],
