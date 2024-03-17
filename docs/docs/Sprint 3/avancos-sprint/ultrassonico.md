@@ -39,3 +39,5 @@ Verifica se está conectado ao Wifi. Caso esteja, manda uma requisição para o 
 Nosso microcontrolador se conecta com a internet usando apenas seu nome e senha, com isso caso seja necessário realizar alguma outra ação para conectar, como logar com o e-mail ou qualquer tipo de verificação adicional. Além disso, o computador que estiver usando a solução deve estar conectado a mesma internet que o microcontrolador.
 
 ## Conclusão
+
+A integração do sensor oferece uma camada de segurança vital ao processo do robô, garantindo que só libere os itens no kit após confirmar sua captura. Com a Raspberry Pi Pico W e o sensor de distância, o sistema monitora a proximidade dos objetos com precisão, tomando decisões com base nesses dados. Assim, essa solução proporciona uma forma confiável e eficaz de garantir a integridade das operações do robô, promovendo segurança e eficiência.
