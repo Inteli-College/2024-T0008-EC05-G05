@@ -9,6 +9,8 @@ import utime  # Para manipulação de tempo em MicroPython
 trigger = Pin(3, Pin.OUT)
 echo = Pin(2, Pin.IN)
 
+ip_servidor = "10.128.0.8"
+
 # Função para medir a distância usando o sensor ultrassônico
 def ultraS():
     print("Entrou no UltraS")
@@ -26,17 +28,17 @@ def ultraS():
     print("The distance from object is ", distance, "cm")
     if distance < 15:
         print("Pegou sim, ta safe")
-        urequests.post('http://10.128.0.8/pico_data', json={"pegou": "True"})
+        urequests.post(f'http://{ip_servidor}/pico_data', json={"pegou": "True"})
     else:
         print("Não pegou")
-        urequests.post('http://10.128.0.8/pico_data', json={"pegou": "False"})
+        urequests.post(f'http://{ip_servidor}/pico_data', json={"pegou": "False"})
         print("dado enviado")
 
 # Função principal para executar o loop
 def loop():
     if wlan.isconnected():  # Verificar se ainda está conectado ao Wi-Fi
         try:
-            check = urequests.get('http://10.128.0.8/check')
+            check = urequests.get('http://{ip_servidor}/check')
             print(repr(check.text)) 
             print("Tamanho da string recebida:", len(check.text))
             clean_text = check.text.strip()
@@ -67,5 +69,6 @@ print(f"IP:{meu_ip}")
 
 # Loop principal
 while True:
-   loop()
+#    loop()
+   ultraS()
    utime.sleep(1)

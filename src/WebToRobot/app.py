@@ -39,6 +39,9 @@ positions = db.table('Positions')
 
 # Codio de execução da API do FastAPI: uvicorn app:app --host 0.0.0.0 --reload --port 80
 
+# IPV4 do seu computador
+ip_servidor = ""
+
 # Endpoint para testar a conexão com o dobot
 # http://IPV4 do seu computador/conectar_dobot/?porta=COM6
 @app.get('/conectar_dobot/')
@@ -96,7 +99,7 @@ async def mover_para_posicoes(posicao_inicial: str, posicao_final: str):
         mover_para_posicao('posicaoVerificacaoAlta')
         
         async with httpx.AsyncClient() as client:
-            await client.get("http://10.128.0.8/ativar_sensor")
+            await client.get(f"http://{ip_servidor}/ativar_sensor")
 
         if data_recebida == "True":
             # print(f'Valor data_recebida (funcao mover posicoes): {data_recebida}')
