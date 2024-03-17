@@ -28,13 +28,14 @@ itens = db.table('Itens')
 kits = db.table('Kits')
 positions = db.table('Positions')
 
+# Exemplo de inserção de dados no banco de dados
 # itens.insert({'item_code': '123', 'name': 'Seringa', 'initial_position': 'A1', 'final_position': 'B2'})
 # kits.insert({'kit_code': 'K1', 'name': 'Kit Cirurgia', 'items': ['123', '456']})
 # positions.insert({'position_code': 'A1', 'x': 10, 'y': 20, 'z': 30, 'r': 5})
 
-# Codio de execução da API do FastAPI - unvicorn app:app --reload
+# Codio de execução da API do FastAPI: uvicorn app:app --host 0.0.0.0 --reload --port 80
 
-# http://127.0.0.1:8000/conectar_dobot/?porta=COM6
+# http://IPV4 do seu computador/conectar_dobot/?porta=COM6
 @app.get('/conectar_dobot/')
 async def conectar_dobot(porta: str):
     print(f"Tentando conectar ao dobot na porta {porta}.")
@@ -59,6 +60,9 @@ async def mover_para_posicoes(posicao_inicial: str, posicao_final: str):
     if not posicao_inicial_data or not posicao_final_data:
         print("Posição não encontrada.")
         raise HTTPException(status_code=404, detail="Posição não encontrada")
+
+
+    #TODO: Juntar os movimentos de posicao inicial e segurança dentro de um if para tentar mais de uma vez se o robo pegou o não o item
 
     # Movendo para a posição inicial
     inicial = posicao_inicial_data[0]
@@ -187,11 +191,6 @@ async def capturar_qr_code():
     # Return the decoded text
     return {'Dados': decoded_text}
 
-@app.get('/mostrar_dados_qr')
-async def mostrar_dados_qr():
-    # Return the dictionary containing QR code data
-    return qr_code_data
-
 # # Endpoint para receber dados do Raspberry Pi Pico
 # @app.post("/pico_data")
 # async def receive_pico_data(data: PicoData):
@@ -208,45 +207,45 @@ async def mostrar_dados_qr():
 async def receive_pico_data(data: PicoData):
     global data_recebida
     data_recebida = data.pegou
-    print(f"DATA Rasp Pico (pico_data endpoint): Status={data_recebida}")
+    # print(f"DATA Rasp Pico (pico_data endpoint): Status={data_recebida}")
     return {"status": "Dados recebidos"}
 
 @app.get("/pico_data")
 async def get_pico_data():
     if data_recebida is not None:
-        print(f"DATA Rasp Pico (get_pico_data endpoint): Status={data_recebida}")
+        # print(f"DATA Rasp Pico (get_pico_data endpoint): Status={data_recebida}")
         return {"data": data_recebida}
     else:
         return {"error": "Nenhum dado disponível"}
 
-@app.get("/check")
-async def check_activation():
-    global ativacao_sensor
-    print(f"Status do ativacao_sensor (Funcao Check): {ativacao_sensor}")
+# @app.get("/check")
+# async def check_activation():
+#     global ativacao_sensor
+#     print(f"Status do ativacao_sensor (Funcao Check): {ativacao_sensor}")
 
-    if ativacao_sensor:
-        async with httpx.AsyncClient() as client:
-            await client.get("http://10.128.0.8/ativar_sensor")
+#     if ativacao_sensor:
+#         async with httpx.AsyncClient() as client:
+#             await client.get("http://10.128.0.8/ativar_sensor")
 
-        return "Ativar"
-    else:
-        async with httpx.AsyncClient() as client:
-            await client.get("http://10.128.0.8/desativar_sensor")
-        return "Espere"
+#         return "Ativar"
+#     else:
+#         async with httpx.AsyncClient() as client:
+#             await client.get("http://10.128.0.8/desativar_sensor")
+#         return "Espere"
 
-@app.get("/ativar_sensor")
-async def ativar_sensor():
-    print("Ativar sensor Endpoint")
-    global ativacao_sensor
-    ativacao_sensor = True
-    return {"message": "Sensor ativado"}
+# @app.get("/ativar_sensor")
+# async def ativar_sensor():
+#     # print("Ativar sensor Endpoint")
+#     global ativacao_sensor
+#     ativacao_sensor = True
+#     return {"message": "Sensor ativado"}
 
-@app.get("/desativar_sensor")
-async def desativar_sensor():
-    print("Desativar sensor Endpoint")
-    global ativacao_sensor
-    ativacao_sensor = False
-    return {"message": "Sensor desativado"}
+# @app.get("/desativar_sensor")
+# async def desativar_sensor():
+#     # print("Desativar sensor Endpoint")
+#     global ativacao_sensor
+#     ativacao_sensor = False
+#     return {"message": "Sensor desativado"}
 
 # Endpoint para rodar a montagem de um kit
 # http://IP/montar_kit/?kit_code=K1
@@ -278,12 +277,6 @@ async def montar_kit(kit_code: str):
 
         # Rodar a sequência de movimentos pelo endpoint /mover_para_posicoes/
         await mover_para_posicoes(posicao_inicial, posicao_final)
-
-
-
-@app.get('/teste')
-async def teste():
-    return{"Dados": "Testeeeee"}
 
 # http://10.128.0.8/salvar_posicao/?position_code=P1
 @app.get('/salvar_posicao/')
