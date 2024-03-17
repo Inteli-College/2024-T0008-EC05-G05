@@ -1,12 +1,15 @@
-import network
-import urequests
-import time
-from machine import Pin
-import utime
+# Importação de bibliotecas necessárias
+import network  # Para configurar a rede Wi-Fi
+import urequests  # Para fazer solicitações HTTP
+import time  # Para manipulação de tempo
+from machine import Pin  # Para controle de pinos do dispositivo
+import utime  # Para manipulação de tempo em MicroPython
 
+# Configuração dos pinos do sensor ultrassônico
 trigger = Pin(3, Pin.OUT)
 echo = Pin(2, Pin.IN)
 
+# Função para medir a distância usando o sensor ultrassônico
 def ultraS():
     print("Entrou no UltraS")
     trigger.low()
@@ -29,17 +32,13 @@ def ultraS():
         urequests.post('http://10.128.0.8/pico_data', json={"pegou": "False"})
         print("dado enviado")
 
-                
+# Função principal para executar o loop
 def loop():
-    if wlan.isconnected():  # Check if still connected to Wi-Fi
+    if wlan.isconnected():  # Verificar se ainda está conectado ao Wi-Fi
         try:
             check = urequests.get('http://10.128.0.8/check')
-            
-            # Diagnóstico
-            print(repr(check.text))  # Mostra a representação da string
+            print(repr(check.text)) 
             print("Tamanho da string recebida:", len(check.text))
-            
-            # Limpeza e comparação
             clean_text = check.text.strip()
             if clean_text == '"Ativar"':
                 print("Entrou aqui")
@@ -50,19 +49,23 @@ def loop():
         except OSError as e:
             print("Network error:", e)
     else:
-        print("Not connected to Wi-Fi.")
+        print("Não conectado ao Wi-Fi.")
 
+# Configuração da conexão Wi-Fi
 wlan = network.WLAN(network.STA_IF)
 wlan.active(True)
 wlan.connect('Inteli.Iot', '@Intelix10T#')
 
+# Aguardando a conexão ser estabelecida
 while not wlan.isconnected() and wlan.status() >= 0:
-    print("Waiting to connect:")
+    print("Aguardando conexão:")
     time.sleep(1)
 
+# Obtendo o endereço IP do dispositivo
 meu_ip = wlan.ifconfig()[0]
 print(f"IP:{meu_ip}")
 
+# Loop principal
 while True:
    loop()
    utime.sleep(1)
