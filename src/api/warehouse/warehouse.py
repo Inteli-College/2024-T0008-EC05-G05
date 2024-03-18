@@ -7,6 +7,13 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from tinydb import TinyDB, Query
 from typing import List
+import json
+import os
+from datetime import datetime
+
+
+
+
 
 
 # Modelo de dados para realizar o post no DB 
@@ -18,35 +25,51 @@ class Post(BaseModel):
 
 
 
-# Initialize FastAPI app
+# Inicia o servidor FastAPI
 app = FastAPI()
 
-# Initialize TinyDB database
+# Inicia o banco de dados com tinyDb
 db = TinyDB('kits.json')
 posts_table = db.table('kits')
 
 # Liberando o CORS para fazer requisições locais
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # Update this to your frontend URL during development
+    # Definindo as origens que podem fazer requisições
+    allow_origins=["http://localhost:3000"],  
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE"],
     allow_headers=["*"],
 )
 
 
+# Função para criar uma entrada no arquivo de logs 
+
+def log_update_time(post_id: int):
+ 
+    windows_username = os.getenv('USERNAME')
+
+    # Padrão da entrada no log
+    log_entry = {"kit_id": post_id, "hora da atualização": datetime.now().isoformat(), "nome user windows": windows_username}
+
+    with open("logs.json", "a", encoding="utf-8") as log_file:
+        json.dump(log_entry, log_file, ensure_ascii=False)
+        log_file.write("\n")
+
+
+
 @app.get("/")
 def hello():
     return {"Hello World"}
 
-# Endpoint to create a new post
+# Endpoint para criar um novo kit
 @app.post("/posts/")
 def create_post(post: Post):
     post_dict = post.dict()
     post_id = posts_table.insert(post_dict)
     return {"post_id": post_id, **post_dict}
 
-# Endpoint to get a specific post by ID
+# Endpoint para fazer um get em id único 
 @app.get("/posts/{post_id}")
 def read_post(post_id: int):
     post = posts_table.get(doc_id=post_id)
@@ -55,21 +78,23 @@ def read_post(post_id: int):
     else:
         raise HTTPException(status_code=404, detail="Post not found")
 
-# Endpoint to get all posts
+# Endpoint de todos os kits
 @app.get("/posts/")
 def read_all_posts():
     return posts_table.all()
 
-# Endpoint to update an existing post
+# Endpoint de update de um kit 
 @app.put("/posts/{post_id}")
 def update_post(post_id: int, post_data: Post):
     post_dict = post_data.dict()
     existing_post = posts_table.get(doc_id=post_id)
     if existing_post:
         posts_table.update(post_dict, doc_ids=[post_id])
-        return {"message": "Post updated successfully", "post_id": post_id, **post_dict}
+        log_update_time(post_id)
+
+        return {"message": "Kit atualizado", "kit_id": post_id, **post_dict}
     else:
-        raise HTTPException(status_code=404, detail="Post not found")
+        raise HTTPException(status_code=404, detail="kit não encontrado")
 
 
 # Para rodar o código, basta rodar o comando "uvicorn warehouse:app --reload" no terminal.
