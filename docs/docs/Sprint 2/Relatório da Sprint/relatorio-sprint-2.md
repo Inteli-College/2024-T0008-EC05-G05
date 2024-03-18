@@ -9,11 +9,12 @@ Nessa segunda sprint, houve um aprofundamento maior no desenvolvimento do fluxo 
 
 
 <div align="center">
+
 **Tabela 1** - Relatório da Sprint 2
 
 ![Relatório Sprint 2](../../../static/img/relatorios-sprint/relatorio-sprint2.png)
 
-****Fonte:**** Elaborado pela equipe Cardio-Bot
+**Fonte:** Elaborado pela equipe Cardio-Bot
 
 A seguir temos o slide de aprensetação da sprint 2:
 
