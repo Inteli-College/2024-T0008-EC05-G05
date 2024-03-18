@@ -22,3 +22,6 @@ O objetivo desta primeira iteração foi entender a fundo o problema e criar uma
 
 ### Sprint 2
 Nessa segunda sprint, houve um aprofundamento maior no desenvolvimento do fluxo de utilização do nosso projeto, além de uma concepção um pouco mais estruturada das features da nossa interface e avanços no funcionamento do braço robótico (já podendo ser controlado e desempenhar a função de ordenação de itens por CLI).
+
+### Sprint 3
+Na sprint três começamos a trabalhar com os periféricos que nos auxiliarão na solução tanto a câmera quanto o sensor ultrassônico, assim como começamos a modelar o front e o backend da nossa solução.
