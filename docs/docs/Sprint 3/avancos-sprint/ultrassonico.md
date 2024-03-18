@@ -17,6 +17,20 @@ src\WebToRobot\CodigoRasp
 
 Nessa seção será abordada os componentes e a forma de montagem para o funcionamento do sensor. Os componentes que estão sendo usados são: uma raspberry pi pico W, um sensor ultrassônico HC-SR04 e 4 cabos para ligar o sensor ao microcontrolador. Primeiramente, conecta-se o GND e o VCC do sensor ao GND (pino 23) e o 3v3 (pino 38), respectivamente, da raspberry pi pico W. Após isso, conecte o Echo e o Trig do sensor nos pinos 4 e 5 (GP2 e GP3) do microcontrolador.
 
+É possível visualizar a pinagem no esquema a seguir, que também inclui a câmera:
+
+<div align="center"> 
+
+**Esquema elétrico dos periféricos** 
+
+![Esquema elétrico dos periféricos](/../static/img/esquema-circuito/circuito-elétrico.jpg)
+
+**Fonte:** Elaborado pela equipe Cardio-Bot 
+
+</div>
+
+
+
 
 ## Bibliotecas utilizadas
 
