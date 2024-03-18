@@ -96,3 +96,31 @@ Vale ressaltar que atualmente nada pode ser feito nessa região. No entanto, est
 **Fonte:** Elaborado pela equipe Cardio-Bot 
 
 </div>
+
+### Tela de Estoque
+
+A tela de gestão de estoque de kits oferece uma visão detalhada e a capacidade de alterar o conteúdo dos kits ao usuário. Ela permite a inclusão ou remoção de itens de forma simples, podendo escolher o que irá em cada caixa, possibilitando ajustes rápidos para satisfazer requisitos específicos dos clientes ou atualizar o inventário com novidades
+
+Após as alterações, o sistema atualiza automaticamente o estoque, mantendo a precisão das informações e evitando desencontros logísticos. Essa eficiência assegura que o inventário reflita as últimas configurações dos kits, otimizando a satisfação do cliente e a eficácia operacional. 
+
+<div align="center">
+
+**Imagem 7 - Tela de Estoque**
+
+![Tela de Estoque](<../../../static/img/site-screens/estoque-inicio.png>)
+
+**Fonte:** Elaborado pela equipe Cardio-Bot 
+
+</div>
+
+O usuário poderá selecionar o kit desejado, clicar em "mostrar estoque" e editar os itens do kit conforme desejado. A imagem número 8 descreve esse processo:
+
+<div align="center">
+
+**Imagem 8 - Tela de Estoque com kit e itens selecionados**
+
+![Tela de Estoque com kit e itens selecionados](<../../../static/img/site-screens/estoque-kits.png>)
+
+**Fonte:** Elaborado pela equipe Cardio-Bot 
+
+</div>
