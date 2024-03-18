@@ -10,6 +10,7 @@
     min-height: 100vh;
     background: #446C8C;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 .logo {
