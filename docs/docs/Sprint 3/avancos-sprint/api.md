@@ -79,3 +79,22 @@ A seguir vamos detalhar cada endpoint, incluindo seu propósito, método HTTP, p
 
 Para rodar a API, é necessário instalar as dependências do projeto. Para isso, basta executar o comando `pip install -r requirements.txt` na pasta `\2024-T0008-EC05-G05\src\WebToRobot`. Após a instalação, execute o comando `uvicorn app:app --host 0.0.0.0 --reload --port 80` para iniciar o servidor. Estamos rodando essa API como host 0.0.0.0 porque queremos que ela seja acessível de qualquer lugar na rede local, inclusive com o nosso Raspberry Pico. Então para a comunicar com a API, basta acessar o endereço `http://<ip_do_computador>:80/docs`.
 
+Também existe um sistema de log das requisoções feitas para a API, que está localizado no arquivo `\2024-T0008-EC05-G05\src\WebToRobot\request_log.json`. O sistema de log foi feito com a um middleware e registra todas as requisições feitas para a API. A estrutura do log é a seguinte:
+
+#### Estrutura do Log API
+
+- **timestap**: Data e hora da requisição (String).
+- **client_ip**: Endereço IP do cliente que fez a requisição (String).
+- **user_agent**: Informações sobre o navegador do cliente (String).
+- **method**: Método HTTP da requisição (String).
+- **url**: URL da requisição (String).
+- **query_params**: Parâmetros da requisição (Dicionário).
+  
+Também a log das ações feitas pelo robô, que está localizado no arquivo `\2024-T0008-EC05-G05\src\WebToRobot\dobot_log.json`. A estrutura do log é a seguinte:
+
+#### Estrutura do Log Dobot
+
+- **timestap**: Data e hora da ação (String).
+- **action**: Ação realizada pelo robô (String).
+- **details**: Detalhes da ação (String).
+    

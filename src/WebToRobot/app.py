@@ -8,6 +8,7 @@ from datetime import datetime
 from pydantic import BaseModel
 import httpx
 import time
+import json
 
 # Inicializa a aplicação FastAPI
 app = FastAPI()
@@ -41,6 +42,45 @@ positions = db.table('Positions')
 
 # IPV4 do seu computador
 ip_servidor = ""
+
+# Middleware para log das requisições
+@app.middleware("http")
+async def log_requests(request: Request, call_next):
+    start_time = datetime.now()
+    
+    # Processa a requisição
+    response = await call_next(request)
+
+    app_username = "Placeholder"
+    
+    # Captura informações da requisição
+    request_info = {
+        "timestamp": start_time.strftime("%Y-%m-%d %H:%M:%S"),
+        "client_ip": request.client.host,
+        "user_agent": request.headers.get("user-agent", "n/a"),
+        "username": app_username,
+        "method": request.method,
+        "url": request.url.path,
+        "query_params": dict(request.query_params)
+        }
+    
+    try:
+        with open("request_log.json", "r+") as log_file:
+            log_file.seek(0, 2)  # Vai para o final do arquivo
+            if log_file.tell() == 0:
+                # Arquivo está vazio
+                log_file.write(json.dumps([request_info]))
+            else:
+                log_file.seek(0, 2)  # Move para o final novamente
+                # Apagar ] e adicionar uma nova entrada
+                log_file.seek(log_file.tell() - 1, os.SEEK_SET)
+                log_file.write(', ' + json.dumps(request_info) + ']')
+    except FileNotFoundError:
+        # Se o arquivo não existir, cria um novo
+        with open("request_log.json", "w") as log_file:
+            log_file.write(json.dumps([request_info]))
+    
+    return response
 
 # Endpoint para testar a conexão com o dobot
 # http://IPV4 do seu computador/conectar_dobot/?porta=COM6
