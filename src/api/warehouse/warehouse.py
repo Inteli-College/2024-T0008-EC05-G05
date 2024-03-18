@@ -50,7 +50,7 @@ def log_update_time(post_id: int):
     windows_username = os.getenv('USERNAME')
 
     # Padrão da entrada no log
-    log_entry = {"kit_id": post_id, "hora da atualização": datetime.now().isoformat(), "nome user windows": windows_username}
+    log_entry = {"kit_id": post_id, "update_time": datetime.now().isoformat(), "windows_username": windows_username}
 
     with open("logs.json", "a", encoding="utf-8") as log_file:
         json.dump(log_entry, log_file, ensure_ascii=False)

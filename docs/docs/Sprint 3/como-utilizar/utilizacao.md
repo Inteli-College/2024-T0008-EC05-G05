@@ -58,6 +58,12 @@ activate
 
 **Terceiro Passo: Instalar todas dependências**
 
+É muito importante se atentar e entrar na pasta raíz da API.
+
+```
+cd src/api
+```
+
 ```
 pip install -r requirements.txt
 ```
@@ -67,7 +73,7 @@ pip install -r requirements.txt
 Entrar na pasta que está localizada a API. 
 
 ```
-cd src\api\warehouse
+cd src/api/warehouse
 ```
 
 Iniciar o servidor 
@@ -120,7 +126,7 @@ O código do Raspberry Pico foi desenvolvido em python através do MicroPython. 
 **Primeiro Passo: Acessar a pasta raiz do código**
 
 ```
-src\WebToRobot\CodigoRasp
+src/WebToRobot/CodigoRasp
 ```
 
 **Segundo Passo: Conectar o Raspberry Pico ao computador**
