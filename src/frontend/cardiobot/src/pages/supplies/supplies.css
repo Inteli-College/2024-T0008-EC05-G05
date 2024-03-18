@@ -14,6 +14,7 @@
   
   .Item {
     display: flex; /* Use flexbox */
+    flex-direction: column; /* Display items vertically */
     justify-content: center; /* Center items horizontally */
     align-items: center; /* Center items vertically */
     margin: 0 10px; /* Add some space between items */
@@ -21,6 +22,13 @@
     width: 12vw;
     height: 12vw;
     background-color: #F1F1F0;
+  }
+
+  .ButtonContainer {
+    display: flex;
+    flex-direction: column; /* Display items vertically */
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
   }
   
   #home_button {
@@ -30,6 +38,10 @@
     background-size: cover;
     border: none;
   }
+
+  #indivudual_name {
+    text-align: center;
+    margin-top: 9px;}
   
   
   

@@ -2,3 +2,4 @@ pydobot
 inquirer
 typer
 yaspin 
+flask

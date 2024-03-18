@@ -1,0 +1,19 @@
+{
+    "table_name": "Positions",
+    "meta_data": null,
+    "table_columns": [
+        "id",
+        "data_log",
+        "position_name",
+        "x",
+        "y",
+        "z",
+        "r",
+        "j1",
+        "j2",
+        "j3",
+        "j4"
+    ],
+    "pk": "id",
+    "rows": []
+}
