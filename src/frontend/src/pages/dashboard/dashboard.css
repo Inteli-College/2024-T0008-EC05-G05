@@ -1,0 +1,36 @@
+/* dashboard.css */
+.dashboard {
+  display: grid;
+  grid-template-columns: 15em 10fr 5fr;
+}
+
+
+.dashboard-content {
+  padding-top: 2rem;
+  padding-left: 5rem;
+}
+
+
+.blurred {
+  filter: blur(2px); /* Desfoca o conteúdo quando a sidebar estiver aberta */
+}
+
+
+.small-space{
+  width: 50px;
+}
+
+.big-space{
+  width: 15em;
+}
+
+.production-kits-section{
+  grid-column-start: 3;
+  grid-column-end: 4;
+  padding: 1rem;
+  border: 1px solid #000000;
+}
+
+.production-kits-section h2{
+  margin-bottom: 1em;
+}
