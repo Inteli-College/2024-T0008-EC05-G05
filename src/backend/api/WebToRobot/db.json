@@ -1,0 +1,185 @@
+{
+    "Itens": {
+        "1": {
+            "item_code": "123",
+            "name": "Seringa",
+            "initial_position": "P1",
+            "final_position": "posicaoSaco"
+        },
+        "2": {
+            "item_code": "456",
+            "name": "Agulha",
+            "initial_position": "P2",
+            "final_position": "posicaoSaco"
+        },
+        "3": {
+            "item_code": "789",
+            "name": "Ampola",
+            "initial_position": "P3",
+            "final_position": "posicaoSaco"
+        },
+        "4": {
+            "item_code": "458",
+            "name": "Lidocaina",
+            "initial_position": "P4",
+            "final_position": "posicaoSaco"
+        },
+        "5": {
+            "item_code": "678",
+            "name": "Gases",
+            "initial_position": "P5",
+            "final_position": "posicaoSaco"
+        },
+        "6": {
+            "item_code": "892",
+            "name": "Agulha",
+            "initial_position": "P6",
+            "final_position": "posicaoSaco"
+        }
+    },
+    "Kits": {
+        "1": {
+            "kit_code": "K1",
+            "name": "Kit Cirurgia",
+            "items": [
+                "123",
+                "456",
+                "789",
+                "458"
+            ]
+        },
+        "2": {
+            "kit_code": "K2",
+            "name": "Kit Cirurgia",
+            "items": [
+                "123",
+                "456"
+            ]
+        },
+        "3": {
+            "kit_code": "K3",
+            "name": "Kit Cirurgia",
+            "items": [
+                "123",
+                "456"
+            ]
+        },
+        "4": {
+            "kit_code": "K4",
+            "name": "Kit Cirurgia",
+            "items": [
+                "123",
+                "456"
+            ]
+        },
+        "5": {
+            "kit_code": "K5",
+            "name": "Kit Cirurgia",
+            "items": [
+                "123",
+                "456"
+            ]
+        },
+        "6": {
+            "kit_code": "K6",
+            "name": "Kit Cirurgia",
+            "items": [
+                "123",
+                "456"
+            ]
+        }
+    },
+    "Positions": {
+        "1": {
+            "position_code": "A1",
+            "x": 298.98,
+            "y": 88.68,
+            "z": -42.57,
+            "r": 0
+        },
+        "2": {
+            "position_code": "A2",
+            "x": 277,
+            "y": -131.06,
+            "z": -17.08,
+            "r": -25.26
+        },
+        "3": {
+            "position_code": "posicaoVerificacaoAlta",
+            "x": 268.9991760253906,
+            "y": -16.802045822143555,
+            "z": 119.29292297363281,
+            "r": -3.574127197265625
+        },
+        "4": {
+            "position_code": "posicaoVerificacaoBaixa",
+            "x": 319.626220703125,
+            "y": 15.941283226013184,
+            "z": -50.60128402709961,
+            "r": 2.855247735977173
+        },
+        "5": {
+            "position_code": "P1",
+            "x": 143.0216522216797,
+            "y": 293.1274719238281,
+            "z": -42.412593841552734,
+            "r": 68.39695739746094
+        },
+        "6": {
+            "position_code": "P2",
+            "x": 234.7387237548828,
+            "y": 282.39300537109375,
+            "z": -39.62128829956055,
+            "r": 54.67045211791992
+        },
+        "7": {
+            "position_code": "P3",
+            "x": 209.9095001220703,
+            "y": 128.8141632080078,
+            "z": -38.912811279296875,
+            "r": 35.94144821166992
+        },
+        "8": {
+            "position_code": "P4",
+            "x": 269.2430114746094,
+            "y": 125.82333374023438,
+            "z": -45.28779983520508,
+            "r": 29.453197479248047
+        },
+        "9": {
+            "position_code": "P5",
+            "x": 331.7964172363281,
+            "y": 54.503204345703125,
+            "z": -20.367259979248047,
+            "r": 9.328495025634766
+        },
+        "10": {
+            "position_code": "P6",
+            "x": 266.88104248046875,
+            "y": 54.2927131652832,
+            "z": -22.759220123291016,
+            "r": 11.499000549316406
+        },
+        "11": {
+            "position_code": "P7",
+            "x": 197.56533813476562,
+            "y": 53.268829345703125,
+            "z": -23.954452514648438,
+            "r": 15.089622497558594
+        },
+        "12": {
+            "position_code": "posicaoSaco",
+            "x": 279.6096496582031,
+            "y": -238.4675750732422,
+            "z": 45.84016799926758,
+            "r": -36.05405044555664
+        },
+        "13": {
+            "position_code": "posicaoSacoSoltar",
+            "x": 268.9991760253906,
+            "y": -40.802045822143555,
+            "z": 119.29292297363281,
+            "r": -3.574127197265625
+        }
+    }
+}
