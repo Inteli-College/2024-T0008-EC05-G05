@@ -29,7 +29,7 @@ class Post(BaseModel):
 app = FastAPI()
 
 # Inicia o banco de dados com tinyDb
-db = TinyDB('kits.json')
+db = TinyDB('../../database/kits.json')
 posts_table = db.table('kits')
 
 # Liberando o CORS para fazer requisições locais
