@@ -45,7 +45,7 @@ const Supplies = () => {
   const sendValues = () => {
     console.log(inputValues);
     axios.put(`http://localhost:8000/posts/${selectedNumber}`, {
-      nome_kit : 'Kit {selectedNumber}',
+      nome_kit: `Kit ${selectedNumber}`,
       id_kit : selectedNumber,
       item_1 : inputValues
     })
