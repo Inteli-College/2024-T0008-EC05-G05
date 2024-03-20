@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './dashboard.css'; // Crie um arquivo de CSS para estilizações específicas desta página
 import { FaBars } from "react-icons/fa"; // Ícone de menu (hambúrguer)
 import Sidebar from '../../components/Sidebar/Sidebar.js';
@@ -6,7 +6,7 @@ import KitCard from '../../components/kit_card/kit_card.jsx';
 import KitsProdStatus from '../../components/KitsProd/KitsProdStatus.js';
 
 
-function Dashboard() {
+function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -32,7 +32,7 @@ function Dashboard() {
 
 
   return (
-    <div className="dashboard">
+    <div className="home">
         <Sidebar open={sidebarOpen} toggleSidebar={toggleSidebar} />
         <div className={sidebarOpen ? "big-space" : 'small-space'}></div>
         <section className='kit-card-section'>
@@ -40,7 +40,7 @@ function Dashboard() {
         </section>
         
         <div className={sidebarOpen ? 'blurred' : 'banana'}>
-          <h1>Bem-vindo à Dashboard</h1>
+          <h1>Bem-vindo à Home</h1>
         </div>
         <KitCard />
         <div className="production-kits-section">
@@ -57,4 +57,4 @@ function Dashboard() {
     </div>
   );
 }
-export default Dashboard;
+export default Home;

@@ -1,20 +1,17 @@
-/* dashboard.css */
-.dashboard {
+/* home.css */
+.home {
   display: grid;
   grid-template-columns: 15em 10fr 5fr;
 }
 
-
-.dashboard-content {
+.home-content {
   padding-top: 2rem;
   padding-left: 5rem;
 }
 
-
 .blurred {
   filter: blur(2px); /* Desfoca o conteúdo quando a sidebar estiver aberta */
 }
-
 
 .small-space{
   width: 50px;
