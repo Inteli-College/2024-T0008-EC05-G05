@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './dashboard.css';
 import Sidebar from '../../components/Sidebar/Sidebar.js';
 
 function Dashboard() {
