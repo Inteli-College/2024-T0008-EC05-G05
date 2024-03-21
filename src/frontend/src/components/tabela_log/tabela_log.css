@@ -1,0 +1,66 @@
+/* Table container styles */
+.table-container {
+    border-radius: 20px;
+    /* Rounded corners */
+    background-color: #f0f0f0;
+    /* Dark white background for the whole table */
+    padding: 15px;
+    /* Adds space around the table and dropdown for visual separation */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Optional: adds a subtle shadow for depth */
+    overflow: hidden;
+    /* Ensures that the inner elements' rounded corners are clip  ped */
+}
+
+/* Table styles */
+.table-container table {
+    width: 100%;
+    /* Makes the table expand to the container's width */
+    border-collapse: collapse;
+    /* Removes gaps between cells */
+    border-radius: 15px;
+    /* Rounded corners for the table */
+    background-color: #fff;
+    /* Light background color for the table */
+    overflow: hidden;
+    /* Ensures the table's rounded corners are visible */
+}
+
+.table-container th,
+.table-container td {
+    text-align: center;
+    /* Aligns text to the left */
+    padding: 12px;
+    /* Adjusts padding inside table cells for spacing and alignment */
+}
+
+/* Header styles */
+.table-container thead th {
+    background-color: #eee;
+    /* Different background color for table headers */
+    position: sticky;
+    /* Makes the header sticky */
+    top: 0;
+    /* Sets the sticky position */
+}
+
+/* Adds zebra-striping to table rows */
+.table-container tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+.table-container tbody tr:nth-child(even) {
+    background-color: #e7e7e7;
+}
+
+/* Adjustments for select dropdown alignment */
+.table-container select {
+    padding: 4px;
+    /* Ensures the dropdown height matches table cells */
+    margin-top: 10px;
+    /* Adds some space above the dropdown for visual separation */
+    border: 1px solid #ccc;
+    /* Light border for the dropdown */
+    border-radius: 5px;
+    /* Slightly rounded corners for the dropdown */
+}
