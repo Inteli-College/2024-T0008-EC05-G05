@@ -1,39 +1,46 @@
 .dashboard {
     display: flex;
-    min-height: 100vh; /* Full viewport height */
-}
-
-.sidebar {
-    /* Define a width or flex-basis for your sidebar */
-    width: 200px; /* Adjust as needed */
-    /* other styles for sidebar */
+    min-height: 100vh;
+    margin-left: 50px;
+    /* Full viewport height */
 }
 
 .main-content {
     flex-grow: 1;
-    padding: 20px; /* Add padding as needed */
-    overflow: hidden; /* Prevents content from flowing outside */
+    padding: 20px;
+    /* Add padding as needed */
+    overflow: hidden;
+    /* Prevents content from flowing outside */
 }
 
 .dashboard-header {
     text-align: center;
-    margin-bottom: 20px; /* Space below the dashboard title */
+    margin-bottom: 20px;
+    /* Space below the dashboard title */
 }
 
 .dashboard-title {
-    margin: 0; /* No margin for the title */
-    padding-bottom: 10px; /* Space above the divider line */
-    border-bottom: 2px solid #000; /* Divider line */
+    margin: 0;
+    /* No margin for the title */
+    padding-bottom: 10px;
+    /* Space above the divider line */
+    border-bottom: 2px solid #000;
+    /* Divider line */
 }
 
 .tables-container {
     display: flex;
-    gap: 20px; /* This creates space between your tables */
+    gap: 20px;
+    /* This creates space between your tables */
 }
 
-.tabela_kits, .tabela_items {
-    width: calc(50% - 10px); /* Sets the width of each table container */
-    height: 400px; /* Sets a fixed height for the tables */
-    overflow-y: auto; /* Enables vertical scrolling within the tables */
+.tabela_kits,
+.tabela_items {
+    width: calc(50% - 10px);
+    /* Sets the width of each table container */
+    height: 400px;
+    /* Sets a fixed height for the tables */
+    overflow-y: auto;
+    /* Enables vertical scrolling within the tables */
     /* ...other styles like box-shadow, border-radius, etc... */
 }
