@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './dashboard.css'; // Crie um arquivo de CSS para estilizações específicas desta página
+import './home.css'; // Crie um arquivo de CSS para estilizações específicas desta página
 import { FaBars } from "react-icons/fa"; // Ícone de menu (hambúrguer)
 import Sidebar from '../../components/Sidebar/Sidebar.js';
 import KitCard from '../../components/kit_card/kit_card.jsx';

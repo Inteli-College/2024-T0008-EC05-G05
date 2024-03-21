@@ -19,6 +19,7 @@
     align-items: center; /* Center items vertically */
     margin: 0 10px; /* Add some space between items */
     border: 1px solid #000; /* Add a border */
+    border-radius: 20px;
     width: 12vw;
     height: 12vw;
     background-color: #F1F1F0;
@@ -45,12 +46,12 @@
   
   
   
-  /* You might need to adjust the styles for the modal and overlay according to your needs */
+  /* You might need to adjust the styles for the modal and overlay according to your needs 
   .modal {
-    /* Add modal styles */
+
   }
   
   .overlay {
-    /* Add overlay styles */
-  }
+    /* Add overlay styles 
+  }*/
   
