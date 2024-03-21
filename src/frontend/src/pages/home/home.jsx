@@ -38,10 +38,7 @@ function Home() {
         <section className='kit-card-section'>
           <h2 className='kit-car-title'> Kits </h2>
         </section>
-        
-        <div className={sidebarOpen ? 'blurred' : 'banana'}>
-          <h1>Bem-vindo à Home</h1>
-        </div>
+      
         <KitCard />
         <div className="production-kits-section">
           <h2>Kits em produção  </h2>
