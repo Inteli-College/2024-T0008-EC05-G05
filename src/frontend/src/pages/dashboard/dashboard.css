@@ -38,9 +38,9 @@
 .tabela_items {
     width: calc(50% - 10px);
     /* Sets the width of each table container */
-    height: 400px;
     /* Sets a fixed height for the tables */
     overflow-y: auto;
     /* Enables vertical scrolling within the tables */
     /* ...other styles like box-shadow, border-radius, etc... */
+    height: 65vh;
 }

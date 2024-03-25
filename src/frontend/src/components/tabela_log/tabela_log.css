@@ -1,6 +1,6 @@
 /* Table container styles */
 .table-container {
-    border-radius: 20px;
+    border-radius: 20px 0 0 20px;
     /* Rounded corners */
     background-color: #f0f0f0;
     /* Dark white background for the whole table */
