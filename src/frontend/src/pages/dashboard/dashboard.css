@@ -47,6 +47,5 @@
 
 .log_atividades {
     margin-top: 20px;
-    height: 30vh; /* Adjust this value to control how tall the table is */
-    overflow-y: auto; /* This will add a scrollbar if the content exceeds the height */
+    height: 60vh; /* Adjust this value to control how tall the table is */ /* This will add a scrollbar if the content exceeds the height */
 }
