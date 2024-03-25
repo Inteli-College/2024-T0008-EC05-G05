@@ -49,34 +49,39 @@ const TabelaLog = ({ tableName, title }) => {
 
   return (
     <div className="table-container">
-      <h2>{title}</h2>
-      {/* Dropdown for selecting the time period */}
-      <div>
-        <label htmlFor="periodo">Escolha um período: </label>
-        <select id="periodo" value={timePeriod} onChange={handleTimePeriodChange}>
-          <option value="dia">Dia</option>
-          <option value="semana">Semana</option>
-          <option value="mes">Mes</option>
-          <option value="ano">Ano</option>
-        </select>
+      {/* Static Header */}
+      <div className="table-header">
+        <h2>{title}</h2>
+        <div>
+          <label htmlFor="periodo">Escolha um período: </label>
+          <select id="periodo" value={timePeriod} onChange={handleTimePeriodChange}>
+            <option value="dia">Dia</option>
+            <option value="semana">Semana</option>
+            <option value="mes">Mes</option>
+            <option value="ano">Ano</option>
+          </select>
+        </div>
       </div>
-      {/* Render your table here */}
-      <table>
-        <thead>
-          <tr>
-            <th>nome</th>
-            <th>quantidade</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((item, index) => (
-            <tr key={index}>
-              <td>{item.nome}</td>
-              <td>{item.quantidade}</td>
+  
+      {/* Scrollable Table */}
+      <div className="scrollable-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Quantidade</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {data.map((item, index) => (
+              <tr key={index}>
+                <td>{item.nome}</td>
+                <td>{item.quantidade}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
