@@ -167,8 +167,7 @@ def mover_para_posicao(posicaoCod, atuador=None, estado_atuador=None):
 # http://IPV4/mover_para_posicoes/?posicao_inicial=A1&posicao_final=A2
 @app.get('/mover_para_posicoes/')
 async def mover_para_posicoes(posicao_inicial: str, posicao_final: str):
-    mover_para_posicao(posicao_inicial)
-
+    
     print(f"Movendo dobot para as posições {posicao_inicial} e {posicao_final}.")
 
     # While loop para tentar pegar o item durante um certo número de tentativ
