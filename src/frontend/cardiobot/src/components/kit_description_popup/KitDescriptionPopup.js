@@ -51,11 +51,11 @@ const Modal = ({ showModal, closeModal, kitId }) => {
         <div className="modal-content">
           <span className="close" onClick={closeModal}>&times;</span>
           <h2>Descrição do Kit</h2>
-          {kitData && kitData.item_1 ? (
+          {kitData && kitData.item_sku ? (
             <>
-              <h3>Itens do Kit {kitData.id_kit} </h3>
+              <h3>Itens do Kit {kitData.ID} </h3>
               <ul>
-                {kitData.item_1.map((item, index) => (
+                {kitData.item_sku.map((item, index) => (
                   <li key={index}>Item {index + 1}: {item}</li>
                 ))}
               </ul>
