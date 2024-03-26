@@ -42,7 +42,6 @@ const KitCard = ({kitId, renderContent}) => {
                 <img src={kitImage} alt="" className='kit-card-img'/>
               </div>
               <div className='kit-card-buttons-area'>
-                <button type="button" >Edit</button>
                 <button type="button" onClick={() => handleStartClick(item.ID)}>Start</button>
               </div>
               {openModalId === item.ID && ( 
