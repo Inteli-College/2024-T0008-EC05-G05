@@ -30,40 +30,6 @@ const Supplies = () => {
     "Máscara N95",
   ];
 
-  const renderModals = () => {
-    return options.map((option, index) => (
-      <div key={index} className="Item">
-        <div className="ButtonContainer">
-          <button id="home_button"></button>
-        </div>
-        <ModalCreated
-          isOpen={true}
-          onRequestClose={() => {}}
-          title={option}
-          hasMedicine={kitData[index].hasMedicine}
-          quantity={kitData[index].quantity}
-          onToggleMedicine={() => {
-            const updatedKitData = [...kitData];
-            updatedKitData[index].hasMedicine = !kitData[index].hasMedicine;
-            setKitData(updatedKitData);
-          }}
-          onIncrementQuantity={() => {
-            const updatedKitData = [...kitData];
-            updatedKitData[index].quantity++;
-            setKitData(updatedKitData);
-          }}
-          onDecrementQuantity={() => {
-            const updatedKitData = [...kitData];
-            if (updatedKitData[index].quantity > 0) {
-              updatedKitData[index].quantity--;
-            }
-            setKitData(updatedKitData);
-          }}
-        />
-      </div>
-    ));
-  };
-
   return (
     <div className="Container">
       <Sidebar open={sidebarOpen} toggleSidebar={toggleSidebar} />
@@ -82,12 +48,38 @@ const Supplies = () => {
         </select>
       </div>
       <div className="Row">
-        <div className="RowContainer">
-          {renderModals().slice(0, 4)} {/* Renderiza os primeiros 4 modals */}
-        </div>
-        <div className="RowContainer">
-          {renderModals().slice(4)} {/* Renderiza os últimos 4 modals */}
-        </div>
+        {options.map((option, index) => (
+          <div key={index} className="Item">
+            <div className="ButtonContainer">
+              <button id="home_button"></button>
+            </div>
+            <ModalCreated
+              key={index}
+              isOpen={true}
+              onRequestClose={() => {}}
+              title={option}
+              hasMedicine={kitData[index].hasMedicine}
+              quantity={kitData[index].quantity}
+              onToggleMedicine={() => {
+                const updatedKitData = [...kitData];
+                updatedKitData[index].hasMedicine = !kitData[index].hasMedicine;
+                setKitData(updatedKitData);
+              }}
+              onIncrementQuantity={() => {
+                const updatedKitData = [...kitData];
+                updatedKitData[index].quantity++;
+                setKitData(updatedKitData);
+              }}
+              onDecrementQuantity={() => {
+                const updatedKitData = [...kitData];
+                if (updatedKitData[index].quantity > 0) {
+                  updatedKitData[index].quantity--;
+                }
+                setKitData(updatedKitData);
+              }}
+            />
+          </div>
+        ))}
       </div>
       <div>
         <button onClick={handleSaveKit}>Salvar Kit</button>
@@ -97,3 +89,4 @@ const Supplies = () => {
 };
 
 export default Supplies;
+
