@@ -9,6 +9,20 @@ from pydantic import BaseModel
 import httpx
 import time
 import json
+import sqlite3
+import socket
+
+def ip_address():
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8", 80))
+        ip_address = s.getsockname()[0]
+        s.close()
+        print("IP Address:", ip_address)
+        print(f"localhost: http://{ip_address}")
+        return ip_address
+    except Exception as e:
+        return "Não foi possível obter o IP: " + str(e)
 
 # Inicializa a aplicação FastAPI
 app = FastAPI()
@@ -28,20 +42,51 @@ class PicoData(BaseModel): # BaseModel para validar e tratar dados JSON recebido
     pegou: str
 
 # Inicializa o banco de dados
-db = TinyDB('db.json', indent=4)
-itens = db.table('Itens')
-kits = db.table('Kits')
-positions = db.table('Positions')
+# db = TinyDB('db.json', indent=4)
+# itens = db.table('Itens')
+# kits = db.table('Kits')
+# positions = db.table('Positions')
 
 # Exemplo de inserção de dados no banco de dados
 # itens.insert({'item_code': '123', 'name': 'Seringa', 'initial_position': 'A1', 'final_position': 'B2'})
 # kits.insert({'kit_code': 'K1', 'name': 'Kit Cirurgia', 'items': ['123', '456']})
 # positions.insert({'position_code': 'A1', 'x': 10, 'y': 20, 'z': 30, 'r': 5})
+    
+conn = sqlite3.connect('../../database/dbCardioBot.db')
+cursor = conn.cursor()   
+
+def inserir_item(sku, name, position_name):
+    cursor.execute("INSERT INTO Items (SKU, Name, Position_name) VALUES (?, ?, ?)", (sku, name, position_name))
+    conn.commit()
+
+# Buscar dados
+def buscar_item(sku):
+    cursor.execute("SELECT * FROM Items WHERE SKU = ?", (sku,))
+    print(f"SELECT * FROM Items WHERE SKU = {sku}")
+    return cursor.fetchone()
+
+def buscar_kit(KitID):
+    cursor.execute("SELECT * FROM Kits WHERE ID = ?", (KitID,))
+    print(f"SELECT * FROM Kits WHERE ID = {KitID}")
+    return cursor.fetchone()
+
+def buscar_posicao(PosicaoName):
+    cursor.execute("SELECT * FROM Position WHERE Position_name = ?", (PosicaoName,))
+    print(f"SELECT * FROM Position WHERE Position_name = {PosicaoName}")
+    return cursor.fetchone()
+
+def atualizar_posicao(PosicaoName, x, y, z, r):
+    cursor.execute("UPDATE Position SET x = ?, y = ?, z = ?, r = ? WHERE Position_name = ?", (x, y, z, r, PosicaoName))
+    conn.commit()
+
+def inserir_posicao(PosicaoName, x, y, z, r):
+    cursor.execute("INSERT INTO Position (Position_name, x, y, z, r) VALUES (?, ?, ?, ?, ?)", (PosicaoName, x, y, z, r))
+    conn.commit()
 
 # Codio de execução da API do FastAPI: uvicorn app:app --host 0.0.0.0 --reload --port 80
 
 # IPV4 do seu computador
-ip_servidor = ""
+ip_servidor = ip_address()
 
 # Middleware para log das requisições
 @app.middleware("http")
@@ -97,16 +142,18 @@ async def conectar_dobot(porta: str):
 
 # Função para mover o dobot para uma posição
 def mover_para_posicao(posicaoCod, atuador=None, estado_atuador=None):
-    posicao = positions.search(Query().position_code == posicaoCod)
+    posicao = buscar_posicao(posicaoCod)
 
-    posicao = posicao[0]
+    print(f"Movendo para a posição {posicao}...")
+
+    # posicao = posicao[0]
 
     if not posicao:
         print("Posição não encontrada.")
         raise HTTPException(status_code=404, detail="Posição não encontrada")
 
     try:
-        dobot.mover_para(posicao['x'], posicao['y'], posicao['z'], posicao['r'])
+        dobot.mover_para(posicao[1], posicao[2], posicao[3], posicao[4])
 
         # Se não tiver parametos do atuador, o braço do dobot vai apenas para a posição
         if atuador is not None and estado_atuador is not None:
@@ -120,6 +167,7 @@ def mover_para_posicao(posicaoCod, atuador=None, estado_atuador=None):
 # http://IPV4/mover_para_posicoes/?posicao_inicial=A1&posicao_final=A2
 @app.get('/mover_para_posicoes/')
 async def mover_para_posicoes(posicao_inicial: str, posicao_final: str):
+    mover_para_posicao(posicao_inicial)
 
     print(f"Movendo dobot para as posições {posicao_inicial} e {posicao_final}.")
 
@@ -208,38 +256,45 @@ async def get_pico_data():
 @app.get("/montar_kit/")
 async def montar_kit(kit_code: str):
     # Buscar o kit no banco de dados
-    kit = kits.search(Query().kit_code == kit_code)
+    kit = buscar_kit(kit_code)
     print(kit)
+
+    numero_de_items = 2
 
     if not kit:
         raise HTTPException(status_code=404, detail="Kit não encontrado")
 
+    # Resposta SQL query: 1, "Luva, Vazio, Luftal, Vazio, Vazio, Caixa, Vazio, Vazio", frente
+    lista_itens = kit[1].split(", ")
+    posicao_final = kit[2]
+    print(f"Lista de items: {lista_itens}")
+
     # Montar o kit interando por cada item
-    for item_code in kit[0]['items']:
-        # Buscar o item no banco de dados
-        item = itens.search(Query().item_code == item_code)
+    for item in lista_itens:
+        if item != "Vazio":
 
-        if not item:
-            raise HTTPException(status_code=404, detail="Item não encontrado")
-        
-        # Mover o dobot para a posição inicial do item
-        posicao_inicial = item[0]['initial_position']
-        posicao_final = item[0]['final_position']
-        item_name = item[0]['name']
+            item_name = buscar_item(item)[1]
+            posicao = buscar_item(item)[2]
 
-        print(f"Pegando o item: {item_name}...")
-        print(posicao_inicial)
-        print(posicao_final)
+            for i in numero_de_items: 
+                # Buscar o item no banco de dados
 
-        # Rodar a sequência de movimentos pelo endpoint /mover_para_posicoes/
-        await mover_para_posicoes(posicao_inicial, posicao_final)
+                if not item:
+                    raise HTTPException(status_code=404, detail="Item não encontrado")
+                
+                # Mover o dobot para a posição inicial do item
+                print(f"Pegando o item: {item_name}...")
+                
+
+                # Rodar a sequência de movimentos pelo endpoint /mover_para_posicoes/
+                await mover_para_posicoes(posicao, posicao_final)
 
 # Endpoint para salvar uma posição
 # http://10.128.0.8/salvar_posicao/?position_code=P1
 @app.get('/salvar_posicao/')
 async def salvar_posicao(position_code: str,):
     # Verificar se existe uma posição com o mesmo nome
-    posicao = positions.search(Query().position_code == position_code)
+    posicao = buscar_posicao(position_code)
 
     dobot_pos = dobot.obter_posicao()
 
@@ -247,12 +302,13 @@ async def salvar_posicao(position_code: str,):
     if posicao:
         print(dobot_pos)
         # Atualizar a posição
-        positions.update({'position_code': position_code, 'x': dobot_pos[0], 'y': dobot_pos[1], 'z': dobot_pos[2], 'r': dobot_pos[3]}, Query().position_code == position_code)
+        atualizar_posicao(position_code, dobot_pos[0], dobot_pos[1], dobot_pos[2], dobot_pos[3])
         return {"status": "sucesso", "mensagem": "Posição atualizada com sucesso."}
     else:
         print(dobot_pos)
 
-        positions.insert({'position_code': position_code, 'x': dobot_pos[0], 'y': dobot_pos[1], 'z': dobot_pos[2], 'r': dobot_pos[3]})
+        # Inserir a nova posição
+        inserir_posicao(position_code, dobot_pos[0], dobot_pos[1], dobot_pos[2], dobot_pos[3])
 
         return {"status": "sucesso", "mensagem": "Posição salva com sucesso."}
     

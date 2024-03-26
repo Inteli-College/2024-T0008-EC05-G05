@@ -45,32 +45,37 @@ const Supplies = () => {
   const sendValues = () => {
     console.log(inputValues);
     axios.put(`http://localhost:8000/posts/${selectedNumber}`, {
-      nome_kit: `Kit ${selectedNumber}`,
-      id_kit : selectedNumber,
-      item_1 : inputValues
+      ID: selectedNumber,
+      Item_SKUs: inputValues,
+      Kit_assembly_positions: "frente" // replace with appropriate value
     })
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    .then((response) => {
+      console.log(response.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   };
 
   const fetchItems = async () => {
     try {
       const response = await axios.get(`http://localhost:8000/posts/${selectedNumber}`);
-      console.log(response.data.item_1); // Accessing item_1 directly
-      // Update inputValues based on API response
-      const newInputValues = [...inputValues];
-      response.data.item_1.forEach((item, index) => {
-        newInputValues[index] = item;
-      });
-      setInputValues(newInputValues);
-      // Or if you want to open the modal for each item:
-      response.data.item_1.forEach((item, index) => {
-        openModal(index);
-      });
+      // Check if response.data.item_sku exists and is an array
+      if (response.data.item_sku && Array.isArray(response.data.item_sku)) {
+        console.log(response.data.item_sku); // Accessing item_sku directly
+        // Update inputValues based on API response
+        const newInputValues = [...inputValues];
+        response.data.item_sku.forEach((item, index) => {
+          newInputValues[index] = item;
+        });
+        setInputValues(newInputValues);
+        // Or if you want to open the modal for each item:
+        response.data.item_sku.forEach((item, index) => {
+          openModal(index);
+        });
+      } else {
+        console.log("item_sku is not an array or doesn't exist in the response data");
+      }
     } catch (error) {
       console.log("error : ", error);
     }
