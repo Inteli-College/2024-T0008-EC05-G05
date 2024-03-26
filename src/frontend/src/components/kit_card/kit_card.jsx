@@ -36,17 +36,16 @@ const KitCard = ({kitId, renderContent}) => {
     <section className='kit-card-area'>
         {Array.isArray(data) ? (
           data.map(item => (
-            <div className='kit-card-item' key={item.id_kit}>
-              <h3 className='kit-card-title'>{item.nome_kit}</h3>
+            <div className='kit-card-item' key={item.ID}>
+              <h3 className='kit-card-title'>Kit {item.ID}</h3>
               <div className='kit-carad-img-area'>
                 <img src={kitImage} alt="" className='kit-card-img'/>
               </div>
               <div className='kit-card-buttons-area'>
-                <button type="button" >Edit</button>
-                <button type="button" onClick={() => handleStartClick(item.id_kit)}>Start</button>
+                <button type="button" onClick={() => handleStartClick(item.ID)}>Start</button>
               </div>
-              {openModalId === item.id_kit && ( 
-                <Modal showModal={openModalId !== null} closeModal={closeModal} kitId={item.id_kit}  renderContent={renderContent} />
+              {openModalId === item.ID && ( 
+                <Modal showModal={openModalId !== null} closeModal={closeModal} kitId={item.ID}  renderContent={renderContent} />
               )}
             </div>
           ))

@@ -13,10 +13,66 @@ const Supplies = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
-  const handleSaveKit = () => {
-    const kitDataToSend = kitData.map(({ hasMedicine, quantity }) => ({ hasMedicine, quantity }));
-    // You can send kitDataToSend to backend using axios here
-    console.log("Kit Data to Send:", kitDataToSend);
+  const openModal = (index) => {
+    const newModalOpen = [...modalOpen];
+    newModalOpen[index] = true;
+    setModalOpen(newModalOpen);
+  };
+
+  const closeModal = (index) => {
+    const newModalOpen = [...modalOpen];
+    newModalOpen[index] = false;
+    setModalOpen(newModalOpen);
+  };
+
+  const handleInputChange = (value, index) => {
+    const newInputValues = [...inputValues];
+    newInputValues[index] = value;
+    setInputValues(newInputValues);
+  };
+
+  const handleDropdownChange = (event, index) => {
+    const selected = event.target.value;
+    setInputValues(prevInputValues => {
+      const newInputValues = [...prevInputValues];
+      newInputValues[index] = selected;
+      return newInputValues;
+    });
+  };
+
+  // Essa é a função que atualiza os dados para o backend 
+  const sendValues = () => {
+    console.log(inputValues);
+    axios.put(`http://localhost:8000/posts/${selectedNumber}`, {
+      nome_kit : 'Kit {selectedNumber}',
+      id_kit : selectedNumber,
+      item_1 : inputValues
+    })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const fetchItems = async () => {
+    try {
+      const response = await axios.get(`http://localhost:8000/posts/${selectedNumber}`);
+      console.log(response.data.item_1); // Accessing item_1 directly
+      // Update inputValues based on API response
+      const newInputValues = [...inputValues];
+      response.data.item_1.forEach((item, index) => {
+        newInputValues[index] = item;
+      });
+      setInputValues(newInputValues);
+      // Or if you want to open the modal for each item:
+      response.data.item_1.forEach((item, index) => {
+        openModal(index);
+      });
+    } catch (error) {
+      console.log("error : ", error);
+    }
   };
 
   const options = [

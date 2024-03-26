@@ -1,0 +1,48 @@
+.table-container {
+    border-radius: 20px;
+    background-color: #f0f0f0;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    height: 60vh;
+    overflow: hidden;
+}
+
+.scrollable-table {
+    overflow-y: auto; /* Enable scrolling for the table */
+    margin-top: 15px; /* Optional: space between the dropdown and the table */
+}
+
+.table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+}
+
+.table-container th,
+.table-container td {
+    text-align: center;
+    padding: 12px;
+}
+
+.table-container thead th {
+    background-color: #eee;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.table-container tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+.table-container tbody tr:nth-child(even) {
+    background-color: #e7e7e7;
+}
+
+.table-container select {
+    padding: 4px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
