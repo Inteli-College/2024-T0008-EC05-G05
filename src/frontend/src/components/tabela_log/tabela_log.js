@@ -1,47 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import './tabela_log.css';
 
-const TabelaLog = ({ tableName, title }) => {
+const TabelaLog = ({ title }) => {
+  const [data, setData] = useState([]);
   const [timePeriod, setTimePeriod] = useState('dia'); // Default to 'dia'
 
-  // Hard-coded data sets for each time period
-  const dataSets = {
-    dia: [
-      { nome: 'Dia Item 1', quantidade: 1 },
-      { nome: 'Dia Item 2', quantidade: 2 },
-      { nome: 'Dia Item 1', quantidade: 1 },
-      { nome: 'Dia Item 2', quantidade: 2 },
-      { nome: 'Dia Item 1', quantidade: 1 },
-      { nome: 'Dia Item 2', quantidade: 2 },
-      { nome: 'Dia Item 1', quantidade: 1 },
-      { nome: 'Dia Item 2', quantidade: 2 },
-      { nome: 'Dia Item 1', quantidade: 1 },
-      { nome: 'Dia Item 2', quantidade: 2 },
-      { nome: 'Dia Item 1', quantidade: 1 },
-      { nome: 'Dia Item 2', quantidade: 2 },
-      { nome: 'Dia Item 1', quantidade: 1 },
-      { nome: 'Dia Item 2', quantidade: 2 },
-      { nome: 'Dia Item 1', quantidade: 1 },
-      { nome: 'Dia Item 2', quantidade: 2 },
-      { nome: 'Dia Item 1', quantidade: 1 },
-      { nome: 'Dia Item 2', quantidade: 2 },
-    ],
-    semana: [
-      { nome: 'Semana Item 1', quantidade: 3 },
-      { nome: 'Semana Item 2', quantidade: 4 },
-    ],
-    mes: [
-      { nome: 'Mes Item 1', quantidade: 5 },
-      { nome: 'Mes Item 2', quantidade: 6 },
-    ],
-    ano: [
-      { nome: 'Ano Item 1', quantidade: 7 },
-      { nome: 'Ano Item 2', quantidade: 8 },
-    ],
+  // Função para buscar dados da API
+  const fetchData = async () => {
+    const endpoint = title === 'Itens' ? '/api/itens' : '/api/kits';
+    const url = `http://localhost:8000${endpoint}`; // Ajuste para o URL da sua API
+
+    try {
+      const response = await fetch(url);
+      const jsonData = await response.json();
+
+      // Aqui, você pode aplicar lógica adicional baseada em 'timePeriod', se necessário.
+      // Por exemplo, filtrar os dados baseado no período selecionado.
+      setData(jsonData);
+    } catch (error) {
+      console.error('Falha ao buscar dados:', error);
+      setData([]); // Limpa os dados em caso de erro.
+    }
   };
 
-  // Select the data set based on the current time period
-  const data = dataSets[timePeriod];
+  useEffect(() => {
+    fetchData();
+  }, [title, timePeriod]); // Rebusca os dados quando 'title' ou 'timePeriod' mudam.
 
   const handleTimePeriodChange = (event) => {
     setTimePeriod(event.target.value);
@@ -49,7 +33,6 @@ const TabelaLog = ({ tableName, title }) => {
 
   return (
     <div className="table-container">
-      {/* Static Header */}
       <div className="table-header">
         <h2>{title}</h2>
         <div>
@@ -62,8 +45,7 @@ const TabelaLog = ({ tableName, title }) => {
           </select>
         </div>
       </div>
-  
-      {/* Scrollable Table */}
+
       <div className="scrollable-table">
         <table>
           <thead>
@@ -76,7 +58,8 @@ const TabelaLog = ({ tableName, title }) => {
             {data.map((item, index) => (
               <tr key={index}>
                 <td>{item.nome}</td>
-                <td>{item.quantidade}</td>
+                {/* A quantidade é tratada diferentemente para itens e kits */}
+                <td>{title === 'Itens' ? 'N/A' : item.itens.length}</td>
               </tr>
             ))}
           </tbody>
