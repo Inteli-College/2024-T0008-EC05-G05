@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './dashboard.css';
 import Sidebar from '../../components/Sidebar/Sidebar.js';
-import Tabela_log from '../../components/tabela_log/tabela_log.js';
-import Log_atividades from '../../components/log_atividades/log_atividades.js';
+import TabelaLog from '../../components/tabela_log/tabela_log.js';
+import LogAtividades from '../../components/log_atividades/log_atividades.js';
 
 function Dashboard() {
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -19,14 +19,14 @@ function Dashboard() {
                 </div>
                 <div className="tables-container">
                     <div className='tabela_kits'>
-                        <Tabela_log tableName="tabela_kits" title="Kits" />
+                        <TabelaLog tableName="tabela_kits" title="Kits" />
                     </div>
-                    <div className='tabela_items'>
-                        <Tabela_log tableName="tabela_items" title="Items" />
+                    <div className='tabela_itens'>
+                        <TabelaLog tableName="tabela_itens" title="Itens" />
                     </div>
                 </div>
                 <div className='log_atividades'>
-                    <Log_atividades tableName="log_atividades" title="log" />
+                    <LogAtividades tableName="log_atividades" title="log" />
                 </div>
             </div>
 

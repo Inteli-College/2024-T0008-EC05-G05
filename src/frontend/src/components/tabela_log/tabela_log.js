@@ -1,33 +1,46 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './tabela_log.css';
+
+const mapPeriod = {
+  dia: 'day',
+  semana: 'week',
+  mes: 'month',
+  ano: 'year',
+};
 
 const TabelaLog = ({ title }) => {
   const [data, setData] = useState([]);
-  const [timePeriod, setTimePeriod] = useState('dia'); // Default to 'dia'
+  const [timePeriod, setTimePeriod] = useState('dia'); // Default to 'dia', aligned with dropdown values
 
-  // Função para buscar dados da API
-  const fetchData = async () => {
-    const endpoint = title === 'Itens' ? '/api/itens' : '/api/kits';
-    const url = `http://localhost:8000${endpoint}`; // Ajuste para o URL da sua API
+  // Mapping to match internal state to the API's expected period parameters
+
+
+  // Memoized fetchData function to fetch data from the API
+  const fetchData = useCallback(async () => {
+    console.log("Fetching data for", title, "with period", timePeriod);
+    // Adjust the endpoint based on the title
+    const endpoint = title.toLowerCase() === 'itens' ? '/log/itens' : '/log/kits';
+    // Append the selected period to the URL
+    const period = mapPeriod[timePeriod] || 'day';
+    const url = `http://127.0.0.1:8000${endpoint}/${period}`;
 
     try {
       const response = await fetch(url);
       const jsonData = await response.json();
-
-      // Aqui, você pode aplicar lógica adicional baseada em 'timePeriod', se necessário.
-      // Por exemplo, filtrar os dados baseado no período selecionado.
       setData(jsonData);
+      console.log("Data fetched:", jsonData);
     } catch (error) {
-      console.error('Falha ao buscar dados:', error);
-      setData([]); // Limpa os dados em caso de erro.
+      console.error('Failed to fetch data:', error);
+      setData([]); // Clear data in case of an error
     }
-  };
+  }, [title, timePeriod]); // Dependencies
 
   useEffect(() => {
     fetchData();
-  }, [title, timePeriod]); // Rebusca os dados quando 'title' ou 'timePeriod' mudam.
+  }, [fetchData]); // Dependency array includes fetchData now
 
   const handleTimePeriodChange = (event) => {
+    console.log("Time period selected:", event.target.value);
     setTimePeriod(event.target.value);
   };
 
@@ -50,16 +63,15 @@ const TabelaLog = ({ title }) => {
         <table>
           <thead>
             <tr>
-              <th>Nome</th>
+              <th>{title === 'Itens' ? 'Nome' : 'Número do Kit'}</th>
               <th>Quantidade</th>
             </tr>
           </thead>
           <tbody>
             {data.map((item, index) => (
               <tr key={index}>
-                <td>{item.nome}</td>
-                {/* A quantidade é tratada diferentemente para itens e kits */}
-                <td>{title === 'Itens' ? 'N/A' : item.itens.length}</td>
+                <td>{title === 'Itens' ? item.nome : item.numero_do_kit}</td>
+                <td>{item.quantity}</td>
               </tr>
             ))}
           </tbody>
