@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import ModalCreated from "../../components/Supplies_popup/supplie-popup.js";
 import "./supplies.css";
 import Sidebar from "../../components/Sidebar/Sidebar.js";
 import axios from "axios";
@@ -8,7 +9,6 @@ const Supplies = () => {
   const [inputValues, setInputValues] = useState(Array(8).fill(''));
   const [modalOpen, setModalOpen] = useState(Array(8).fill(false));
   const [selectedNumber, setSelectedNumber] = useState(null); // State to hold selected number
-  const [quantities, setQuantities] = useState(Array(8).fill(1)); // State to hold quantities
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -32,24 +32,13 @@ const Supplies = () => {
     setInputValues(newInputValues);
   };
 
-  const togglePossui = (index) => {
-    const newInputValues = [...inputValues];
-    newInputValues[index] = newInputValues[index] === options[index] ? 'Vazio' : options[index];
-    setInputValues(newInputValues);
-  };
-
-  const handleIncrement = (index) => {
-    const newQuantities = [...quantities];
-    newQuantities[index]++;
-    setQuantities(newQuantities);
-  };
-
-  const handleDecrement = (index) => {
-    const newQuantities = [...quantities];
-    if (newQuantities[index] > 1) {
-      newQuantities[index]--;
-      setQuantities(newQuantities);
-    }
+  const handleDropdownChange = (event, index) => {
+    const selected = event.target.value;
+    setInputValues(prevInputValues => {
+      const newInputValues = [...prevInputValues];
+      newInputValues[index] = selected;
+      return newInputValues;
+    });
   };
 
   // Essa é a função que atualiza os dados para o backend 
@@ -93,59 +82,79 @@ const Supplies = () => {
   };
 
   const options = [
-    'Curativo adesivo',
-    'Agulha',
-    'Ampola Lidocaína',
-    'Luva de cirurgia',
-    'Gaze estéril',
-    'Antisséptico',
-    'Seringa descartável',
-    'Máscara N95'
+    ['Curativo adesivo', 'Vazio'],
+    ['Agulha', 'Vazio'],
+    ['Ampola Lidocaína', 'Vazio'],
+    ['Luva de cirurgia', 'Vazio'],
+    ['Gaze estéril', 'Vazio'],
+    ['Antisséptico', 'Vazio'],
+    ['Seringa descartável', 'Vazio'],
+    ['Máscara N95', 'Vazio']
   ];
+
 
   return (
     <div className="Container">
       <Sidebar open={sidebarOpen} toggleSidebar={toggleSidebar} />
       {/* Escolhe o número do kit:  */}
+
       <div className="Header">
-        <p>Escolha um kit</p>
-        <select value={selectedNumber} onChange={(event) => setSelectedNumber(event.target.value)}>
-          <option value="">Escolha um kit</option>
-          {[1, 2, 3, 4, 5].map((number) => (
-            <option key={number} value={number}>{number}</option>
-          ))}
-        </select>
-        <button onClick={() => fetchItems(selectedNumber)}>Mostrar estoque</button>
+      <p>Escolha um kit</p>
+      <select value={selectedNumber} onChange={(event) => setSelectedNumber(event.target.value)}>
+        <option value="">Escolha um kit</option>
+        {[1, 2, 3, 4, 5].map((number) => (
+          <option key={number} value={number}>{number}</option>
+        ))}
+      </select>
+      <button onClick={() => fetchItems(selectedNumber)}>Mostrar estoque</button>
       </div>
       <div className="Row">
-        {options.slice(0, 4).map((option, index) => (
+        {[0, 1, 2, 3].map((index) => (
           <div key={index} className="Item">
-            <button onClick={() => togglePossui(index)}>
-              {inputValues[index] === option ? option : 'Vazio'}
-            </button>
-            {inputValues[index] === option && (
-              <div>
-                <button onClick={() => handleDecrement(index)}>-</button>
-                <span>{quantities[index]}</span>
-                <button onClick={() => handleIncrement(index)}>+</button>
-              </div>
-            )}
+            <div className="ButtonContainer">
+              <button id="home_button" ></button>
+            </div>
+            <ModalCreated
+              // isOpen={modalOpen[index]}
+              // onRequestClose={() => closeModal(index)}
+              className="modal"
+              overlayClassName="overlay"
+              placeholder="Enter something"
+              inputValue={inputValues[index]}
+              onInputChange={(value) => handleInputChange(value, index)}
+            />
+            <select value={inputValues[index]} onChange={(event) => handleDropdownChange(event, index)}>
+              <option></option>
+              {options[index].map((option, i) => (
+                <option key={i} value={option}>{option}</option>
+              ))}
+            </select>
+            <p id="individual_name" key={index}>{inputValues[index]}</p>
           </div>
         ))}
       </div>
       <div className="Row">
-        {options.slice(4).map((option, index) => (
-          <div key={index + 4} className="Item">
-            <button onClick={() => togglePossui(index + 4)}>
-              {inputValues[index + 4] === option ? option : 'Vazio'}
-            </button>
-            {inputValues[index + 4] === option && (
-              <div>
-                <button onClick={() => handleDecrement(index + 4)}>-</button>
-                <span>{quantities[index + 4]}</span>
-                <button onClick={() => handleIncrement(index + 4)}>+</button>
-              </div>
-            )}
+        {[4, 5, 6, 7].map((index) => (
+          <div key={index} className="Item">
+            <div className="ButtonContainer">
+              <button id="home_button" ></button>
+            </div>
+            <ModalCreated
+              // isOpen={modalOpen[index]}
+              // onRequestClose={() => closeModal(index)}
+              className="modal"
+              overlayClassName="overlay"
+              placeholder="Enter something"
+              inputValue={inputValues[index]}
+              onInputChange={(value) => handleInputChange(value, index)}
+            />
+            <select value={inputValues[index]} onChange={(event) => handleDropdownChange(event, index)}>
+              <option></option>
+              {options[index].map((option, i) => (
+                <option key={i} value={option}>{option}</option>
+              ))}
+            </select>
+            <p id="individual_name" key={index}>{inputValues[index]}</p>
           </div>
         ))}
       </div>
