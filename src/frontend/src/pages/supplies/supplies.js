@@ -124,31 +124,30 @@ const Supplies = () => {
               {inputValues[index] === option ? option : 'Vazio'}
             </button>
             {inputValues[index] === option && (
-            <div>
-              <button onClick={() => handleDecrement(index)}>-</button>
-              <span>{quantities[index]}</span>
-              <button onClick={() => handleIncrement(index)}>+</button>
-            </div>
-          )}
+              <div>
+                <button onClick={() => handleDecrement(index)}>-</button>
+                <span>{quantities[index]}</span>
+                <button onClick={() => handleIncrement(index)}>+</button>
+              </div>
+            )}
           </div>
         ))}
       </div>
-
       <div className="Row">
         {options.slice(4).map((option, index) => (
-        <div key={index + 4} className="Item">
-          <button onClick={() => togglePossui(index + 4)}>
-            {inputValues[index + 4] === option ? option : 'Vazio'}
-          </button>
-          {inputValues[index + 4] === option && (
-          <div>
-            <button onClick={() => handleDecrement(index + 4)}>-</button>
-            <span>{quantities[index + 4]}</span>
-            <button onClick={() => handleIncrement(index + 4)}>+</button>
+          <div key={index + 4} className="Item">
+            <button onClick={() => togglePossui(index + 4)}>
+              {inputValues[index + 4] === option ? option : 'Vazio'}
+            </button>
+            {inputValues[index + 4] === option && (
+              <div>
+                <button onClick={() => handleDecrement(index + 4)}>-</button>
+                <span>{quantities[index + 4]}</span>
+                <button onClick={() => handleIncrement(index + 4)}>+</button>
+              </div>
+            )}
           </div>
-          )}
-      </div>
-      ))}
+        ))}
       </div>
       <div>
         <button onClick={sendValues}>Salvar estoque</button>
