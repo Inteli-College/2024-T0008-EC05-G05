@@ -71,17 +71,17 @@ def inserir_item(sku, name, position_name):
 # Buscar dados
 def buscar_item(sku):
     cursor.execute("SELECT * FROM Items WHERE Name = ?", (sku,))
-    print(f"SELECT * FROM Items WHERE Name = {sku}")
+    # print(f"SELECT * FROM Items WHERE Name = {sku}")
     return cursor.fetchone()
 
 def buscar_kit(KitID):
     cursor.execute("SELECT * FROM Kits WHERE ID = ?", (KitID,))
-    print(f"SELECT * FROM Kits WHERE ID = {KitID}")
+    # print(f"SELECT * FROM Kits WHERE ID = {KitID}")
     return cursor.fetchone()
 
 def buscar_posicao(PosicaoName):
     cursor.execute("SELECT * FROM Position WHERE Position_name = ?", (PosicaoName,))
-    print(f"SELECT * FROM Position WHERE Position_name = {PosicaoName}")
+    # print(f"SELECT * FROM Position WHERE Position_name = {PosicaoName}")
     return cursor.fetchone()
 
 def atualizar_posicao(PosicaoName, x, y, z, r):
@@ -212,6 +212,11 @@ async def mover_para_posicoes(posicao_inicial: str, posicao_final: str):
     # Foto de escaneamento do QRcode
     dados_qr = await capturar_qr_code()
 
+    # Salvar infor do qr code em json
+
+    with open('dados_qr.json', 'w') as arquivo_json:
+        json.dump(dados_qr, arquivo_json)
+
     # Levar o item a posicação final dele
     mover_para_posicao('posicaoVerificacaoBaixa', "suck", "On")
 
@@ -222,7 +227,7 @@ async def mover_para_posicoes(posicao_inicial: str, posicao_final: str):
     return {"status": "sucesso", "dados_qr": dados_qr, "dados_ultra": data_recebida}
     
 
-@app.get('/capturar')
+# @app.get('/capturar')
 async def capturar_qr_code():
     # Captura uma imagem da webcam
     camera = cv2.VideoCapture(1)
@@ -268,7 +273,7 @@ async def montar_kit(kit_code):
     kit = buscar_kit(kit_code)
     print(kit)
 
-    numero_de_items = 2
+    numero_de_items = 1
 
     if not kit:
         raise HTTPException(status_code=404, detail="Kit não encontrado")
@@ -283,6 +288,7 @@ async def montar_kit(kit_code):
         if item != "Vazio":
 
             item_name = buscar_item(item)
+            print(f"Item inteiro 3123: {item_name}")
             item_name = item_name[1]
             print(f"Item: {item_name}")
             posicao = buscar_item(item)
