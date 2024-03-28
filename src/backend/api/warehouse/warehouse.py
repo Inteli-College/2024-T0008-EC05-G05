@@ -119,7 +119,6 @@ def update_post(post_id: int, post_data: Post):
     existing_post = database.fetchone()
     
     if existing_post:
-        print("FUNCIONAAAAAAAAAAAAAAAA:     ", post_data)
         # Execute a query to update the post
         database.execute("UPDATE Kits SET Item_SKUs = ?, Kit_assembly_positions = ? WHERE ID = ?", (', '.join(post_data.Item_SKUs), post_data.Kit_assembly_positions, post_id))
         # Commit the changes
