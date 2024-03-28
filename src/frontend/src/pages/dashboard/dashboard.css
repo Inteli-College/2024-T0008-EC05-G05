@@ -35,7 +35,7 @@
 }
 
 .tabela_kits,
-.tabela_items {
+.tabela_itens {
     width: calc(50% - 10px);
     /* Sets the width of each table container */
     /* Sets a fixed height for the tables */

@@ -1,35 +1,36 @@
-from tinydb import TinyDB, Query
+from tinydb import TinyDB
 
-# Criar ou conectar ao banco de dados TinyDB
-db = TinyDB('db.json')
+# Create or connect to the TinyDB database
+db = TinyDB('log_kits_items.json')
 
-# Limpar o banco de dados existente para evitar duplicatas
+# Clear the existing database to avoid duplicates
 db.drop_tables()
 
-# Criação das tabelas de itens e kits
+# Create the items and kits tables
 itens_table = db.table('itens')
 kits_table = db.table('kits')
 
-# Populando a tabela de itens com os dados dos itens
+# Populate the items table with item data
 itens_data = [
     {'id': 1, 'nome': 'Item A'},
     {'id': 2, 'nome': 'Item B'},
     {'id': 3, 'nome': 'Item C'},
     {'id': 4, 'nome': 'Item D'},
     {'id': 5, 'nome': 'Item E'},
-    # Pode continuar adicionando mais itens conforme necessário...
+    # Continue adding more items as needed...
 ]
 
 itens_table.insert_multiple(itens_data)
 
-# Populando a tabela de kits com os dados dos kits, incluindo IDs de itens repetidos para indicar quantidade
+# Populate the kits table with kit data, including item IDs and manually set creation dates
 kits_data = [
-    {'id': 1, 'numero_do_kit': 1, 'itens': [1, 1, 2, 3, 3, 3]},  # Exemplo: 2x Item A, 1x Item B, 3x Item C
-    {'id': 2, 'numero_do_kit': 2, 'itens': [4, 4, 5]},          # Exemplo: 2x Item D, 1x Item E
-    {'id': 3, 'numero_do_kit': 3, 'itens': [2, 3, 1, 1]},       # Exemplo: 2x Item A, 1x Item B, 1x Item C
-    {'id': 4, 'numero_do_kit': 4, 'itens': [5, 5, 5, 4]},       # Exemplo: 3x Item E, 1x Item D
-    {'id': 5, 'numero_do_kit': 5, 'itens': [2, 2, 2, 3, 1]},    # Exemplo: 1x Item A, 3x Item B, 1x Item C
-    # Pode continuar adicionando mais kits conforme necessário...
+    {'id': 1, 'numero_do_kit': 1, 'itens': [1, 1, 2, 3, 3, 3], 'date_created': '2024-03-27'},  # Today
+    {'id': 2, 'numero_do_kit': 2, 'itens': [4, 4, 5], 'date_created': '2024-03-25'},  # This week
+    {'id': 3, 'numero_do_kit': 3, 'itens': [2, 3, 1, 1], 'date_created': '2024-03-20'},  # This month
+    {'id': 4, 'numero_do_kit': 1, 'itens': [1, 1, 2, 3, 3, 3], 'date_created': '2024-03-15'},  # This month
+    {'id': 5, 'numero_do_kit': 5, 'itens': [2, 2, 2, 3, 1], 'date_created': '2024-02-15'},  # Earlier this year
+    {'id': 6, 'numero_do_kit': 6, 'itens': [1, 2, 3, 4], 'date_created': '2024-01-10'},  # Earlier this year
+    # Continue adding more kits as needed...
 ]
 
 kits_table.insert_multiple(kits_data)
