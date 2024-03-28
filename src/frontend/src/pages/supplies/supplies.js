@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./supplies.css";
 import Sidebar from "../../components/Sidebar/Sidebar.js";
 import axios from "axios";
@@ -34,7 +34,7 @@ const Supplies = () => {
 
   const togglePossui = (index) => {
     const newInputValues = [...inputValues];
-    newInputValues[index] = newInputValues[index] === 'Possui' ? 'Não possui' : 'Possui';
+    newInputValues[index] = newInputValues[index] === options[index] ? 'Vazio' : options[index];
     setInputValues(newInputValues);
   };
 
@@ -119,39 +119,36 @@ const Supplies = () => {
       </div>
       <div className="Row">
         {options.slice(0, 4).map((option, index) => (
-        <div key={index} className="Item">
-          <h3>{inputValues[index]}</h3> {/* Display corresponding value from inputValues */}
-          <button onClick={() => togglePossui(index)}>
-            {inputValues[index] === 'Possui' ? 'Possui' : 'Não possui'}
-          </button>
-          {inputValues[index] === 'Possui' && (
+          <div key={index} className="Item">
+            <button onClick={() => togglePossui(index)}>
+              {inputValues[index] === option ? option : 'Vazio'}
+            </button>
+            {inputValues[index] === option && (
             <div>
               <button onClick={() => handleDecrement(index)}>-</button>
               <span>{quantities[index]}</span>
               <button onClick={() => handleIncrement(index)}>+</button>
             </div>
           )}
-        </div>
-      ))}
-
-      </div>
-      <div className="Row">
-          {options.slice(4).map((option, index) => (
-          <div key={index + 4} className="Item">
-            <h3>{inputValues[index + 4]}</h3> {/* Display corresponding value from inputValues */}
-            <button onClick={() => togglePossui(index + 4)}>
-              {inputValues[index + 4] === 'Possui' ? 'Possui' : 'Não possui'}
-            </button>
-            {inputValues[index + 4] === 'Possui' && (
-              <div>
-                <button onClick={() => handleDecrement(index + 4)}>-</button>
-                <span>{quantities[index + 4]}</span>
-                <button onClick={() => handleIncrement(index + 4)}>+</button>
-              </div>
-            )}
           </div>
         ))}
+      </div>
 
+      <div className="Row">
+        {options.slice(4).map((option, index) => (
+        <div key={index + 4} className="Item">
+          <button onClick={() => togglePossui(index + 4)}>
+            {inputValues[index + 4] === option ? option : 'Vazio'}
+          </button>
+          {inputValues[index + 4] === option && (
+          <div>
+            <button onClick={() => handleDecrement(index + 4)}>-</button>
+            <span>{quantities[index + 4]}</span>
+            <button onClick={() => handleIncrement(index + 4)}>+</button>
+          </div>
+          )}
+      </div>
+      ))}
       </div>
       <div>
         <button onClick={sendValues}>Salvar estoque</button>
