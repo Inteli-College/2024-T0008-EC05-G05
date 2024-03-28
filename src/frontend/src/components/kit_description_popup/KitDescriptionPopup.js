@@ -5,11 +5,12 @@ import "./KitDescriptionPopup.css"
 const Modal = ({ showModal, closeModal, kitId }) => {
   const [kitData, setKitData] = useState(null);
 
-  const montarKit = async (kitCode) => {
+  
+
+  const montarKit = async (kitId) => {
     try {
-      const response = await axios.get(`http://10.128.0.8/montar_kit/`, {
-        params: { kit_code: "K1" }
-      });
+      console.log("Montando kit", kitId);
+      const response = await axios.get(`http://10.254.18.153/montar_kit/?kit_code=${kitId}`);
       console.log(response.data);
       // Lógica adicional aqui (e.g., atualizar o estado do componente)
     } catch (error) {
@@ -63,7 +64,7 @@ const Modal = ({ showModal, closeModal, kitId }) => {
           ) : (
             <p>Loading...</p>
           )}
-          <button onClick={montarKit}>Iniciar</button>
+          <button onClick={() => montarKit(kitId)}>Iniciar</button>
         </div>
       </div>
   );
