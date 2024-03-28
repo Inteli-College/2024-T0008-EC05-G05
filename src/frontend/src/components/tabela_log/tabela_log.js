@@ -22,7 +22,7 @@ const TabelaLog = ({ title }) => {
     const endpoint = title.toLowerCase() === 'itens' ? '/log/itens' : '/log/kits';
     // Append the selected period to the URL
     const period = mapPeriod[timePeriod] || 'day';
-    const url = `http://127.0.0.1:8000${endpoint}/${period}`;
+    const url = `http://127.0.0.1:8080${endpoint}/${period}`;
 
     try {
       const response = await fetch(url);

@@ -1,5 +1,4 @@
 from fastapi import FastAPI, Request, Form, Depends, HTTPException
-from tinydb import TinyDB, Query
 from dobot import Dobot
 from qreader import QReader
 import cv2
@@ -11,6 +10,7 @@ import time
 import json
 import sqlite3
 import socket
+from fastapi.middleware.cors import CORSMiddleware
 
 def ip_address():
     try:
@@ -37,6 +37,15 @@ qreader = QReader()
 ativacao_sensor = False
 data_recebida = ""
 
+app.add_middleware(
+    CORSMiddleware,
+    # Definindo as origens que podem fazer requisições
+    allow_origins=["http://localhost:3000"],  
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "PUT", "DELETE"],
+    allow_headers=["*"],
+)
+
 # Modelo de dados para a entrada de dados Raspberry Pi Pico
 class PicoData(BaseModel): # BaseModel para validar e tratar dados JSON recebidos automaticamente
     pegou: str
@@ -61,18 +70,18 @@ def inserir_item(sku, name, position_name):
 
 # Buscar dados
 def buscar_item(sku):
-    cursor.execute("SELECT * FROM Items WHERE SKU = ?", (sku,))
-    print(f"SELECT * FROM Items WHERE SKU = {sku}")
+    cursor.execute("SELECT * FROM Items WHERE Name = ?", (sku,))
+    # print(f"SELECT * FROM Items WHERE Name = {sku}")
     return cursor.fetchone()
 
 def buscar_kit(KitID):
     cursor.execute("SELECT * FROM Kits WHERE ID = ?", (KitID,))
-    print(f"SELECT * FROM Kits WHERE ID = {KitID}")
+    # print(f"SELECT * FROM Kits WHERE ID = {KitID}")
     return cursor.fetchone()
 
 def buscar_posicao(PosicaoName):
     cursor.execute("SELECT * FROM Position WHERE Position_name = ?", (PosicaoName,))
-    print(f"SELECT * FROM Position WHERE Position_name = {PosicaoName}")
+    # print(f"SELECT * FROM Position WHERE Position_name = {PosicaoName}")
     return cursor.fetchone()
 
 def atualizar_posicao(PosicaoName, x, y, z, r):
@@ -203,6 +212,11 @@ async def mover_para_posicoes(posicao_inicial: str, posicao_final: str):
     # Foto de escaneamento do QRcode
     dados_qr = await capturar_qr_code()
 
+    # Salvar infor do qr code em json
+
+    with open('dados_qr.json', 'w') as arquivo_json:
+        json.dump(dados_qr, arquivo_json)
+
     # Levar o item a posicação final dele
     mover_para_posicao('posicaoVerificacaoBaixa', "suck", "On")
 
@@ -213,7 +227,7 @@ async def mover_para_posicoes(posicao_inicial: str, posicao_final: str):
     return {"status": "sucesso", "dados_qr": dados_qr, "dados_ultra": data_recebida}
     
 
-@app.get('/capturar')
+# @app.get('/capturar')
 async def capturar_qr_code():
     # Captura uma imagem da webcam
     camera = cv2.VideoCapture(1)
@@ -253,12 +267,13 @@ async def get_pico_data():
 # Endpoint para rodar a montagem de um kit
 # http://IP/montar_kit/?kit_code=K1
 @app.get("/montar_kit/")
-async def montar_kit(kit_code: str):
+async def montar_kit(kit_code):
     # Buscar o kit no banco de dados
+    print(f"Montando o kit {kit_code}...")
     kit = buscar_kit(kit_code)
     print(kit)
 
-    numero_de_items = 2
+    numero_de_items = 1
 
     if not kit:
         raise HTTPException(status_code=404, detail="Kit não encontrado")
@@ -272,10 +287,15 @@ async def montar_kit(kit_code: str):
     for item in lista_itens:
         if item != "Vazio":
 
-            item_name = buscar_item(item)[1]
-            posicao = buscar_item(item)[2]
+            item_name = buscar_item(item)
+            print(f"Item inteiro 3123: {item_name}")
+            item_name = item_name[1]
+            print(f"Item: {item_name}")
+            posicao = buscar_item(item)
+            posicao = posicao[2]
+            print(f"Posicao: {posicao}")
 
-            for i in numero_de_items: 
+            for i in range(0,numero_de_items): 
                 # Buscar o item no banco de dados
 
                 if not item:
