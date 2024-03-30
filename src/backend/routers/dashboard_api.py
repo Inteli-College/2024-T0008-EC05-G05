@@ -1,15 +1,15 @@
 from typing import List
 from datetime import datetime, timedelta
 from collections import defaultdict
-from fastapi import FastAPI
+from fastapi import APIRouter
 from tinydb import TinyDB, Query
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 
-app = FastAPI()
-db = TinyDB('log_kits_items.json')
+dashboard_api = APIRouter()
+db = TinyDB('src/backend/database/log_kits_items.json')
 
-app.add_middleware(
+dashboard_api.add_middleware(
     CORSMiddleware,
     # Definindo as origens que podem fazer requisições
     allow_origins=["http://localhost:3000"],  
@@ -79,17 +79,17 @@ def get_items_in_date_range(period: str):
     for item_id, count in item_counts.items():
         item_record = itens_table.get(QueryObj.id == item_id)
         if item_record:  # Ensure the item exists
-            items_list.append(ItemSimple(nome=item_record['nome'], quantity=count))
+            items_list.dashboard_apiend(ItemSimple(nome=item_record['nome'], quantity=count))
     
     return items_list
 
-@app.get("/log/itens/{period}", response_model=List[ItemSimple])
+@dashboard_api.get("/log/itens/{period}", response_model=List[ItemSimple])
 async def get_items(period: str):
     items = get_items_in_date_range(period)
     print(items)
     return items
 
-@app.get("/log/kits/{period}", response_model=List[KitSimple])
+@dashboard_api.get("/log/kits/{period}", response_model=List[KitSimple])
 async def get_kits(period: str):
     kits = get_kits_in_date_range(period)
     print(kits)
