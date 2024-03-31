@@ -1,57 +1,56 @@
 .Container {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center items horizontally */
-    justify-content: center; /* Center items vertically */
-    height: 100vh; /* Make container full height of the viewport */
-  }
-  
-  .Row {
-    display: flex;
-    justify-content: center; /* Center items horizontally within the row */
-    margin-bottom: 20px; /* Add some space between rows */
-  }
-  
-  .Item {
-    display: flex; /* Use flexbox */
-    flex-direction: column; /* Display items vertically */
-    justify-content: center; /* Center items horizontally */
-    align-items: center; /* Center items vertically */
-    margin: 0 10px; /* Add some space between items */
-    border: 1px solid #000; /* Add a border */
-    border-radius: 20px;
-    width: 12vw;
-    height: 12vw;
-    background-color: #F1F1F0;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+  height: 100vh; /* Make container full height of the viewport */
+}
 
-  .ButtonContainer {
-    display: flex;
-    flex-direction: column; /* Display items vertically */
-    justify-content: center; /* Center items horizontally */
-    align-items: center; /* Center items vertically */
-  }
-  
-  #home_button {
-    width: 6vw;
-    height: 6vw;
-    background-image: url('../../assets/imgs/icone_supplie.png');
-    background-size: cover;
-    border: none;
-  }
+.Row {
+  display: flex;
+  justify-content: center; /* Center items horizontally within the row */
+  margin-bottom: 20px; /* Add some space between rows */
+}
 
-  #indivudual_name {
-    text-align: center;
-    margin-top: 9px;}
-  
-  
-  
-  /* You might need to adjust the styles for the modal and overlay according to your needs 
-  .modal {
+.Item {
+  display: flex; /* Use flexbox */
+  flex-direction: column; /* Display items vertically */
+  justify-content: center; /* Center items horizontally */
+  align-items: center; /* Center items vertically */
+  margin: 0 10px; /* Add some space between items */
+  border: 1px solid #000; /* Add a border */
+  border-radius: 20px;
+  width: 12vw;
+  height: 12vw;
+  background-color: #F1F1F0;
+}
 
-  }
-  
-  .overlay {
-    /* Add overlay styles 
-  }*/
-  
+.ButtonContainer {
+  display: flex;
+  flex-direction: column; /* Display items vertically */
+  justify-content: center; /* Center items horizontally */
+  align-items: center; /* Center items vertically */
+}
+
+#home_button {
+  width: 6vw;
+  height: 6vw;
+  background-image: url('../../assets/imgs/icone_supplie.png');
+  background-size: cover;
+  border: none;
+}
+
+#indivudual_name {
+  text-align: center;
+  margin-top: 9px;}
+
+
+
+/* You might need to adjust the styles for the modal and overlay according to your needs 
+.modal {
+
+}
+
+.overlay {
+  /* Add overlay styles 
+}*/
