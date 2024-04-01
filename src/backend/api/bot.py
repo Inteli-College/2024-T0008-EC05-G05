@@ -1,16 +1,28 @@
-from fastapi import FastAPI, Request, Form, Depends, HTTPException
-from dobot import Dobot
-from qreader import QReader
-import cv2
-import os
-from datetime import datetime
-from pydantic import BaseModel
-import httpx
-import time
-import json
-import sqlite3
-import socket
-from fastapi.middleware.cors import CORSMiddleware
+try:
+    from fastapi.middleware.cors import CORSMiddleware
+    from fastapi import FastAPI, Request, HTTPException
+    import socket, sqlite3, json, os, httpx, cv2
+    from modules.dobot import Dobot
+    from pydantic import BaseModel
+    from datetime import datetime
+    from qreader import QReader
+    from tinydb import TinyDB
+    print("Dependências importadas com sucesso")
+except ImportError as e:
+    print(e)
+
+# Create a FastAPI app
+
+# Inicializa a aplicação FastAPI
+app = FastAPI()
+
+# Inicializa a classe Dobotr
+dobot = Dobot()
+
+# Inicializa o QReader
+qreader = QReader()
+
+# Vatriaveis do sensor d
 
 def ip_address():
     try:
@@ -23,15 +35,7 @@ def ip_address():
         return ip_address
     except Exception as e:
         return "Não foi possível obter o IP: " + str(e)
-
-# Inicializa a aplicação FastAPI
-app = FastAPI()
-
-# Inicializa a classe Dobot
-dobot = Dobot()
-
-# Inicializa o QReader
-qreader = QReader()
+    
 
 # Vatriaveis do sensor de ultrassom
 ativacao_sensor = False
@@ -45,6 +49,7 @@ app.add_middleware(
     allow_methods=["GET", "POST", "PUT", "DELETE"],
     allow_headers=["*"],
 )
+
 
 # Modelo de dados para a entrada de dados Raspberry Pi Pico
 class PicoData(BaseModel): # BaseModel para validar e tratar dados JSON recebidos automaticamente
@@ -61,7 +66,7 @@ class PicoData(BaseModel): # BaseModel para validar e tratar dados JSON recebido
 # kits.insert({'kit_code': 'K1', 'name': 'Kit Cirurgia', 'items': ['123', '456']})
 # positions.insert({'position_code': 'A1', 'x': 10, 'y': 20, 'z': 30, 'r': 5})
     
-conn = sqlite3.connect('../../database/dbCardioBot.db')
+conn = sqlite3.connect('../database/dbCardioBot.db')
 cursor = conn.cursor()   
 
 def inserir_item(sku, name, position_name):
@@ -106,7 +111,7 @@ async def log_requests(request: Request, call_next):
     response = await call_next(request)
 
     app_username = "Placeholder"
-    
+
     # Captura informações da requisição
     request_info = {
         "timestamp": start_time.strftime("%Y-%m-%d %H:%M:%S"),
@@ -119,7 +124,7 @@ async def log_requests(request: Request, call_next):
         }
     
     try:
-        with open("request_log.json", "r+") as log_file:
+        with open("../database/request_log.json", "r+") as log_file:
             log_file.seek(0, 2)  # Vai para o final do arquivo
             if log_file.tell() == 0:
                 # Arquivo está vazio
@@ -131,13 +136,11 @@ async def log_requests(request: Request, call_next):
                 log_file.write(', ' + json.dumps(request_info) + ']')
     except FileNotFoundError:
         # Se o arquivo não existir, cria um novo
-        with open("request_log.json", "w") as log_file:
+        with open("../database/request_log.json", "w") as log_file:
             log_file.write(json.dumps([request_info]))
     
     return response
 
-# Endpoint para testar a conexão com o dobot
-# http://IPV4 do seu computador/conectar_dobot/?porta=COM6
 @app.get('/conectar_dobot/')
 async def conectar_dobot(porta: str):
     print(f"Tentando conectar ao dobot na porta {porta}.")
@@ -308,6 +311,7 @@ async def montar_kit(kit_code):
                 # Rodar a sequência de movimentos pelo endpoint /mover_para_posicoes/
                 await mover_para_posicoes(posicao, posicao_final)
 
+
 # Endpoint para salvar uma posição
 # http://10.128.0.8/salvar_posicao/?position_code=P1
 @app.get('/salvar_posicao/')
@@ -331,3 +335,10 @@ async def salvar_posicao(position_code: str,):
 
         return {"status": "sucesso", "mensagem": "Posição salva com sucesso."}
     
+
+if __name__ == "__main__":
+    try:
+        import uvicorn
+        uvicorn.run(app, host="127.0.0.1", port=8000)
+    except ImportError as e:
+        print(e)

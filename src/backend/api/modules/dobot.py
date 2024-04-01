@@ -12,6 +12,7 @@ class Dobot:
         pass
 
     def listar_portas(self):
+
         portas_disponiveis = list_ports.comports()
 
         portas = [x.device for x in portas_disponiveis]
