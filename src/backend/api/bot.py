@@ -112,6 +112,8 @@ async def log_requests(request: Request, call_next):
 
     app_username = "Placeholder"
 
+    requests_logs = TinyDB('../database/request_log.json', indent=4, sort_keys=True)
+
     # Captura informações da requisição
     request_info = {
         "timestamp": start_time.strftime("%Y-%m-%d %H:%M:%S"),
@@ -124,21 +126,12 @@ async def log_requests(request: Request, call_next):
         }
     
     try:
-        with open("../database/request_log.json", "r+") as log_file:
-            log_file.seek(0, 2)  # Vai para o final do arquivo
-            if log_file.tell() == 0:
-                # Arquivo está vazio
-                log_file.write(json.dumps([request_info]))
-            else:
-                log_file.seek(0, 2)  # Move para o final novamente
-                # Apagar ] e adicionar uma nova entrada
-                log_file.seek(log_file.tell() - 1, os.SEEK_SET)
-                log_file.write(', ' + json.dumps(request_info) + ']')
-    except FileNotFoundError:
+        requests_logs.insert(request_info)
+    except Exception as e:
         # Se o arquivo não existir, cria um novo
-        with open("../database/request_log.json", "w") as log_file:
+        with open("../database/request_log.json", "+a") as log_file:
             log_file.write(json.dumps([request_info]))
-    
+
     return response
 
 @app.get('/conectar_dobot/')
