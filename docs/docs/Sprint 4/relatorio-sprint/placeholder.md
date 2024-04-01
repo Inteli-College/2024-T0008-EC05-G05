@@ -10,4 +10,4 @@ sfgstgwer
 
 A seguir temos o slide de aprensetação da sprint 3:
 
-[Clique para acessar a apresentação](../../../static/img/ApresentaçãoSprint3-Cardiobot.pdf)
+[Clique para acessar a apresentação](../../../static/img/ApresentacaoSprint4.pdf)
