@@ -2,50 +2,50 @@
     display: flex;
     min-height: 100vh;
     margin-left: 50px;
-    /* Full viewport height */
+    /* Altura total da viewport */
 }
 
 .main-content {
     flex-grow: 1;
     padding: 20px;
-    /* Add padding as needed */
+    /* Adiciona preenchimento conforme necessário */
     overflow: hidden;
-    /* Prevents content from flowing outside */
+    /* Impede que o conteúdo flua para fora */
 }
 
 .dashboard-header {
     text-align: center;
     margin-bottom: 20px;
-    /* Space below the dashboard title */
+    /* Espaço abaixo do título do painel */
 }
 
 .dashboard-title {
     margin: 0;
-    /* No margin for the title */
+    /* Sem margem para o título */
     padding-bottom: 10px;
-    /* Space above the divider line */
+    /* Espaço acima da linha de divisão */
     border-bottom: 2px solid #000;
-    /* Divider line */
+    /* Linha de divisão */
 }
 
 .tables-container {
     display: flex;
     gap: 20px;
-    /* This creates space between your tables */
+    /* Isso cria espaço entre suas tabelas */
 }
 
 .tabela_kits,
 .tabela_itens {
     width: calc(50% - 10px);
-    /* Sets the width of each table container */
-    /* Sets a fixed height for the tables */
+    /* Define a largura de cada container de tabela */
+    /* Define uma altura fixa para as tabelas */
     overflow-y: auto;
-    /* Enables vertical scrolling within the tables */
-    /* ...other styles like box-shadow, border-radius, etc... */
+    /* Habilita rolagem vertical dentro das tabelas */
+    /* ...outros estilos como sombra, border-radius, etc... */
     height: 60vh;
 }
 
 .log_atividades {
     margin-top: 20px;
-    height: 60vh; /* Adjust this value to control how tall the table is */ /* This will add a scrollbar if the content exceeds the height */
+    height: 60vh; /* Ajuste esse valor para controlar a altura da tabela */ /* Isso adicionará uma barra de rolagem se o conteúdo exceder a altura */
 }

@@ -3,41 +3,33 @@ import './log_atividades.css'
 
 
 const Log_atividades = ({ tableName, title }) => {
-    const [timePeriod, setTimePeriod] = useState('dia'); // Default to 'dia'
+    const [timePeriod, setTimePeriod] = useState('dia'); // Padrao 'dia'
   
-    // Updated data sets to include the "kit" property for each log entry
     const logDataSets = {
       dia: [
-        { user: 'User1', activity: 'Create', kit: 1, hour: '10:00', date: '25/03/2024' },
-        { user: 'User2', activity: 'Delete', kit: 2, hour: '11:00', date: '25/03/2024' },
-        { user: 'User3', activity: 'Update', kit: 3, hour: '12:00', date: '25/03/2024' },
-        { user: 'User1', activity: 'Create', kit: 1, hour: '10:00', date: '25/03/2024' },
-        { user: 'User2', activity: 'Delete', kit: 2, hour: '11:00', date: '25/03/2024' },
-        { user: 'User3', activity: 'Update', kit: 3, hour: '12:00', date: '25/03/2024' },        { user: 'User1', activity: 'Create', kit: 1, hour: '10:00', date: '25/03/2024' },
-        { user: 'User2', activity: 'Delete', kit: 2, hour: '11:00', date: '25/03/2024' },
-        { user: 'User3', activity: 'Update', kit: 3, hour: '12:00', date: '25/03/2024' },        { user: 'User1', activity: 'Create', kit: 1, hour: '10:00', date: '25/03/2024' },
-        { user: 'User2', activity: 'Delete', kit: 2, hour: '11:00', date: '25/03/2024' },
-        { user: 'User3', activity: 'Update', kit: 3, hour: '12:00', date: '25/03/2024' },        { user: 'User1', activity: 'Create', kit: 1, hour: '10:00', date: '25/03/2024' },
-        { user: 'User2', activity: 'Delete', kit: 2, hour: '11:00', date: '25/03/2024' },
-        { user: 'User3', activity: 'Update', kit: 3, hour: '12:00', date: '25/03/2024' },        { user: 'User1', activity: 'Create', kit: 1, hour: '10:00', date: '25/03/2024' },
-        { user: 'User2', activity: 'Delete', kit: 2, hour: '11:00', date: '25/03/2024' },
-        { user: 'User3', activity: 'Update', kit: 3, hour: '12:00', date: '25/03/2024' },
+        { user: 'User1', activity: 'Criar', kit: 1, hour: '10:00', date: '25/03/2024' },
+        { user: 'User2', activity: 'Excluir', kit: 2, hour: '11:00', date: '25/03/2024' },
+        { user: 'User3', activity: 'Atualizar', kit: 3, hour: '12:00', date: '25/03/2024' },
+        { user: 'User1', activity: 'Criar', kit: 1, hour: '10:00', date: '25/03/2024' },
+        { user: 'User2', activity: 'Excluir', kit: 2, hour: '11:00', date: '25/03/2024' },
+        { user: 'User2', activity: 'Excluir', kit: 2, hour: '11:00', date: '25/03/2024' },
+        { user: 'User3', activity: 'Atualizar', kit: 3, hour: '12:00', date: '25/03/2024' },
     ],
       semana: [
-        { user: 'User1', activity: 'Update', kit: 4, hour: '09:00', date: '20/03/2024' },
-        { user: 'User2', activity: 'Create', kit: 5, hour: '10:00', date: '21/03/2024' },
+        { user: 'User1', activity: 'Atualizar', kit: 4, hour: '09:00', date: '20/03/2024' },
+        { user: 'User2', activity: 'Criar', kit: 5, hour: '10:00', date: '21/03/2024' },
       ],
       mes: [
-        { user: 'User1', activity: 'Delete', kit: 1, hour: '15:00', date: '15/03/2024' },
-        { user: 'User2', activity: 'Update', kit: 2, hour: '16:00', date: '10/03/2024' },
+        { user: 'User1', activity: 'Excluir', kit: 1, hour: '15:00', date: '15/03/2024' },
+        { user: 'User2', activity: 'Atualizar', kit: 2, hour: '16:00', date: '10/03/2024' },
       ],
       ano: [
-        { user: 'User1', activity: 'Create', kit: 3, hour: '13:00', date: '01/01/2024' },
-        { user: 'User2', activity: 'Delete', kit: 4, hour: '14:00', date: '01/02/2024' },
+        { user: 'User1', activity: 'Criar', kit: 3, hour: '13:00', date: '01/01/2024' },
+        { user: 'User2', activity: 'Excluir', kit: 4, hour: '14:00', date: '01/02/2024' },
       ],
     };
   
-    // Select the log data set based on the current time period
+    // Selecionar o conjunto de dados de log com base no período de tempo atual
     const data = logDataSets[timePeriod];
   
     const handleTimePeriodChange = (event) => {
@@ -53,7 +45,7 @@ const Log_atividades = ({ tableName, title }) => {
             <select id="log-period" value={timePeriod} onChange={handleTimePeriodChange}>
               <option value="dia">Dia</option>
               <option value="semana">Semana</option>
-              <option value="mes">Mes</option>
+              <option value="mes">Mês</option>
               <option value="ano">Ano</option>
             </select>
           </div>
@@ -65,7 +57,7 @@ const Log_atividades = ({ tableName, title }) => {
               <tr>
                 <th>Usuário</th>
                 <th>Atividade</th>
-                <th>Kit</th> {/* New column header for Kit */}
+                <th>Kit</th>
                 <th>Horário</th>
                 <th>Data</th>
               </tr>
@@ -75,7 +67,7 @@ const Log_atividades = ({ tableName, title }) => {
                 <tr key={index}>
                   <td>{item.user}</td>
                   <td>{item.activity}</td>
-                  <td>{item.kit}</td> {/* New column data for Kit */}
+                  <td>{item.kit}</td>
                   <td>{item.hour}</td>
                   <td>{item.date}</td>
                 </tr>

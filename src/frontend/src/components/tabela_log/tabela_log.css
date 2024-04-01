@@ -9,8 +9,8 @@
 }
 
 .scrollable-table {
-    overflow-y: auto; /* Enable scrolling for the table */
-    margin-top: 15px; /* Optional: space between the dropdown and the table */
+    overflow-y: auto; 
+    margin-top: 15px;
 }
 
 .table-container table {

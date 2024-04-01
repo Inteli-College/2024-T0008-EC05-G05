@@ -10,17 +10,17 @@ const mapPeriod = {
 
 const TabelaLog = ({ title }) => {
   const [data, setData] = useState([]);
-  const [timePeriod, setTimePeriod] = useState('dia'); // Default to 'dia', aligned with dropdown values
+  const [timePeriod, setTimePeriod] = useState('dia'); // Padrão para 'dia', alinhado com os valores do menu suspenso
 
-  // Mapping to match internal state to the API's expected period parameters
+  // Mapeamento para corresponder ao estado interno aos parâmetros de período esperados pela API
 
 
-  // Memoized fetchData function to fetch data from the API
+  // Função fetchData memorizada para buscar dados na API
   const fetchData = useCallback(async () => {
-    console.log("Fetching data for", title, "with period", timePeriod);
-    // Adjust the endpoint based on the title
+    console.log("Buscando dados para", title, "com período", timePeriod);
+    // Ajusta o endpoint com base no título
     const endpoint = title.toLowerCase() === 'itens' ? '/log/itens' : '/log/kits';
-    // Append the selected period to the URL
+    // Acrescenta o período selecionado à URL
     const period = mapPeriod[timePeriod] || 'day';
     const url = `http://127.0.0.1:8080${endpoint}/${period}`;
 
@@ -28,19 +28,19 @@ const TabelaLog = ({ title }) => {
       const response = await fetch(url);
       const jsonData = await response.json();
       setData(jsonData);
-      console.log("Data fetched:", jsonData);
+      console.log("Dados buscados:", jsonData);
     } catch (error) {
-      console.error('Failed to fetch data:', error);
-      setData([]); // Clear data in case of an error
+      console.error('Falha ao buscar dados:', error);
+      setData([]); // Limpa os dados em caso de erro
     }
-  }, [title, timePeriod]); // Dependencies
+  }, [title, timePeriod]); // Dependências
 
   useEffect(() => {
     fetchData();
-  }, [fetchData]); // Dependency array includes fetchData now
+  }, [fetchData]); // A array de dependências agora inclui fetchData
 
   const handleTimePeriodChange = (event) => {
-    console.log("Time period selected:", event.target.value);
+    console.log("Período selecionado:", event.target.value);
     setTimePeriod(event.target.value);
   };
 
@@ -53,7 +53,7 @@ const TabelaLog = ({ title }) => {
           <select id="periodo" value={timePeriod} onChange={handleTimePeriodChange}>
             <option value="dia">Dia</option>
             <option value="semana">Semana</option>
-            <option value="mes">Mes</option>
+            <option value="mes">Mês</option>
             <option value="ano">Ano</option>
           </select>
         </div>
