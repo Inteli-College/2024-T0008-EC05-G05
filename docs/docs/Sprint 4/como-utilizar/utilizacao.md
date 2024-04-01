@@ -143,8 +143,5 @@ Monte o circuito baseado no diagrama de montagem, que pode ser encontrado aqui.
 
 Executar o código no Raspberry Pico. 
 
-Se for necessário mais detalhes sobre como fazer o setup incial do Raspberry Pico, verifique esse [artigo](https://www.raspberrypi.com/documentation/microcontrollers/micropython.html) .Mais informações sobre a utilização do sensor ultrassônico podem ser encontradas [aqui](../avancos-sprint/ultrassonico.md).
-
-
 
 Após seguir todos os passos, a solução estará pronta para ser utilizada.
