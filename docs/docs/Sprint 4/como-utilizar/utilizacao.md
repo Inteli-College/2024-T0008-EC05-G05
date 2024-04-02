@@ -52,9 +52,6 @@ venv\scripts\activate
 É muito importante se atentar e entrar na pasta raíz da API.
 
 ```bash
-cd src/backend/
-
-```bash
 pip install -r requirements.txt
 ```
 
