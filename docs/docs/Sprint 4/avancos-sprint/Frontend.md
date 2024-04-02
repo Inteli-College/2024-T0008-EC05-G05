@@ -17,3 +17,18 @@ Nessa sprint a dashbord usou de um banco de dados fictício para ser iniciada, p
 Na imagem a seguir pode se ver como os dados estão dispostos na tela da Dashboard
 
 ![Tela da dashbord](../../../static/img/site-screens/dashbord_tela.png)
+
+##Pop-up adicionado 
+
+Mais um incremento dessa Sprint foi a adição de um pop-up ao clicar em iniciar um kit, ná página inicial. Dentro desse pop-up, pode-se confirmar os itens presentes dentro do kit selecionado, como é possível visualizar na foto abaixo:
+
+<div align="center"> 
+
+**Imagem 2: Confirmar Kit**
+
+![Pop-up de confirmar o kit](<../../../static/img/popup-kit.png>)
+
+**Fonte:** Elaborado pela equipe Cardio-Bot 
+
+</div>
+
