@@ -39,7 +39,6 @@ O backend desenvolvido ao longo desta sprint tem como objetivo permitir a altera
 **Primeiro Passo: Criar e ativar o ambiente virtual**
 
 ```bash
-# Acessar a pasta raiz do backend, 
 cd src/backend/api | python -m venv venv
 ```
 
