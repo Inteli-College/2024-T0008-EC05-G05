@@ -53,6 +53,7 @@ venv\scripts\activate
 
 ```bash
 cd src/backend/
+```
 
 ```bash
 pip install -r requirements.txt
