@@ -21,8 +21,8 @@ import os
 app = FastAPI()
 
 # Inicia os logs de kits e itens
-db_kits = TinyDB('log_kits_items.json')
-db_actions = TinyDB('user_activities.json')
+db_kits = TinyDB('../../logs/log_kits_items.json')
+db_actions = TinyDB('../../logs/user_activities.json')
 
 # Inicia o banco de dados com SQLite
 conn = connect('../../database/dbCardioBot.db')
@@ -31,8 +31,7 @@ database = conn.cursor()
 
 app.add_middleware(
     CORSMiddleware,
-    # Definindo as origens que podem fazer requisições
-    allow_origins=["http://localhost:3000"],  
+    allow_origins=["http://localhost:3000"],
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE"],
     allow_headers=["*"],
@@ -52,6 +51,14 @@ class Log(BaseModel):
     kit: int
     hour: str
     date: str
+
+# Modelo de dados para realizar o post no DB 
+class Post(BaseModel):
+    ID: int
+    Item_SKUs: List[str]
+    Kit_assembly_positions: str
+
+
 
 ######## Aqui estão as rotas da tela dashboard ########
 def get_kits_in_date_range(period: str):
@@ -152,18 +159,18 @@ async def get_log_entries(period: str):
 ######## Aqui estão as rotas da tela supplies ########
 
 # Cria um post de um novo kit dentro do DB 
-@app.post("/dbsql-post/")
-async def create_post(post: Post):
-    # Convert the array to a string
-    item_sku_str = ', '.join(post.item_sku)
+# @app.post("/dbsql-post/")
+# async def create_post(post: Post):
+#     # Convert the array to a string
+#     item_sku_str = ', '.join(post.item_sku)
 
-    # Insert a row of data
-    database.execute("INSERT INTO kits VALUES (?, ?, ?)", (post.ID, item_sku_str, post.assembly_position))
+#     # Insert a row of data
+#     database.execute("INSERT INTO kits VALUES (?, ?, ?)", (post.ID, item_sku_str, post.assembly_position))
 
-    # Save (commit) the changes
-    conn.commit()
+#     # Save (commit) the changes
+#     conn.commit()
 
-    return {"message": "Post has been created successfully."}
+#     return {"message": "Post has been created successfully."}
 
 @app.get("/")
 def hello():
@@ -260,4 +267,4 @@ def log_update_time(post_id: int):
         log_file.write("\n")
 
 
-# Para rodar o código, basta rodar o comando "uvicorn warehouse:app --reload" no terminal.
+# Para rodar o código, basta rodar o comando "python -m uvicorn main:app --reload" no terminal.
