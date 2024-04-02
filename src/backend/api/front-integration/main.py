@@ -31,7 +31,7 @@ database = conn.cursor()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=["http://localhost:3000", "http://localhost:8000","http://localhost:3000/dashboard"],  # Fix: Pass the URLs as a single list
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE"],
     allow_headers=["*"],
@@ -151,10 +151,33 @@ async def get_kits(period: str):
     print(kits)
     return kits
 
+# @app.get("/log/logs/{period}", response_model=List[Log])
+# async def get_log_entries(period: str):
+#     log_entries = get_logs(period)
+#     return log_entries
+
+# Function to get data (kits, items, logs) for a specified period
+def get_data_in_date_range(period: str, table_name: str, date_key: str, quantity_key: str) -> List[BaseModel]:
+    table = db_kits.table(table_name)
+    today = datetime.now().date()
+
+    if period == 'day':
+        start_date = today
+    elif period == 'week':
+        start_date = today - timedelta(weeks=1)
+    elif period == 'month':
+        start_date = today - timedelta(days=30)
+    elif period == 'year':
+        start_date = today - timedelta(days=365)
+    else:
+        raise HTTPException(status_code=400, detail="Invalid period")
+
+    filtered_data = table.search(Query()[date_key] >= start_date.strftime('%Y-%m-%d'))
+
 @app.get("/log/logs/{period}", response_model=List[Log])
 async def get_log_entries(period: str):
-    log_entries = get_logs(period)
-    return log_entries
+    logs = get_data_in_date_range(period, 'logs', 'date', 'user')
+    return logs
 
 ######## Aqui estão as rotas da tela supplies ########
 
