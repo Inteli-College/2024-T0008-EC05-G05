@@ -7,7 +7,10 @@ try:
     from datetime import datetime
     from qreader import QReader
     from tinydb import TinyDB
+    from time import sleep
+
     print("Dependências importadas com sucesso")
+
 except ImportError as e:
     print(e)
 
@@ -281,11 +284,12 @@ async def montar_kit(kit_code):
 
     # Montar o kit interando por cada item
     for item in lista_itens:
-        if item != "Vazio":
+        if item is not None and item != "Vazio":
 
             item_name = buscar_item(item)
             print(f"Item inteiro 3123: {item_name}")
             item_name = item_name[1]
+            sleep(2)
             print(f"Item: {item_name}")
             posicao = buscar_item(item)
             posicao = posicao[2]
