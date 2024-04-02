@@ -36,7 +36,7 @@ Pronto, agora o frontend já está funcionando e aguardando a conexão com o bac
 
 O backend desenvolvido ao longo desta sprint tem como objetivo permitir a alteração dinâmica de cinco kits e tornar o frontend totalmente dinâmico. 
 
-**Segundo Passo: Criar e ativar o ambiente virtual**
+**Primeiro Passo: Criar e ativar o ambiente virtual**
 
 ```bash
 # Acessar a pasta raiz do backend, 
@@ -47,7 +47,7 @@ cd src/backend/api | python -m venv venv
 venv\scripts\activate
 ```
 
-**Terceiro Passo: Instalar todas dependências**
+**Segundo Passo: Instalar todas dependências**
 
 É muito importante se atentar e entrar na pasta raíz da API.
 
@@ -58,7 +58,7 @@ cd src/backend/
 pip install -r requirements.txt
 ```
 
-**Quarto Passo: Iniciar o servidor**
+**Terceiro Passo: Iniciar o servidor**
 
 Entrar na pasta que está localizada a API. 
 
