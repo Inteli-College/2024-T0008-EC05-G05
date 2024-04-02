@@ -33,7 +33,7 @@ Já nesta imagem é possível conferir como os dados estão sendo salvos na tabe
 
 ### Backend Dashboard
 
-Esse backend tem como objetivo permitir a conexão da tela <code>/dashboard<code> com o banco de dados.
+Esse backend tem como objetivo permitir a conexão da tela <code>/dashboard</code> com o banco de dados.
 
 A pasta dashboard foi criada completamente nessa sprint e ela é composta por dois códigos: um que cria um banco de dados em TinyDB para ser usado e o outro que é o backend em si. 
 
