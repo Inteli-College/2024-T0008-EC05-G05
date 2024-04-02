@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'; // Import Routes
 import LoginForm from './pages/LoginForm/LoginForm';
 
-import Dashboard from './pages/home/home.jsx';
+import Dashboard from './pages/dashboard/dashboard.jsx';
 import Supplies from './pages/supplies/supplies.js';
 import KitCard from './components/kit_card/kit_card.jsx';
 import Home from './pages/home/home.jsx'
