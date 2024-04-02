@@ -3,6 +3,7 @@ title: Frontend
 sidebar_position: 2
 ---
 
+
 # O que foi feito?
 
 Durante esta sprint, a tela de dashboard foi iniciada, assim como as outras telas continuaram sendo aprimoradas.
@@ -15,6 +16,6 @@ Nessa sprint a dashbord usou de um banco de dados fictício para ser iniciada, p
 
 Na imagem a seguir pode se ver como os dados estão dispostos na tela da Dashboard
 
-![Tela da dashbord](../../../static/img/dashbord_tela.png)
+![Tela da dashbord](../../../static/img/dashbord_tela.jpeg)
 
 

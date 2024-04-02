@@ -9,8 +9,12 @@ import os
 # Classe do Dobot
 class Dobot:
     def __init__(self) -> None:
-        pass
 
+        self.bot_log = TinyDB('../database/dobot_log.json')  # Instanciar o banco de dados
+        self.device = None  # Instanciar o dobot
+
+        
+    # Função para listar as portas seriais disponíveis
     def listar_portas(self):
 
         portas_disponiveis = list_ports.comports()
@@ -27,20 +31,9 @@ class Dobot:
         }
         
         try:
-            with open("dobot_log.json", "r+") as log_file:
-                log_file.seek(0, 2)  # Vai para o final do arquivo
-                if log_file.tell() == 0:
-                    # Arquivo está vazio
-                    log_file.write(json.dumps([log_entry]))
-                else:
-                    log_file.seek(0, 2)  # Move para o final novamente
-                    # Apagar ] e adicionar uma nova entrada
-                    log_file.seek(log_file.tell() - 1, os.SEEK_SET)
-                    log_file.write(', ' + json.dumps(log_entry) + ']')
-        except FileNotFoundError:
-            # Se o arquivo não existir, cria um novo
-            with open("dobot_log.json", "w") as log_file:
-                log_file.write(json.dumps([log_entry]))
+            self.bot_log.insert(log_entry)
+        except Exception as e:
+            print("Erro ao salvar no banco de dados:" + str(e))  # Melhor formatação da mensagem de erro
 
     # Função para conectar ao dobot
     def conectar_dobot(self, porta):
