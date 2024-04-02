@@ -53,7 +53,7 @@ async def create_post(post: Post):
 
     return {"message": "Post has been created successfully."}
 
-@app.get("/hi")
+@app.get("/")
 def hello():
     return {"Hello World"}
 

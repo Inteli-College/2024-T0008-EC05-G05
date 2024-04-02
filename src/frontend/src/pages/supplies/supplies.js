@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./supplies.css";
 import Sidebar from "../../components/Sidebar/Sidebar.js";
 import axios from "axios";
@@ -34,7 +34,7 @@ const Supplies = () => {
 
   const togglePossui = (index) => {
     const newInputValues = [...inputValues];
-    newInputValues[index] = newInputValues[index] === options[index] ? 'Vazio' : options[index];
+    newInputValues[index] = newInputValues[index] === 'Possui' ? 'Não possui' : 'Possui';
     setInputValues(newInputValues);
   };
 
@@ -120,10 +120,11 @@ const Supplies = () => {
       <div className="Row">
         {options.slice(0, 4).map((option, index) => (
           <div key={index} className="Item">
+            <h3>{option}</h3>
             <button onClick={() => togglePossui(index)}>
-              {inputValues[index] === option ? option : 'Vazio'}
+              {inputValues[index] === 'Possui' ? 'Possui' : 'Não possui'}
             </button>
-            {inputValues[index] === option && (
+            {inputValues[index] === 'Possui' && (
               <div>
                 <button onClick={() => handleDecrement(index)}>-</button>
                 <span>{quantities[index]}</span>
@@ -136,10 +137,11 @@ const Supplies = () => {
       <div className="Row">
         {options.slice(4).map((option, index) => (
           <div key={index + 4} className="Item">
+            <h3>{option}</h3>
             <button onClick={() => togglePossui(index + 4)}>
-              {inputValues[index + 4] === option ? option : 'Vazio'}
+              {inputValues[index + 4] === 'Possui' ? 'Possui' : 'Não possui'}
             </button>
-            {inputValues[index + 4] === option && (
+            {inputValues[index + 4] === 'Possui' && (
               <div>
                 <button onClick={() => handleDecrement(index + 4)}>-</button>
                 <span>{quantities[index + 4]}</span>
