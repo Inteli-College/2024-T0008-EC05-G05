@@ -1,0 +1,13 @@
+{
+    "_default": {
+        "1": {
+            "client_ip": "127.0.0.1",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-01 16:52:04",
+            "url": "/",
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+            "username": "Placeholder"
+        }
+    }
+}
