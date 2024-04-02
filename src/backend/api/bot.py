@@ -112,7 +112,7 @@ async def log_requests(request: Request, call_next):
 
     app_username = "Placeholder"
 
-    requests_logs = TinyDB('../database/request_log.json', indent=4, sort_keys=True)
+    requests_logs = TinyDB('../database/request_log.json', sort_keys=True)
 
     # Captura informações da requisição
     request_info = {
@@ -131,7 +131,7 @@ async def log_requests(request: Request, call_next):
         # Se o arquivo não existir, cria um novo
         with open("../database/request_log.json", "+a") as log_file:
             log_file.write(json.dumps([request_info]))
-
+            
     return response
 
 @app.get('/conectar_dobot/')

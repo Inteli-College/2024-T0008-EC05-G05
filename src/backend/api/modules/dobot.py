@@ -9,11 +9,12 @@ import os
 # Classe do Dobot
 class Dobot:
     def __init__(self) -> None:
-        self.bot_log = TinyDB('../database/dobot_log.json', indent=4)  # Instanciar o banco de dados
+
+        self.bot_log = TinyDB('../database/dobot_log.json')  # Instanciar o banco de dados
         self.device = None  # Instanciar o dobot
 
+        
     # Função para listar as portas seriais disponíveis
-
     def listar_portas(self):
 
         portas_disponiveis = list_ports.comports()
@@ -33,7 +34,6 @@ class Dobot:
             self.bot_log.insert(log_entry)
         except Exception as e:
             print("Erro ao salvar no banco de dados:" + str(e))  # Melhor formatação da mensagem de erro
-
 
     # Função para conectar ao dobot
     def conectar_dobot(self, porta):
