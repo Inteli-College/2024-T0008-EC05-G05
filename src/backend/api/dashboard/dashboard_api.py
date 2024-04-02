@@ -7,7 +7,9 @@ from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
-db = TinyDB('log_kits_items.json')
+db_kits = TinyDB('log_kits_items.json')
+db_actions = TinyDB('user_activities.json')
+
 
 app.add_middleware(
     CORSMiddleware,
@@ -24,9 +26,15 @@ class KitSimple(BaseModel):
 class ItemSimple(BaseModel):
     nome: str
     quantity: int
+class Log(BaseModel):
+    user: str
+    activity: str
+    kit: int
+    hour: str
+    date: str
 
 def get_kits_in_date_range(period: str):
-    kits_table = db.table('kits')
+    kits_table = db_kits.table('kits')
     QueryObj = Query()
     today = datetime.now().date()
 
@@ -52,7 +60,7 @@ def get_kits_in_date_range(period: str):
     return kits_list
 
 def get_items_in_date_range(period: str):
-    kits_table = db.table('kits')
+    kits_table = db_kits.table('kits')
     QueryObj = Query()
     today = datetime.now().date()
 
@@ -74,7 +82,7 @@ def get_items_in_date_range(period: str):
         for item_id in kit['itens']:
             item_counts[item_id] += 1
 
-    itens_table = db.table('itens')
+    itens_table = db_kits.table('itens')
     items_list = []
     for item_id, count in item_counts.items():
         item_record = itens_table.get(QueryObj.id == item_id)
@@ -82,6 +90,26 @@ def get_items_in_date_range(period: str):
             items_list.append(ItemSimple(nome=item_record['nome'], quantity=count))
     
     return items_list
+
+def get_logs(period: str) -> List[Log]:
+    logs_table = db_actions.table('logs')
+    QueryObj = Query()
+    today = datetime.now().date()
+
+    if period == 'day':
+        start_date = today
+    elif period == 'week':
+        start_date = today - timedelta(weeks=1)
+    elif period == 'month':
+        start_date = today - timedelta(days=30)
+    elif period == 'year':
+        start_date = today - timedelta(days=365)
+    else:
+        return []  # Invalid period
+
+    filtered_logs = logs_table.search(QueryObj.date >= start_date.strftime('%Y-%m-%d'))
+    logs_list = [Log(**log_data) for log_data in filtered_logs]
+    return logs_list
 
 @app.get("/log/itens/{period}", response_model=List[ItemSimple])
 async def get_items(period: str):
@@ -94,3 +122,8 @@ async def get_kits(period: str):
     kits = get_kits_in_date_range(period)
     print(kits)
     return kits
+
+@app.get("/log/logs/{period}", response_model=List[Log])
+async def get_log_entries(period: str):
+    log_entries = get_logs(period)
+    return log_entries
