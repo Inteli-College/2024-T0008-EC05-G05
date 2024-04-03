@@ -22,7 +22,7 @@ O banco de dados criado pode ser acessado em
 src\backend\database\dbCardioBot.db
 ```
 
-Na imagem abaixo é possível conferir todas tabelas que foram desenvolvidas 
+Na imagem abaixo é possível conferir todas tabelas que foram desenvolvidas  :
 
 ![Todas tabelas](../../../static/img/todastabelas.png)
 
