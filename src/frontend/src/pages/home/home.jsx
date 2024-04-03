@@ -35,11 +35,12 @@ function Home() {
     <div className="home">
         <Sidebar open={sidebarOpen} toggleSidebar={toggleSidebar} />
         <div className={sidebarOpen ? "big-space" : 'small-space'}></div>
-        <section className='kit-card-section'>
-          <h2 className='kit-car-title'> Kits </h2>
-        </section>
-      
+        <div className='header'>
+          <h2 className='kit-car-title'>Página Inicial</h2>
+        </div>
+        
         <KitCard />
+
         <div className="production-kits-section">
           <h2>Kits em produção  </h2>
           {kitsInfo.map((kit, index) => (

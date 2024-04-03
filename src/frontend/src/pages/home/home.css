@@ -1,7 +1,13 @@
 /* home.css */
 .home {
   display: grid;
-  grid-template-columns: 15em 10fr 5fr;
+  grid-template-columns: 5em 10fr 5fr 1rem;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
 }
 
 .home-content {
@@ -31,3 +37,19 @@
 .production-kits-section h2{
   margin-bottom: 1em;
 }
+
+.kit-car-title{
+  margin-left: 4rem;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 5em 10fr 5fr 1rem;
+  grid-column: 1 / -1;
+  padding: 2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-bottom: 1px solid #000000;
+}
+

@@ -33,7 +33,8 @@ const KitCard = ({kitId, renderContent}) => {
   };
 
   return ( 
-    <section className='kit-card-area'>
+    <div className='kit-card-area'>     
+          <h2 className='kits-title'>Kits</h2>
         {Array.isArray(data) ? (
           data.map(item => (
             <div className='kit-card-item' key={item.ID}>
@@ -52,7 +53,7 @@ const KitCard = ({kitId, renderContent}) => {
         ) : (
           <p>Data is not an array.</p>
         )}
-    </section>
+    </div>
   );
 };
 
