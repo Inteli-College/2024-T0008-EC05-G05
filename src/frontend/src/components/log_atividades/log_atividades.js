@@ -14,7 +14,7 @@ const FetchLogs = () => {
 
   const fetchLogs = useCallback(async () => {
     const period = mapPeriod[timePeriod] || 'day';
-    const url = `http://127.0.0.1:8000/log/logs/${period}`;
+    const url = `http://localhost:8000/log/logs/${period}`;
 
     try {
       const response = await fetch(url);
@@ -39,6 +39,7 @@ const FetchLogs = () => {
     <div className="table-container">
       <div className="table-header">
         <div>
+        <h2>Log das atividades dos usuários</h2>
           <label htmlFor="log-period">Escolha um período: </label>
           <select id="log-period" value={timePeriod} onChange={handleTimePeriodChange}>
             <option value="dia">Dia</option>
