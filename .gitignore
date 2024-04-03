@@ -163,3 +163,9 @@ Thumbs.db
 #  DATA #
 #########
 *.json
+
+
+#########
+# Tests #
+#########
+tests/
