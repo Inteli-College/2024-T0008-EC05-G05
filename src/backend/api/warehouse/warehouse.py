@@ -12,7 +12,7 @@ import os
 from datetime import datetime
 from sqlite3 import connect
 from queue import Queue
-
+from datetime import datetime
 
 # Modelo de dados para realizar o post no DB 
 class Post(BaseModel):
@@ -117,8 +117,41 @@ def update_post(post_id: int, post_data: Post):
     # Execute a query to check if the post exists
     database.execute("SELECT * FROM Kits WHERE ID = ?", (post_id,))
     existing_post = database.fetchone()
-    
+
+    # Função para criar uma entrada no arquivo de logs
+
+    def log_update_time(post_id: int):
+        # Padrão da entrada no log
+        log_entry = {
+            "user": "admin",
+            "activity": "editar",
+            "kit": post_id,
+            "hour": datetime.now().strftime("%H:%M"),
+            "date": datetime.now().strftime("%Y-%m-%d")
+        }
+
+        # Abrir o arquivo JSON
+        with open("../dashboard/user.activities.json", "r+") as file:
+            # Carregar o conteúdo do arquivo JSON em um dicionário
+            data = json.load(file)
+            
+            # Obter o próximo ID para o novo log
+            next_id = str(len(data["logs"]) + 1)
+            
+            # Adicionar o novo log ao dicionário "logs"
+            data["logs"][next_id] = log_entry
+            
+            # Voltar para o início do arquivo
+            file.seek(0)
+            
+            # Escrever o dicionário atualizado de volta no arquivo JSON
+            json.dump(data, file, indent=4)
+            
+            # Truncar o arquivo para remover qualquer conteúdo excedente
+            file.truncate()
+
     if existing_post:
+        log_update_time(post_id)
         # Execute a query to update the post
         database.execute("UPDATE Kits SET Item_SKUs = ?, Kit_assembly_positions = ? WHERE ID = ?", (', '.join(post_data.Item_SKUs), post_data.Kit_assembly_positions, post_id))
         # Commit the changes
@@ -133,19 +166,6 @@ def update_post(post_id: int, post_data: Post):
         database.close()
         conn.close()
         raise HTTPException(status_code=404, detail="Kit não encontrado")
-
-# Função para criar uma entrada no arquivo de logs 
-
-def log_update_time(post_id: int):
- 
-    windows_username = os.getenv('USERNAME')
-
-    # Padrão da entrada no log
-    log_entry = {"kit_id": post_id, "update_time": datetime.now().isoformat(), "windows_username": windows_username}
-
-    with open("logs.json", "a", encoding="utf-8") as log_file:
-        json.dump(log_entry, log_file, ensure_ascii=False)
-        log_file.write("\n")
 
 
 # Para rodar o código, basta rodar o comando "uvicorn warehouse:app --reload" no terminal.
