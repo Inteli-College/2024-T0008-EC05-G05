@@ -27,6 +27,35 @@
             "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
             "username": "Placeholder"
         },
+        "12": {
+            "client_ip": "10.160.0.60",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-03 20:43:49",
+            "url": "/salvar_posicao",
+            "user_agent": "Thunder Client (https://www.thunderclient.com)",
+            "username": "Placeholder"
+        },
+        "13": {
+            "client_ip": "10.160.0.60",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-03 20:43:49",
+            "url": "/salvar_posicao/",
+            "user_agent": "Thunder Client (https://www.thunderclient.com)",
+            "username": "Placeholder"
+        },
+        "14": {
+            "client_ip": "10.160.0.60",
+            "method": "GET",
+            "query_params": {
+                "kit_code": "K1"
+            },
+            "timestamp": "2024-04-03 20:44:21",
+            "url": "/montar_kit/",
+            "user_agent": "Thunder Client (https://www.thunderclient.com)",
+            "username": "Placeholder"
+        },
         "2": {
             "client_ip": "127.0.0.1",
             "method": "GET",
