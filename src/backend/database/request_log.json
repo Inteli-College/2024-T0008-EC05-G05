@@ -1,0 +1,103 @@
+{
+    "_default": {
+        "1": {
+            "client_ip": "127.0.0.1",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-03 20:05:46",
+            "url": "/log/kits/day",
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+            "username": "Placeholder"
+        },
+        "10": {
+            "client_ip": "127.0.0.1",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-03 20:07:54",
+            "url": "/posts/1",
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+            "username": "Placeholder"
+        },
+        "11": {
+            "client_ip": "127.0.0.1",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-03 20:08:12",
+            "url": "/posts/",
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+            "username": "Placeholder"
+        },
+        "2": {
+            "client_ip": "127.0.0.1",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-03 20:05:46",
+            "url": "/log/itens/day",
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+            "username": "Placeholder"
+        },
+        "3": {
+            "client_ip": "127.0.0.1",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-03 20:05:46",
+            "url": "/log/kits/day",
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+            "username": "Placeholder"
+        },
+        "4": {
+            "client_ip": "127.0.0.1",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-03 20:05:46",
+            "url": "/log/itens/day",
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+            "username": "Placeholder"
+        },
+        "5": {
+            "client_ip": "127.0.0.1",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-03 20:05:46",
+            "url": "/log/logs/day",
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+            "username": "Placeholder"
+        },
+        "6": {
+            "client_ip": "127.0.0.1",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-03 20:05:46",
+            "url": "/log/logs/day",
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+            "username": "Placeholder"
+        },
+        "7": {
+            "client_ip": "127.0.0.1",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-03 20:06:04",
+            "url": "/posts/",
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+            "username": "Placeholder"
+        },
+        "8": {
+            "client_ip": "127.0.0.1",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-03 20:06:04",
+            "url": "/posts/",
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+            "username": "Placeholder"
+        },
+        "9": {
+            "client_ip": "127.0.0.1",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-03 20:07:54",
+            "url": "/posts/1",
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+            "username": "Placeholder"
+        }
+    }
+}

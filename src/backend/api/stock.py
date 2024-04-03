@@ -293,6 +293,6 @@ def log_update_time(post_id: int):
 if __name__ == "__main__":
     try:
         import uvicorn
-        uvicorn.run(app, host="127.0.0.1", port=8800)
+        uvicorn.run(app, host="127.0.0.1", port=8000, debug=True, reload=True, log_level="info")
     except ImportError as e:
         print(e)
