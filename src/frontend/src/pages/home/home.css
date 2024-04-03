@@ -1,18 +1,8 @@
-/* home.css */
-.home {
-  display: grid;
-  grid-template-columns: 5em 10fr 5fr 1rem;
-}
 
 body{
-  margin: 0;
+  margin-left: 50px;
   padding: 0;
   background-color: #f0f0f0;
-}
-
-.home-content {
-  padding-top: 2rem;
-  padding-left: 5rem;
 }
 
 .blurred {
@@ -21,35 +11,60 @@ body{
 
 .small-space{
   width: 50px;
+  height: 100%;
 }
 
 .big-space{
   width: 15em;
+  height: 100%;
 }
 
 .production-kits-section{
-  grid-column-start: 3;
-  grid-column-end: 4;
+  /* grid-column-start: 3;
+  grid-column-end: 4; */
+  right: 0;
   padding: 1rem;
   border: 1px solid #000000;
+  min-width: 24rem;
 }
 
 .production-kits-section h2{
   margin-bottom: 1em;
 }
 
-.kit-car-title{
-  margin-left: 4rem;
-}
-
 .header {
-  display: grid;
+  /* display: grid;
   grid-template-columns: 5em 10fr 5fr 1rem;
-  grid-column: 1 / -1;
-  padding: 2rem;
+  grid-column: 1 / -1; */
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 2rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   border-bottom: 1px solid #000000;
 }
 
+.page-content{
+  display: flex;
+  padding: 0 20px 16px 16px;
+  justify-content: space-between;
+  width: 100%;
+  gap: 1.5rem;
+}
+
+.header-logo{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-logo img{
+  max-height: 4rem;
+  width: auto;
+}
+
+.kit-card-title{
+  align-self: center;
+}

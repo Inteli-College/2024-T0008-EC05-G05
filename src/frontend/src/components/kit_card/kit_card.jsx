@@ -32,14 +32,15 @@ const KitCard = ({kitId, renderContent}) => {
     setOpenModalId(null); 
   };
 
-  return ( 
-    <div className='kit-card-area'>     
+  return (
+    <div className='kit-cards'>     
           <h2 className='kits-title'>Kits</h2>
+        <div className='kit-card-area'>
         {Array.isArray(data) ? (
           data.map(item => (
             <div className='kit-card-item' key={item.ID}>
               <h3 className='kit-card-title'>Kit {item.ID}</h3>
-              <div className='kit-carad-img-area'>
+              <div className='kit-card-img-area'>
                 <img src={kitImage} alt="" className='kit-card-img'/>
               </div>
               <div className='kit-card-buttons-area'>
@@ -48,11 +49,13 @@ const KitCard = ({kitId, renderContent}) => {
               {openModalId === item.ID && ( 
                 <Modal showModal={openModalId !== null} closeModal={closeModal} kitId={item.ID}  renderContent={renderContent} />
               )}
+
             </div>
           ))
         ) : (
           <p>Data is not an array.</p>
         )}
+        </div>
     </div>
   );
 };

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './KitsProdStatus.css'; // Este arquivo conterá os estilos para o componente
 import { IoMdTime } from "react-icons/io";
 
-function KitsProdStatus({ kitName, imageUrl, startTime, isFirst }) {
+function  KitsProdStatus({ kitName, imageUrl, startTime, isFirst }) {
   const [elapsedTime, setElapsedTime] = useState('');
 
 

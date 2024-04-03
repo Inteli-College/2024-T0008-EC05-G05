@@ -17,7 +17,8 @@
   left: 10px; 
   z-index: 101; /* Acima dos outros conteúdos da sidebar */
   cursor: pointer;
-  font-size: 50px; /* Tamanho do icone */
+  font-size: 60px; /* Tamanho do icone */
+  justify-content: center;
 }
 
 .sidebar.open {
@@ -36,8 +37,9 @@
 
 .sidebar:not(.open) {
   /* Estilos para a sidebar quando estiver fechada mostrando apenas ícones */
-  width: 50px; /* largura dos icones */
+  width: 60px; /* largura dos icones */
   transform: translateX(0); /* Mantenha a sidebar visível */
+  justify-content: center;
 }
 
 
@@ -56,6 +58,7 @@
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
+  font-size: 60px;
 }
 
 .menu-item:hover {

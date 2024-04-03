@@ -1,21 +1,31 @@
 .kit-card-area{
-    display: grid;
-    grid-template-columns: repeat(2, 0.4fr);
+    /* display: grid;
+    grid-template-columns: repeat(2, 0.8fr);
     gap: 1rem;
     padding: 1rem;
     grid-column-start: 2;
+    display: flex; */
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    padding: 0 5rem;
 }
 
-
+.kit-card-area div {
+    flex: 1 0 40%;
+}
 
 .kit-card-item{
     display: grid;
-    grid-template-rows: auto 0.35fr auto;
+    grid-template-rows: auto 0.5fr auto; 
     gap: 0.5rem;
     border: 2px solid black;
     border-radius: 1rem;
     background-color: #c3c2c3;
     padding: 1rem;
+    max-height: 15rem;
+    max-width: 20rem;
 }
 
 .kit-card-area .kit-card-title{
@@ -34,7 +44,7 @@
     grid-column-end: 8;
 }
 
-.kit-card-area .kit-carad-img-area{
+.kit-card-area .kit-card-img-area{
     grid-row-start: 2;
     grid-row-end: 7;
     grid-column-start: 8;
@@ -68,4 +78,5 @@
 .kits-title {
     grid-column: 1 / -1;
     text-align: left;
+    padding: 1rem;
   }
