@@ -21,11 +21,11 @@ import os
 app = FastAPI()
 
 # Inicia os logs de kits e itens
-db_kits = TinyDB('../../logs/log_kits_items.json')
-db_actions = TinyDB('../../logs/user_activities.json')
+db_kits = TinyDB('../database/log_kits_items.json')
+db_actions = TinyDB('../database/user_activities.json')
 
 # Inicia o banco de dados com SQLite
-conn = connect('../../database/dbCardioBot.db')
+conn = connect('../database/dbCardioBot.db')
 database = conn.cursor()
 
 
@@ -204,7 +204,7 @@ def hello():
 @app.get("/posts/")
 def read_all_posts():
      # Establish a new connection
-    conn = connect('../../database/dbCardioBot.db')
+    conn = connect('../database/dbCardioBot.db')
     database = conn.cursor()
 
     # Execute a query to fetch all posts
@@ -227,7 +227,7 @@ def read_all_posts():
 @app.get("/posts/{post_id}")
 def read_post(post_id: int):
  # Establish a new connection
-    conn = connect('../../database/dbCardioBot.db')
+    conn = connect('../database/dbCardioBot.db')
     database = conn.cursor()
 
     # Execute a query to fetch the post with the specified ID
@@ -252,7 +252,7 @@ def read_post(post_id: int):
 @app.put("/posts/{post_id}")
 def update_post(post_id: int, post_data: Post):
   # Establish a new connection
-    conn = connect('../../database/dbCardioBot.db')
+    conn = connect('../database/dbCardioBot.db')
     database = conn.cursor()
 
     post_dict = post_data.dict()
@@ -290,4 +290,9 @@ def log_update_time(post_id: int):
         log_file.write("\n")
 
 
-# Para rodar o código, basta rodar o comando "python -m uvicorn main:app --reload" no terminal.
+if __name__ == "__main__":
+    try:
+        import uvicorn
+        uvicorn.run(app, host="127.0.0.1", port=8000, debug=True, reload=True, log_level="info")
+    except ImportError as e:
+        print(e)
