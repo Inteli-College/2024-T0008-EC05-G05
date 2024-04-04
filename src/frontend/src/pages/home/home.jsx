@@ -4,8 +4,7 @@ import { FaBars } from "react-icons/fa"; // Ícone de menu (hambúrguer)
 import Sidebar from '../../components/Sidebar/Sidebar.js';
 import KitCard from '../../components/kit_card/kit_card.jsx';
 import KitsProdStatus from '../../components/KitsProd/KitsProdStatus.js';
-import logo from '../../assets/imgs/imagem_kits.png';
-
+import logo from '../../assets/imgs/logo-grupo.svg';
 
 function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(false);

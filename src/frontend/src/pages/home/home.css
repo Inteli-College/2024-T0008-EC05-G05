@@ -58,6 +58,7 @@ body{
   flex-direction: row;
   align-items: center;
   gap: 1rem;
+  padding-right: 2.5rem;
 }
 
 .header-logo img{
