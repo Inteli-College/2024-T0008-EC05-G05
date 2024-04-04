@@ -4,7 +4,7 @@ import { FaBars } from "react-icons/fa"; // Ícone de menu (hambúrguer)
 import Sidebar from '../../components/Sidebar/Sidebar.js';
 import KitCard from '../../components/kit_card/kit_card.jsx';
 import KitsProdStatus from '../../components/KitsProd/KitsProdStatus.js';
-
+import logo from '../../assets/imgs/logo-grupo.svg';
 
 function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -35,21 +35,23 @@ function Home() {
     <div className="home">
         <Sidebar open={sidebarOpen} toggleSidebar={toggleSidebar} />
         <div className={sidebarOpen ? "big-space" : 'small-space'}></div>
-        <section className='kit-card-section'>
-          <h2 className='kit-car-title'> Kits </h2>
-        </section>
-      
-        <KitCard />
-        <div className="production-kits-section">
-          <h2>Kits em produção  </h2>
-          {kitsInfo.map((kit, index) => (
-            <KitsProdStatus 
-              kitName={kit.name}
-              imageUrl={kit.image}
-              startTime={kit.startTime}
-              isFirst={index === 0}
-            />
-          ))}
+        <div className='header'>
+          <h2 className='kit-card-title'>Página Inicial</h2>
+          <div className='header-logo'><h2>Cardio-Bot</h2><img src={logo}  alt="logo"></img></div>
+        </div>
+        <div className='page-content'>
+          <KitCard />
+          <div className="production-kits-section">
+            <h2>Kits em produção  </h2>
+            {kitsInfo.map((kit, index) => (
+              <KitsProdStatus 
+                kitName={kit.name}
+                imageUrl={kit.image}
+                startTime={kit.startTime}
+                isFirst={index === 0}
+              />
+            ))}
+          </div>
         </div>
     </div>
   );
