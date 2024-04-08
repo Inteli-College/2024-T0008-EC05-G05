@@ -4,6 +4,15 @@
     margin-bottom: 20px; /* Espaçamento entre os itens de produção */
     border: 1px solid #000000;
     border-radius: 10px;
+    background-color: #c3c2c3;
+    position: relative;
+  }
+
+.close-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
   }
   
   .kit-photo img {
@@ -30,6 +39,7 @@
 
   .kits-date{
     margin-left: auto;
+    padding: 8px 12px;
   }
 
   .dateInfo{
