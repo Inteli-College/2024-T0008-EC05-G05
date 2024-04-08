@@ -20,11 +20,13 @@ rem Navegar até o diretório contendo requirements.txt e instalar as dependênc
 cd "%current_project_path%"
 pip install -r requirements.txt
 
+pip uninstall serial -y
+
 rem Iniciar o Front-end
-start cmd /k "cd src/frontend && npm i && npm start"
+start cmd /k "echo Front-end && cd src/frontend && npm i && npm start"
 
 rem Inicar a API do robo
-start cmd /k "cd src/backend/api && python bot.py"
+start cmd /k "echo API Robo && cd src/backend/api && python bot.py"
 
 rem Inicar a API do estoque
-start cmd /k "cd src/backend/api && python stock.py"
+start cmd /k "echo  && cd src/backend/api && python stock.py"
