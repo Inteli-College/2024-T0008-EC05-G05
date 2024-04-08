@@ -1,5 +1,5 @@
 try:
-    from os import system
+    import os
     import platform
 
 except ImportError as e:
@@ -10,14 +10,20 @@ os_type = platform.system()
 
 
 def execute_codes() -> None:
+     # Get the current directory path
+    raw_current_dir_path = os.getcwd()
+    current_dir_path = raw_current_dir_path.replace("\\", "/")
+
+    print(current_dir_path)
+    
     if os_type == "Windows":
         try:
-            system("C:/Users/caiot/Documents/GitHub/2024-T0008-EC05-G05/src/controllers/windows_starter.bat")
+            os.system(f"{current_dir_path}/src/controllers/windows_starter.bat")
         except FileNotFoundError as e:
             print(e)
     elif os_type == "Linux":
         try:
-            system("cd /home/caio/Documents/GitHub/2024-T0008-EC05-G05/src/controllers/linux_starter.sh")
+            os.system(f"{current_dir_path}/src/controllers/linux_starter.bat")
         except FileNotFoundError as e:
             print(e)
     else:
