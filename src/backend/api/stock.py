@@ -151,10 +151,10 @@ async def get_kits(period: str):
     print(kits)
     return kits
 
-# @app.get("/log/logs/{period}", response_model=List[Log])
-# async def get_log_entries(period: str):
-#     log_entries = get_logs(period)
-#     return log_entries
+@app.get("/log/logs/{period}", response_model=List[Log])
+async def get_log_entries(period: str):
+    log_entries = get_logs(period)
+    return log_entries
 
 # Function to get data (kits, items, logs) for a specified period
 def get_data_in_date_range(period: str, table_name: str, date_key: str, quantity_key: str) -> List[BaseModel]:

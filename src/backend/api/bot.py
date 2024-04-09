@@ -135,11 +135,10 @@ async def log_requests(request: Request, call_next):
     return response
 
 @app.get('/conectar_dobot/')
-async def conectar_dobot(porta: str):
-    print(f"Tentando conectar ao dobot na porta {porta}.")
+async def conectar_dobot():
     try:
         # Conectar ao dobot, com a porta, velocidade e aceleração
-        dobot.conectar_dobot(porta)
+        dobot.conectar_dobot()
         print("Conectado ao dobot com sucesso.")
         return {"status": "sucesso", "mensagem": "Conectado ao dobot com sucesso."}
     except Exception as e:

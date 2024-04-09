@@ -36,17 +36,43 @@ class Dobot:
             print("Erro ao salvar no banco de dados:" + str(e))  # Melhor formatação da mensagem de erro
 
     # Função para conectar ao dobot
-    def conectar_dobot(self, porta):
+    # def conectar_dobot(self, porta):
+    #     try:
+    #         # Incializar o dobot
+    #         self.device = pydobot.Dobot(port=porta)
+    #         print("Conectado ao dobot com sucesso.")
+    #         self.log_action('conectar_dobot', {'porta': porta, 'resultado': 'sucesso'})
+
+    #         return True
+    #     except Exception as e:
+    #         print("Falha ao conectar ao robô:" + str({e}))
+    #         self.log_action('conectar_dobot', {'porta': porta, 'resultado': 'falha'})
+    #         return False
+
+    def conectar_dobot(self):
         try:
-            # Incializar o dobot
-            self.device = pydobot.Dobot(port=porta)
-            print("Conectado ao dobot com sucesso.")
-            self.log_action('conectar_dobot', {'porta': porta, 'resultado': 'sucesso'})
+            available_ports = list_ports.comports()
+
+            dobot_port = None
+            for port_info in available_ports:
+                print(f"Checking port: {port_info.device}, HWID: {port_info.hwid}")
+
+                # Suponha que 'VID:PID' seja substituído pelos valores específicos do Dobot
+                if "VID:PID=0483:5750" in port_info.hwid:
+                    dobot_port = port_info.device
+                    print(f"Dobot encontrado na porta: {dobot_port}")
+                    break
+
+            
+            if not dobot_port:
+                print("Dobot não encontrado.")
+                return False
+
+            self.device = pydobot.Dobot(port=dobot_port, verbose=True)
 
             return True
         except Exception as e:
             print("Falha ao conectar ao robô:" + str({e}))
-            self.log_action('conectar_dobot', {'porta': porta, 'resultado': 'falha'})
             return False
         
     def velocidade(self, velocidade, aceleracao):

@@ -4613,6 +4613,42 @@
             "user_agent": "n/a",
             "username": "Placeholder"
         },
+        "550": {
+            "client_ip": "10.150.0.231",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-09 17:04:36",
+            "url": "/conectar_dobot/",
+            "user_agent": "Thunder Client (https://www.thunderclient.com)",
+            "username": "Placeholder"
+        },
+        "551": {
+            "client_ip": "10.150.0.231",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-09 17:05:26",
+            "url": "/conectar_dobot/",
+            "user_agent": "Thunder Client (https://www.thunderclient.com)",
+            "username": "Placeholder"
+        },
+        "552": {
+            "client_ip": "10.150.0.231",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-09 17:07:04",
+            "url": "/conectar_dobot/",
+            "user_agent": "Thunder Client (https://www.thunderclient.com)",
+            "username": "Placeholder"
+        },
+        "553": {
+            "client_ip": "10.150.0.231",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-09 17:10:55",
+            "url": "/conectar_dobot/",
+            "user_agent": "Thunder Client (https://www.thunderclient.com)",
+            "username": "Placeholder"
+        },
         "56": {
             "client_ip": "10.128.0.36",
             "method": "POST",
