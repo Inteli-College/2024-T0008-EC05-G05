@@ -14,20 +14,10 @@ def execute_codes() -> None:
     raw_current_dir_path = os.getcwd()
     current_dir_path = raw_current_dir_path.replace("\\", "/")
 
-    print(current_dir_path)
-    
-    if os_type == "Windows":
-        try:
-            os.system(f"{current_dir_path}/src/controllers/windows_starter.bat")
-        except FileNotFoundError as e:
-            print(e)
-    elif os_type == "Linux":
-        try:
-            os.system(f"{current_dir_path}/src/controllers/linux_starter.bat")
-        except FileNotFoundError as e:
-            print(e)
-    else:
-        print("OS not supported")
+    try:
+        os.system(f"{current_dir_path}/src/bats/windows_starter.bat")
+    except FileNotFoundError as e:
+        print(e)
 
 
 
