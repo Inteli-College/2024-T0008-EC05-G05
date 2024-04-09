@@ -4649,6 +4649,45 @@
             "user_agent": "Thunder Client (https://www.thunderclient.com)",
             "username": "Placeholder"
         },
+        "554": {
+            "client_ip": "10.150.0.231",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-09 17:18:25",
+            "url": "/pico_data",
+            "user_agent": "python-httpx/0.27.0",
+            "username": "Placeholder"
+        },
+        "555": {
+            "client_ip": "10.150.0.231",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-09 17:18:37",
+            "url": "/pico_data",
+            "user_agent": "python-httpx/0.27.0",
+            "username": "Placeholder"
+        },
+        "556": {
+            "client_ip": "10.150.0.231",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-09 17:18:50",
+            "url": "/pico_data",
+            "user_agent": "python-httpx/0.27.0",
+            "username": "Placeholder"
+        },
+        "557": {
+            "client_ip": "10.150.0.231",
+            "method": "GET",
+            "query_params": {
+                "posicao_final": "frente",
+                "posicao_inicial": "P1"
+            },
+            "timestamp": "2024-04-09 17:18:10",
+            "url": "/mover_para_posicoes/",
+            "user_agent": "Thunder Client (https://www.thunderclient.com)",
+            "username": "Placeholder"
+        },
         "56": {
             "client_ip": "10.128.0.36",
             "method": "POST",

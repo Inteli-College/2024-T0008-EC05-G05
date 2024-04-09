@@ -134,11 +134,24 @@ async def log_requests(request: Request, call_next):
 
     return response
 
+# Endpoint para conectar ao dobot automaticamente
 @app.get('/conectar_dobot/')
 async def conectar_dobot():
     try:
         # Conectar ao dobot, com a porta, velocidade e aceleração
         dobot.conectar_dobot()
+        print("Conectado ao dobot com sucesso.")
+        return {"status": "sucesso", "mensagem": "Conectado ao dobot com sucesso."}
+    except Exception as e:
+        print(f"Falha ao conectar ao robô: {e}")
+        return {"status": "erro", "mensagem": f"Falha ao conectar ao robô: {e}"}
+
+# Endpoint para conectar ao dobot com a porta especificada
+@app.get('/conectar_dobot_porta/')
+async def conectar_dobot_porta(porta: str):
+    try:
+        # Conectar ao dobot
+        dobot.conectar_dobot_porta(porta)
         print("Conectado ao dobot com sucesso.")
         return {"status": "sucesso", "mensagem": "Conectado ao dobot com sucesso."}
     except Exception as e:
@@ -332,6 +345,8 @@ async def salvar_posicao(position_code: str,):
 
 if __name__ == "__main__":
     try:
+        dobot.conectar_dobot()
+
         import uvicorn
         uvicorn.run(app, host=ip_servidor, port=8800)
     except ImportError as e:
