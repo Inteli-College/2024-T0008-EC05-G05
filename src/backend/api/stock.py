@@ -21,8 +21,8 @@ import os
 app = FastAPI()
 
 # Inicia os logs de kits e itens
-db_kits = TinyDB('../database/log_kits_items.json')
-db_actions = TinyDB('../database/user_activities.json')
+db_kits = TinyDB('../logs-db/log_kits_items.json')
+db_actions = TinyDB('../logs-db/user_activities.json')
 
 # Inicia o banco de dados com SQLite
 conn = connect('../database/dbCardioBot.db')
