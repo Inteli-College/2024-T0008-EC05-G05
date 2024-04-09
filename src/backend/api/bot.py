@@ -55,6 +55,13 @@ app.add_middleware(
 db_kits = TinyDB('../logs-db/dbCardioBot.db')
 db_actions = TinyDB('../logs-db/user_activities.json')
 
+#Sistema de Logs
+db_logs_bot = TinyDB('../logs-db/bot-log.json')
+
+# Função para adicionar logs
+def add_log(message):
+    current_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    db_logs_bot.insert({'date': current_date, 'user_action': message})
 
 class KitSimple(BaseModel):
     numero_do_kit: int
@@ -255,9 +262,11 @@ async def conectar_dobot():
         # Conectar ao dobot, com a porta, velocidade e aceleração
         dobot.conectar_dobot()
         print("Conectado ao dobot com sucesso.")
+        add_log("Conectado ao dobot com sucesso.")
         return {"status": "sucesso", "mensagem": "Conectado ao dobot com sucesso."}
     except Exception as e:
         print(f"Falha ao conectar ao robô: {e}")
+        add_log(f"Falha ao conectar ao robô: {e}")
         return {"status": "erro", "mensagem": f"Falha ao conectar ao robô: {e}"}
 
 # Endpoint para conectar ao dobot com a porta especificada
@@ -267,14 +276,17 @@ async def conectar_dobot_porta(porta: str):
         # Conectar ao dobot
         dobot.conectar_dobot_porta(porta)
         print("Conectado ao dobot com sucesso.")
+        add_log(f"Dobot conectado a porta: {porta}.")
         return {"status": "sucesso", "mensagem": "Conectado ao dobot com sucesso."}
     except Exception as e:
         print(f"Falha ao conectar ao robô: {e}")
+        add_log(f"Falha ao conectar na porta: {e}")
         return {"status": "erro", "mensagem": f"Falha ao conectar ao robô: {e}"}
 
 # Função para mover o dobot para uma posição
 def mover_para_posicao(posicaoCod, atuador=None, estado_atuador=None):
     posicao = buscar_posicao(posicaoCod)
+    add_log(f"Movendo para a posição {posicao}...")
 
     print(f"Movendo para a posição {posicao}...")
 
@@ -282,6 +294,7 @@ def mover_para_posicao(posicaoCod, atuador=None, estado_atuador=None):
 
     if not posicao:
         print("Posição não encontrada.")
+        add_log(f"O robô não conseguiu encontrar a posição: {posicao}.")
         raise HTTPException(status_code=404, detail="Posição não encontrada")
 
     try:
@@ -293,6 +306,7 @@ def mover_para_posicao(posicaoCod, atuador=None, estado_atuador=None):
 
     except Exception as e: 
         print(f"Erro ao mover para a posição inicial: {e}")
+        add_log(f"Erro ao mover para a posição: {posicaoCod} : {e}")
         return {"status": "erro", "mensagem": f"Erro ao mover para a posição: {posicaoCod} : {e}"}
 
 # Endpoint para testar a desconexão com o dobot
@@ -301,6 +315,7 @@ def mover_para_posicao(posicaoCod, atuador=None, estado_atuador=None):
 async def mover_para_posicoes(posicao_inicial: str, posicao_final: str):
     
     print(f"Movendo dobot para as posições {posicao_inicial} e {posicao_final}.")
+    add_log(f"Movendo dobot para as posições {posicao_inicial} e {posicao_final}.")
 
     # While loop para tentar pegar o item durante um certo número de tentativ
 
@@ -323,6 +338,7 @@ async def mover_para_posicoes(posicao_inicial: str, posicao_final: str):
         if data_recebida == "True":
             # print(f'Valor data_recebida (funcao mover posicoes): {data_recebida}')
             print("Item foi pego") 
+            add_log("Item foi pego")
 
             break
         else:
@@ -330,7 +346,8 @@ async def mover_para_posicoes(posicao_inicial: str, posicao_final: str):
             # print(f'Valor data_recebida (funcao mover posicoes): {data_recebida}')    
 
             tentativas += 1
-            print("Item não foi pego!")   
+            print("Item não foi pego!")
+            add_log("Item não foi pego!")  
     
     # Foto de escaneamento do QRcode
     dados_qr = await capturar_qr_code()
@@ -347,6 +364,7 @@ async def mover_para_posicoes(posicao_inicial: str, posicao_final: str):
 
     mover_para_posicao(posicao_final, "suck", "Off")
 
+    add_log(f"Foi possível ler o qr code: {dados_qr} e o sensor ultrassônico recebeu: {data_recebida}")
     return {"status": "sucesso", "dados_qr": dados_qr, "dados_ultra": data_recebida}
     
 
@@ -393,6 +411,7 @@ async def get_pico_data():
 async def montar_kit(kit_code):
     # Buscar o kit no banco de dados
     print(f"Montando o kit {kit_code}...")
+    add_log(f"O robô está montando o kit {kit_code}...")
     kit = buscar_kit(kit_code)
     print(kit)
 
@@ -447,12 +466,15 @@ async def salvar_posicao(position_code: str,):
         print(dobot_pos)
         # Atualizar a posição
         atualizar_posicao(position_code, dobot_pos[0], dobot_pos[1], dobot_pos[2], dobot_pos[3])
+        add_log(f"A posição do item foi atualizada: {position_code}.")
         return {"status": "sucesso", "mensagem": "Posição atualizada com sucesso."}
     else:
         print(dobot_pos)
 
         # Inserir a nova posição
         inserir_posicao(position_code, dobot_pos[0], dobot_pos[1], dobot_pos[2], dobot_pos[3])
+        add_log(f"Uma nova posição foi criada: {position_code}.")
+
 
         return {"status": "sucesso", "mensagem": "Posição salva com sucesso."}
     
