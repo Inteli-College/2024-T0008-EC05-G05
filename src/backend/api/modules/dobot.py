@@ -48,6 +48,17 @@ class Dobot:
             print("Falha ao conectar ao robô:" + str({e}))
             self.log_action('conectar_dobot', {'porta': porta, 'resultado': 'falha'})
             return False
+        
+    def velocidade(self, velocidade, aceleracao):
+        if self.device:
+            try:
+                self.device.speed(velocidade, aceleracao)
+                self.log_action('velocidade', {'velocidade': velocidade, 'aceleracao': aceleracao, 'resultado': 'sucesso'})
+            except Exception as e:
+                self.log_action('velocidade', {'velocidade': velocidade, 'aceleracao': aceleracao, 'resultado': 'falha'})
+                print("Erro ao definir a velocidade:" + str({e}))
+        else:
+            print("Conecte ao dobot primeiro.")
     
     # Função de conexão com banco de dados TinyDB
     def conectar_DB(self):

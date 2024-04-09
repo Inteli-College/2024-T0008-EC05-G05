@@ -76,7 +76,7 @@ def inserir_item(sku, name, position_name):
 # Buscar dados
 def buscar_item(sku):
     cursor.execute("SELECT * FROM Items WHERE Name = ?", (sku,))
-    # print(f"SELECT * FROM Items WHERE Name = {sku}")
+    print(f"SELECT * FROM Items WHERE Name = {sku}")
     return cursor.fetchone()
 
 def buscar_kit(KitID):
@@ -138,6 +138,7 @@ async def log_requests(request: Request, call_next):
 async def conectar_dobot(porta: str):
     print(f"Tentando conectar ao dobot na porta {porta}.")
     try:
+        # Conectar ao dobot, com a porta, velocidade e aceleração
         dobot.conectar_dobot(porta)
         print("Conectado ao dobot com sucesso.")
         return {"status": "sucesso", "mensagem": "Conectado ao dobot com sucesso."}
@@ -179,7 +180,7 @@ async def mover_para_posicoes(posicao_inicial: str, posicao_final: str):
 
     tentativas = 0
     while tentativas < 3:
-
+        # dobot.velocidade(500, 100)
         mover_para_posicao('posicaoVerificacaoAlta')
 
         mover_para_posicao(posicao_inicial, "suck", "On")
@@ -191,8 +192,8 @@ async def mover_para_posicoes(posicao_inicial: str, posicao_final: str):
         mover_para_posicao('posicaoVerificacaoAlta')
         
         async with httpx.AsyncClient() as client:
-            await client.get(f"http://{ip_servidor}/ativar_sensor")
-
+            await client.get(f"http://{ip_servidor}:8800/pico_data")
+        print(data_recebida)
         if data_recebida == "True":
             # print(f'Valor data_recebida (funcao mover posicoes): {data_recebida}')
             print("Item foi pego") 
@@ -282,6 +283,7 @@ async def montar_kit(kit_code):
     # Montar o kit interando por cada item
     for item in lista_itens:
         if item != "Vazio":
+            print(f"Item: {item}")
 
             item_name = buscar_item(item)
             print(f"Item inteiro 3123: {item_name}")
@@ -332,6 +334,6 @@ async def salvar_posicao(position_code: str,):
 if __name__ == "__main__":
     try:
         import uvicorn
-        uvicorn.run(app, host="127.0.0.1", port=8800)
+        uvicorn.run(app, host=ip_servidor, port=8800)
     except ImportError as e:
         print(e)

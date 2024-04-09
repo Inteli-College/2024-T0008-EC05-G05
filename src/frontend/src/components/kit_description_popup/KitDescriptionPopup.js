@@ -7,7 +7,7 @@ const Modal = ({ showModal, closeModal, kitId }) => {
 
   const montarKit = async (kitCode) => {
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/montar_kit/?kit_code=${kitCode}`);
+      const response = await axios.get(`http://10.128.0.37:8800/montar_kit/?kit_code=${kitCode}`);
       console.log(response.data);
       // Lógica adicional aqui (e.g., atualizar o estado do componente)
     } catch (error) {

@@ -271,6 +271,7 @@ async def montar_kit(kit_code: str):
     # Montar o kit interando por cada item
     for item in lista_itens:
         if item != "Vazio":
+            print(f"Item: {item}")
 
             item_name = buscar_item(item)[1]
             posicao = buscar_item(item)[2]
