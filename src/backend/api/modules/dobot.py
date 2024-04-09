@@ -49,15 +49,18 @@ class Dobot:
     #         self.log_action('conectar_dobot', {'porta': porta, 'resultado': 'falha'})
     #         return False
 
+    # Função para conectar ao dobot automaticamente na porta correta
     def conectar_dobot(self):
         try:
             available_ports = list_ports.comports()
 
             dobot_port = None
+
+            # Iterar sobre as portas disponíveis
             for port_info in available_ports:
                 print(f"Checking port: {port_info.device}, HWID: {port_info.hwid}")
 
-                # Suponha que 'VID:PID' seja substituído pelos valores específicos do Dobot
+                # Verificar se o dobot está conectado atrelando do endereço do robo
                 if "VID:PID=0483:5750" in port_info.hwid:
                     dobot_port = port_info.device
                     print(f"Dobot encontrado na porta: {dobot_port}")
@@ -68,13 +71,27 @@ class Dobot:
                 print("Dobot não encontrado.")
                 return False
 
+            # Conectar ao dobot na porta correta
             self.device = pydobot.Dobot(port=dobot_port, verbose=True)
 
             return True
         except Exception as e:
             print("Falha ao conectar ao robô:" + str({e}))
             return False
-        
+    
+    # Função para conectar ao dobot em uma porta escolhida
+    def conectar_dobot_porta(self, porta):
+        try:
+            self.device = pydobot.Dobot(port=porta)
+            print("Conectado ao dobot com sucesso.")
+            self.log_action('conectar_dobot', {'porta': porta, 'resultado': 'sucesso'})
+            return True
+        except Exception as e:
+            print("Falha ao conectar ao robô:" + str({e}))
+            self.log_action('conectar_dobot', {'porta': porta, 'resultado': 'falha'})
+            return False
+    
+    # Função para definir a velocidade do dobot
     def velocidade(self, velocidade, aceleracao):
         if self.device:
             try:
