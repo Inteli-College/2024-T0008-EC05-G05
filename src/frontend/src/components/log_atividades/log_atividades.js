@@ -53,20 +53,14 @@ const FetchLogs = () => {
         <table>
           <thead>
             <tr>
-              <th>Usuário</th>
               <th>Atividade</th>
-              <th>Kit</th>
-              <th>Horário</th>
               <th>Data</th>
             </tr>
           </thead>
           <tbody>
             {logs.map((item, index) => (
               <tr key={index}>
-                <td>{item.user}</td>
-                <td>{item.activity}</td>
-                <td>{item.kit || 'N/A'}</td> {/* Assuming 'kit' might not be in the second return */}
-                <td>{item.hour || 'N/A'}</td> {/* Assuming 'hour' might not be in the second return */}
+                <td>{item.user_action}</td>
                 <td>{item.date}</td>
               </tr>
             ))}

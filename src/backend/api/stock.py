@@ -23,6 +23,7 @@ app = FastAPI()
 # Inicia os logs de kits e itens
 db_kits = TinyDB('../logs-db/log_kits_items.json')
 db_actions = TinyDB('../logs-db/user_activities.json')
+db_bot = TinyDB('../logs-db/bot-log.json')
 
 # Inicia o banco de dados com SQLite
 conn = connect('../database/dbCardioBot.db')
@@ -46,11 +47,8 @@ class ItemSimple(BaseModel):
     nome: str
     quantity: int
 class Log(BaseModel):
-    user: str
-    activity: str
-    kit: int
-    hour: str
     date: str
+    user_action: str
 
 # Modelo de dados para realizar o post no DB 
 class Post(BaseModel):
@@ -119,8 +117,9 @@ def get_items_in_date_range(period: str):
     
     return items_list
 
-def get_logs(period: str) -> List[Log]:
-    logs_table = db_actions.table('logs')
+
+def get_logs(period: str):
+    logs_bot = db_bot.table('_default')
     QueryObj = Query()
     today = datetime.now().date()
 
@@ -135,9 +134,14 @@ def get_logs(period: str) -> List[Log]:
     else:
         return []  # Invalid period
 
-    filtered_logs = logs_table.search(QueryObj.date >= start_date.strftime('%Y-%m-%d'))
-    logs_list = [Log(**log_data) for log_data in filtered_logs]
-    return logs_list
+    print("Start date:", start_date.strftime('%Y-%m-%d'))
+    print("Filter condition:", QueryObj.date >= start_date.strftime('%Y-%m-%d'))
+
+    filtered_kits = logs_bot.search(QueryObj.date >= start_date.strftime('%Y-%m-%d'))
+    print("Filtered kits:", filtered_kits)
+    
+    return [Log(date=entry['date'], user_action=entry['user_action']) for entry in filtered_kits]
+
 
 @app.get("/log/itens/{period}", response_model=List[ItemSimple])
 async def get_items(period: str):
