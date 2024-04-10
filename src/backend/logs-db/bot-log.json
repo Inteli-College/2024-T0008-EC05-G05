@@ -1,0 +1,200 @@
+{
+    "_default": {
+        "1": {
+            "date": "2024-04-10 10:50:07",
+            "user_action": "O rob\u00f4 est\u00e1 montando o kit 4..."
+        },
+        "2": {
+            "date": "2024-04-10 10:50:07",
+            "user_action": "Movendo dobot para as posi\u00e7\u00f5es P3 e frente."
+        },
+        "3": {
+            "date": "2024-04-10 10:51:04",
+            "user_action": "O rob\u00f4 est\u00e1 montando o kit 4..."
+        },
+        "4": {
+            "date": "2024-04-10 10:51:04",
+            "user_action": "Movendo dobot para as posi\u00e7\u00f5es P3 e frente."
+        },
+        "5": {
+            "date": "2024-04-10 10:51:04",
+            "user_action": "Movendo para a posi\u00e7\u00e3o ('posicaoVerificacaoAlta', 268.9991760253906, -16.802045822143555, 119.29292297363281, -3.574127197265625, None)..."
+        },
+        "6": {
+            "date": "2024-04-10 10:51:05",
+            "user_action": "Movendo para a posi\u00e7\u00e3o ('P3', 209.9095001220703, 128.8141632080078, -38.912811279296875, 35.94144821166992, None)..."
+        },
+        "7": {
+            "date": "2024-04-10 10:51:07",
+            "user_action": "Movendo para a posi\u00e7\u00e3o ('posicaoVerificacaoAlta', 268.9991760253906, -16.802045822143555, 119.29292297363281, -3.574127197265625, None)..."
+        },
+        "8": {
+            "date": "2024-04-10 10:51:10",
+            "user_action": "Movendo para a posi\u00e7\u00e3o ('posicaoVerificacaoBaixa', 319.626220703125, 15.941283226013184, -50.60128402709961, 2.855247735977173, None)..."
+        },
+        "9": {
+            "date": "2024-04-10 10:51:12",
+            "user_action": "Movendo para a posi\u00e7\u00e3o ('posicaoVerificacaoAlta', 268.9991760253906, -16.802045822143555, 119.29292297363281, -3.574127197265625, None)..."
+        },
+        "10": {
+            "date": "2024-04-10 10:51:15",
+            "user_action": "Item n\u00e3o foi pego!"
+        },
+        "11": {
+            "date": "2024-04-10 10:51:15",
+            "user_action": "Movendo para a posi\u00e7\u00e3o ('posicaoVerificacaoAlta', 268.9991760253906, -16.802045822143555, 119.29292297363281, -3.574127197265625, None)..."
+        },
+        "12": {
+            "date": "2024-04-10 10:51:15",
+            "user_action": "Movendo para a posi\u00e7\u00e3o ('P3', 209.9095001220703, 128.8141632080078, -38.912811279296875, 35.94144821166992, None)..."
+        },
+        "13": {
+            "date": "2024-04-10 10:51:18",
+            "user_action": "Movendo para a posi\u00e7\u00e3o ('posicaoVerificacaoAlta', 268.9991760253906, -16.802045822143555, 119.29292297363281, -3.574127197265625, None)..."
+        },
+        "14": {
+            "date": "2024-04-10 10:51:20",
+            "user_action": "Movendo para a posi\u00e7\u00e3o ('posicaoVerificacaoBaixa', 319.626220703125, 15.941283226013184, -50.60128402709961, 2.855247735977173, None)..."
+        },
+        "15": {
+            "date": "2024-04-10 10:51:23",
+            "user_action": "Movendo para a posi\u00e7\u00e3o ('posicaoVerificacaoAlta', 268.9991760253906, -16.802045822143555, 119.29292297363281, -3.574127197265625, None)..."
+        },
+        "16": {
+            "date": "2024-04-10 10:51:26",
+            "user_action": "Item n\u00e3o foi pego!"
+        },
+        "17": {
+            "date": "2024-04-10 10:51:26",
+            "user_action": "Movendo para a posi\u00e7\u00e3o ('posicaoVerificacaoAlta', 268.9991760253906, -16.802045822143555, 119.29292297363281, -3.574127197265625, None)..."
+        },
+        "18": {
+            "date": "2024-04-10 10:51:26",
+            "user_action": "Movendo para a posi\u00e7\u00e3o ('P3', 209.9095001220703, 128.8141632080078, -38.912811279296875, 35.94144821166992, None)..."
+        },
+        "19": {
+            "date": "2024-04-10 10:51:29",
+            "user_action": "Movendo para a posi\u00e7\u00e3o ('posicaoVerificacaoAlta', 268.9991760253906, -16.802045822143555, 119.29292297363281, -3.574127197265625, None)..."
+        },
+        "20": {
+            "date": "2024-04-10 10:51:31",
+            "user_action": "Movendo para a posi\u00e7\u00e3o ('posicaoVerificacaoBaixa', 319.626220703125, 15.941283226013184, -50.60128402709961, 2.855247735977173, None)..."
+        },
+        "21": {
+            "date": "2024-04-10 10:51:34",
+            "user_action": "Movendo para a posi\u00e7\u00e3o ('posicaoVerificacaoAlta', 268.9991760253906, -16.802045822143555, 119.29292297363281, -3.574127197265625, None)..."
+        },
+        "22": {
+            "date": "2024-04-10 10:51:36",
+            "user_action": "Item n\u00e3o foi pego!"
+        },
+        "23": {
+            "date": "2024-04-10 10:51:41",
+            "user_action": "Movendo para a posi\u00e7\u00e3o ('posicaoVerificacaoBaixa', 319.626220703125, 15.941283226013184, -50.60128402709961, 2.855247735977173, None)..."
+        },
+        "24": {
+            "date": "2024-04-10 10:51:44",
+            "user_action": "Movendo para a posi\u00e7\u00e3o ('posicaoVerificacaoAlta', 268.9991760253906, -16.802045822143555, 119.29292297363281, -3.574127197265625, None)..."
+        },
+        "25": {
+            "date": "2024-04-10 10:51:46",
+            "user_action": "Movendo para a posi\u00e7\u00e3o ('frente', 171.14698791503906, -235.29153442382812, -14.281120300292969, -53.968505859375, None)..."
+        },
+        "26": {
+            "date": "2024-04-10 10:51:49",
+            "user_action": "Foi poss\u00edvel ler o qr code: {'Dados': ()} e o sensor ultrass\u00f4nico recebeu: "
+        },
+        "27": {
+            "date": "2024-04-10 10:51:49",
+            "user_action": "Movendo dobot para as posi\u00e7\u00f5es P5 e frente."
+        },
+        "28": {
+            "date": "2024-04-10 10:51:49",
+            "user_action": "Movendo para a posi\u00e7\u00e3o ('posicaoVerificacaoAlta', 268.9991760253906, -16.802045822143555, 119.29292297363281, -3.574127197265625, None)..."
+        },
+        "29": {
+            "date": "2024-04-10 10:51:52",
+            "user_action": "Movendo para a posi\u00e7\u00e3o ('P5', 331.7964172363281, 54.503204345703125, -20.367259979248047, 9.328495025634766, None)..."
+        },
+        "30": {
+            "date": "2024-04-10 10:51:54",
+            "user_action": "Movendo para a posi\u00e7\u00e3o ('posicaoVerificacaoAlta', 268.9991760253906, -16.802045822143555, 119.29292297363281, -3.574127197265625, None)..."
+        },
+        "31": {
+            "date": "2024-04-10 10:51:56",
+            "user_action": "Movendo para a posi\u00e7\u00e3o ('posicaoVerificacaoBaixa', 319.626220703125, 15.941283226013184, -50.60128402709961, 2.855247735977173, None)..."
+        },
+        "32": {
+            "date": "2024-04-10 10:51:59",
+            "user_action": "Movendo para a posi\u00e7\u00e3o ('posicaoVerificacaoAlta', 268.9991760253906, -16.802045822143555, 119.29292297363281, -3.574127197265625, None)..."
+        },
+        "33": {
+            "date": "2024-04-10 10:52:02",
+            "user_action": "Item n\u00e3o foi pego!"
+        },
+        "34": {
+            "date": "2024-04-10 10:52:02",
+            "user_action": "Movendo para a posi\u00e7\u00e3o ('posicaoVerificacaoAlta', 268.9991760253906, -16.802045822143555, 119.29292297363281, -3.574127197265625, None)..."
+        },
+        "35": {
+            "date": "2024-04-10 10:52:02",
+            "user_action": "Movendo para a posi\u00e7\u00e3o ('P5', 331.7964172363281, 54.503204345703125, -20.367259979248047, 9.328495025634766, None)..."
+        },
+        "36": {
+            "date": "2024-04-10 10:52:04",
+            "user_action": "Movendo para a posi\u00e7\u00e3o ('posicaoVerificacaoAlta', 268.9991760253906, -16.802045822143555, 119.29292297363281, -3.574127197265625, None)..."
+        },
+        "37": {
+            "date": "2024-04-10 10:52:07",
+            "user_action": "Movendo para a posi\u00e7\u00e3o ('posicaoVerificacaoBaixa', 319.626220703125, 15.941283226013184, -50.60128402709961, 2.855247735977173, None)..."
+        },
+        "38": {
+            "date": "2024-04-10 10:52:09",
+            "user_action": "Movendo para a posi\u00e7\u00e3o ('posicaoVerificacaoAlta', 268.9991760253906, -16.802045822143555, 119.29292297363281, -3.574127197265625, None)..."
+        },
+        "39": {
+            "date": "2024-04-10 10:52:12",
+            "user_action": "Item n\u00e3o foi pego!"
+        },
+        "40": {
+            "date": "2024-04-10 10:52:12",
+            "user_action": "Movendo para a posi\u00e7\u00e3o ('posicaoVerificacaoAlta', 268.9991760253906, -16.802045822143555, 119.29292297363281, -3.574127197265625, None)..."
+        },
+        "41": {
+            "date": "2024-04-10 10:52:12",
+            "user_action": "Movendo para a posi\u00e7\u00e3o ('P5', 331.7964172363281, 54.503204345703125, -20.367259979248047, 9.328495025634766, None)..."
+        },
+        "42": {
+            "date": "2024-04-10 10:52:15",
+            "user_action": "Movendo para a posi\u00e7\u00e3o ('posicaoVerificacaoAlta', 268.9991760253906, -16.802045822143555, 119.29292297363281, -3.574127197265625, None)..."
+        },
+        "43": {
+            "date": "2024-04-10 10:52:17",
+            "user_action": "Movendo para a posi\u00e7\u00e3o ('posicaoVerificacaoBaixa', 319.626220703125, 15.941283226013184, -50.60128402709961, 2.855247735977173, None)..."
+        },
+        "44": {
+            "date": "2024-04-10 10:52:20",
+            "user_action": "Movendo para a posi\u00e7\u00e3o ('posicaoVerificacaoAlta', 268.9991760253906, -16.802045822143555, 119.29292297363281, -3.574127197265625, None)..."
+        },
+        "45": {
+            "date": "2024-04-10 10:52:22",
+            "user_action": "Item n\u00e3o foi pego!"
+        },
+        "46": {
+            "date": "2024-04-10 10:52:23",
+            "user_action": "Movendo para a posi\u00e7\u00e3o ('posicaoVerificacaoBaixa', 319.626220703125, 15.941283226013184, -50.60128402709961, 2.855247735977173, None)..."
+        },
+        "47": {
+            "date": "2024-04-10 10:52:26",
+            "user_action": "Movendo para a posi\u00e7\u00e3o ('posicaoVerificacaoAlta', 268.9991760253906, -16.802045822143555, 119.29292297363281, -3.574127197265625, None)..."
+        },
+        "48": {
+            "date": "2024-04-10 10:52:28",
+            "user_action": "Movendo para a posi\u00e7\u00e3o ('frente', 171.14698791503906, -235.29153442382812, -14.281120300292969, -53.968505859375, None)..."
+        },
+        "49": {
+            "date": "2024-04-10 10:52:31",
+            "user_action": "Foi poss\u00edvel ler o qr code: {'Dados': ()} e o sensor ultrass\u00f4nico recebeu: "
+        }
+    }
+}

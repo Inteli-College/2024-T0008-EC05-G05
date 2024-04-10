@@ -1,16 +1,30 @@
-from fastapi import FastAPI, Request, Form, Depends, HTTPException
-from tinydb import TinyDB, Query
-from dobot import Dobot
-from qreader import QReader
-import cv2
-import os
-from datetime import datetime
-from pydantic import BaseModel
-import httpx
-import time
-import json
-import sqlite3
-import socket
+try:
+    from fastapi.middleware.cors import CORSMiddleware
+    from fastapi import FastAPI, Request, HTTPException
+    import socket, sqlite3, json, os, httpx, cv2
+    from  modules import Dobot
+    from pydantic import BaseModel
+    from datetime import datetime, timedelta
+    from typing import List
+    from qreader import QReader
+    from collections import defaultdict
+    from tinydb import TinyDB, Query
+    print("Dependências importadas com sucesso")
+except ImportError as e:
+    print(e)
+
+# Create a FastAPI app
+
+# Inicializa a aplicação FastAPI
+app = FastAPI()
+
+# Inicializa a classe Dobotr
+dobot = Dobot()
+
+# Inicializa o QReader
+qreader = QReader()
+
+# Vatriaveis do sensor d
 
 def ip_address():
     try:
@@ -23,19 +37,29 @@ def ip_address():
         return ip_address
     except Exception as e:
         return "Não foi possível obter o IP: " + str(e)
-
-# Inicializa a aplicação FastAPI
-app = FastAPI()
-
-# Inicializa a classe Dobot
-dobot = Dobot()
-
-# Inicializa o QReader
-qreader = QReader()
+    
 
 # Vatriaveis do sensor de ultrassom
 ativacao_sensor = False
 data_recebida = ""
+
+app.add_middleware(
+    CORSMiddleware,
+    # Definindo as origens que podem fazer requisições
+    allow_origins=["http://localhost:3000"],  
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "PUT", "DELETE"],
+    allow_headers=["*"],
+)
+
+
+#Sistema de Logs
+db_logs_bot = TinyDB('../logs-db/bot-log.json', indent=4)
+
+# Função para adicionar logs
+def add_log(message):
+    current_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    db_logs_bot.insert({'date': current_date, 'user_action': message})
 
 # Modelo de dados para a entrada de dados Raspberry Pi Pico
 class PicoData(BaseModel): # BaseModel para validar e tratar dados JSON recebidos automaticamente
@@ -52,7 +76,7 @@ class PicoData(BaseModel): # BaseModel para validar e tratar dados JSON recebido
 # kits.insert({'kit_code': 'K1', 'name': 'Kit Cirurgia', 'items': ['123', '456']})
 # positions.insert({'position_code': 'A1', 'x': 10, 'y': 20, 'z': 30, 'r': 5})
     
-conn = sqlite3.connect('../../database/dbCardioBot.db')
+conn = sqlite3.connect('../database/dbCardioBot.db')
 cursor = conn.cursor()   
 
 def inserir_item(sku, name, position_name):
@@ -61,18 +85,18 @@ def inserir_item(sku, name, position_name):
 
 # Buscar dados
 def buscar_item(sku):
-    cursor.execute("SELECT * FROM Items WHERE SKU = ?", (sku,))
-    print(f"SELECT * FROM Items WHERE SKU = {sku}")
+    cursor.execute("SELECT * FROM Items WHERE Name = ?", (sku,))
+    print(f"SELECT * FROM Items WHERE Name = {sku}")
     return cursor.fetchone()
 
 def buscar_kit(KitID):
     cursor.execute("SELECT * FROM Kits WHERE ID = ?", (KitID,))
-    print(f"SELECT * FROM Kits WHERE ID = {KitID}")
+    # print(f"SELECT * FROM Kits WHERE ID = {KitID}")
     return cursor.fetchone()
 
 def buscar_posicao(PosicaoName):
     cursor.execute("SELECT * FROM Position WHERE Position_name = ?", (PosicaoName,))
-    print(f"SELECT * FROM Position WHERE Position_name = {PosicaoName}")
+    # print(f"SELECT * FROM Position WHERE Position_name = {PosicaoName}")
     return cursor.fetchone()
 
 def atualizar_posicao(PosicaoName, x, y, z, r):
@@ -97,7 +121,9 @@ async def log_requests(request: Request, call_next):
     response = await call_next(request)
 
     app_username = "Placeholder"
-    
+
+    requests_logs = TinyDB('../database/request_log.json', indent=4, sort_keys=True)
+
     # Captura informações da requisição
     request_info = {
         "timestamp": start_time.strftime("%Y-%m-%d %H:%M:%S"),
@@ -110,39 +136,46 @@ async def log_requests(request: Request, call_next):
         }
     
     try:
-        with open("request_log.json", "r+") as log_file:
-            log_file.seek(0, 2)  # Vai para o final do arquivo
-            if log_file.tell() == 0:
-                # Arquivo está vazio
-                log_file.write(json.dumps([request_info]))
-            else:
-                log_file.seek(0, 2)  # Move para o final novamente
-                # Apagar ] e adicionar uma nova entrada
-                log_file.seek(log_file.tell() - 1, os.SEEK_SET)
-                log_file.write(', ' + json.dumps(request_info) + ']')
-    except FileNotFoundError:
+        requests_logs.insert(request_info)
+    except Exception as e:
         # Se o arquivo não existir, cria um novo
-        with open("request_log.json", "w") as log_file:
+        with open("../database/request_log.json", "+a") as log_file:
             log_file.write(json.dumps([request_info]))
-    
+
     return response
 
-# Endpoint para testar a conexão com o dobot
-# http://IPV4 do seu computador/conectar_dobot/?porta=COM6
+# Endpoint para conectar ao dobot automaticamente
 @app.get('/conectar_dobot/')
-async def conectar_dobot(porta: str):
-    print(f"Tentando conectar ao dobot na porta {porta}.")
+async def conectar_dobot():
     try:
-        dobot.conectar_dobot(porta)
+        # Conectar ao dobot, com a porta, velocidade e aceleração
+        dobot.conectar_dobot()
         print("Conectado ao dobot com sucesso.")
+        add_log("Conectado ao dobot com sucesso.")
         return {"status": "sucesso", "mensagem": "Conectado ao dobot com sucesso."}
     except Exception as e:
         print(f"Falha ao conectar ao robô: {e}")
+        add_log(f"Falha ao conectar ao robô: {e}")
+        return {"status": "erro", "mensagem": f"Falha ao conectar ao robô: {e}"}
+
+# Endpoint para conectar ao dobot com a porta especificada
+@app.get('/conectar_dobot_porta/')
+async def conectar_dobot_porta(porta: str):
+    try:
+        # Conectar ao dobot
+        dobot.conectar_dobot_porta(porta)
+        print("Conectado ao dobot com sucesso.")
+        add_log(f"Dobot conectado a porta: {porta}.")
+        return {"status": "sucesso", "mensagem": "Conectado ao dobot com sucesso."}
+    except Exception as e:
+        print(f"Falha ao conectar ao robô: {e}")
+        add_log(f"Falha ao conectar na porta: {e}")
         return {"status": "erro", "mensagem": f"Falha ao conectar ao robô: {e}"}
 
 # Função para mover o dobot para uma posição
 def mover_para_posicao(posicaoCod, atuador=None, estado_atuador=None):
     posicao = buscar_posicao(posicaoCod)
+    add_log(f"Movendo para a posição {posicao}...")
 
     print(f"Movendo para a posição {posicao}...")
 
@@ -150,6 +183,7 @@ def mover_para_posicao(posicaoCod, atuador=None, estado_atuador=None):
 
     if not posicao:
         print("Posição não encontrada.")
+        add_log(f"O robô não conseguiu encontrar a posição: {posicao}.")
         raise HTTPException(status_code=404, detail="Posição não encontrada")
 
     try:
@@ -161,6 +195,7 @@ def mover_para_posicao(posicaoCod, atuador=None, estado_atuador=None):
 
     except Exception as e: 
         print(f"Erro ao mover para a posição inicial: {e}")
+        add_log(f"Erro ao mover para a posição: {posicaoCod} : {e}")
         return {"status": "erro", "mensagem": f"Erro ao mover para a posição: {posicaoCod} : {e}"}
 
 # Endpoint para testar a desconexão com o dobot
@@ -169,12 +204,13 @@ def mover_para_posicao(posicaoCod, atuador=None, estado_atuador=None):
 async def mover_para_posicoes(posicao_inicial: str, posicao_final: str):
     
     print(f"Movendo dobot para as posições {posicao_inicial} e {posicao_final}.")
+    add_log(f"Movendo dobot para as posições {posicao_inicial} e {posicao_final}.")
 
     # While loop para tentar pegar o item durante um certo número de tentativ
 
     tentativas = 0
     while tentativas < 3:
-
+        # dobot.velocidade(500, 100)
         mover_para_posicao('posicaoVerificacaoAlta')
 
         mover_para_posicao(posicao_inicial, "suck", "On")
@@ -186,11 +222,12 @@ async def mover_para_posicoes(posicao_inicial: str, posicao_final: str):
         mover_para_posicao('posicaoVerificacaoAlta')
         
         async with httpx.AsyncClient() as client:
-            await client.get(f"http://{ip_servidor}/ativar_sensor")
-
+            await client.get(f"http://{ip_servidor}:8800/pico_data")
+        print(data_recebida)
         if data_recebida == "True":
             # print(f'Valor data_recebida (funcao mover posicoes): {data_recebida}')
             print("Item foi pego") 
+            add_log("Item foi pego")
 
             break
         else:
@@ -198,10 +235,16 @@ async def mover_para_posicoes(posicao_inicial: str, posicao_final: str):
             # print(f'Valor data_recebida (funcao mover posicoes): {data_recebida}')    
 
             tentativas += 1
-            print("Item não foi pego!")   
+            print("Item não foi pego!")
+            add_log("Item não foi pego!")  
     
     # Foto de escaneamento do QRcode
     dados_qr = await capturar_qr_code()
+
+    # Salvar infor do qr code em json
+
+    with open('dados_qr.json', 'w') as arquivo_json:
+        json.dump(dados_qr, arquivo_json)
 
     # Levar o item a posicação final dele
     mover_para_posicao('posicaoVerificacaoBaixa', "suck", "On")
@@ -210,6 +253,7 @@ async def mover_para_posicoes(posicao_inicial: str, posicao_final: str):
 
     mover_para_posicao(posicao_final, "suck", "Off")
 
+    add_log(f"Foi possível ler o qr code: {dados_qr} e o sensor ultrassônico recebeu: {data_recebida}")
     return {"status": "sucesso", "dados_qr": dados_qr, "dados_ultra": data_recebida}
     
 
@@ -253,12 +297,14 @@ async def get_pico_data():
 # Endpoint para rodar a montagem de um kit
 # http://IP/montar_kit/?kit_code=K1
 @app.get("/montar_kit/")
-async def montar_kit(kit_code: str):
+async def montar_kit(kit_code):
     # Buscar o kit no banco de dados
+    print(f"Montando o kit {kit_code}...")
+    add_log(f"O robô está montando o kit {kit_code}...")
     kit = buscar_kit(kit_code)
     print(kit)
 
-    numero_de_items = 2
+    numero_de_items = 1
 
     if not kit:
         raise HTTPException(status_code=404, detail="Kit não encontrado")
@@ -273,10 +319,15 @@ async def montar_kit(kit_code: str):
         if item != "Vazio":
             print(f"Item: {item}")
 
-            item_name = buscar_item(item)[1]
-            posicao = buscar_item(item)[2]
+            item_name = buscar_item(item)
+            print(f"Item inteiro 3123: {item_name}")
+            item_name = item_name[1]
+            print(f"Item: {item_name}")
+            posicao = buscar_item(item)
+            posicao = posicao[2]
+            print(f"Posicao: {posicao}")
 
-            for i in numero_de_items: 
+            for i in range(0,numero_de_items): 
                 # Buscar o item no banco de dados
 
                 if not item:
@@ -288,6 +339,7 @@ async def montar_kit(kit_code: str):
 
                 # Rodar a sequência de movimentos pelo endpoint /mover_para_posicoes/
                 await mover_para_posicoes(posicao, posicao_final)
+
 
 # Endpoint para salvar uma posição
 # http://10.128.0.8/salvar_posicao/?position_code=P1
@@ -303,12 +355,24 @@ async def salvar_posicao(position_code: str,):
         print(dobot_pos)
         # Atualizar a posição
         atualizar_posicao(position_code, dobot_pos[0], dobot_pos[1], dobot_pos[2], dobot_pos[3])
+        add_log(f"A posição do item foi atualizada: {position_code}.")
         return {"status": "sucesso", "mensagem": "Posição atualizada com sucesso."}
     else:
         print(dobot_pos)
 
         # Inserir a nova posição
         inserir_posicao(position_code, dobot_pos[0], dobot_pos[1], dobot_pos[2], dobot_pos[3])
+        add_log(f"Uma nova posição foi criada: {position_code}.")
+
 
         return {"status": "sucesso", "mensagem": "Posição salva com sucesso."}
     
+
+if __name__ == "__main__":
+    try:
+        dobot.conectar_dobot()
+
+        import uvicorn
+        uvicorn.run(app, host=ip_servidor, port=8800)
+    except ImportError as e:
+        print(e)

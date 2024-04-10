@@ -14,7 +14,7 @@ const FetchLogs = () => {
 
   const fetchLogs = useCallback(async () => {
     const period = mapPeriod[timePeriod] || 'day';
-    const url = `http://127.0.0.1:8000/log/logs/${period}`;
+    const url = `http://localhost:8000/log/logs/${period}`;
 
     try {
       const response = await fetch(url);
@@ -39,6 +39,7 @@ const FetchLogs = () => {
     <div className="table-container">
       <div className="table-header">
         <div>
+        <h2>Log das atividades dos usuários</h2>
           <label htmlFor="log-period">Escolha um período: </label>
           <select id="log-period" value={timePeriod} onChange={handleTimePeriodChange}>
             <option value="dia">Dia</option>
@@ -52,20 +53,14 @@ const FetchLogs = () => {
         <table>
           <thead>
             <tr>
-              <th>Usuário</th>
               <th>Atividade</th>
-              <th>Kit</th>
-              <th>Horário</th>
               <th>Data</th>
             </tr>
           </thead>
           <tbody>
             {logs.map((item, index) => (
               <tr key={index}>
-                <td>{item.user}</td>
-                <td>{item.activity}</td>
-                <td>{item.kit || 'N/A'}</td> {/* Assuming 'kit' might not be in the second return */}
-                <td>{item.hour || 'N/A'}</td> {/* Assuming 'hour' might not be in the second return */}
+                <td>{item.user_action}</td>
                 <td>{item.date}</td>
               </tr>
             ))}
