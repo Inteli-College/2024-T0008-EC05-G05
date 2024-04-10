@@ -72,7 +72,7 @@ class Dobot:
                 return False
 
             # Conectar ao dobot na porta correta
-            self.device = pydobot.Dobot(port=dobot_port, verbose=True)
+            self.device = pydobot.Dobot(port=dobot_port, verbose=False)
 
             return True
         except Exception as e:
@@ -82,7 +82,7 @@ class Dobot:
     # Função para conectar ao dobot em uma porta escolhida
     def conectar_dobot_porta(self, porta):
         try:
-            self.device = pydobot.Dobot(port=porta)
+            self.device = pydobot.Dobot(port=porta, verbose=False)
             print("Conectado ao dobot com sucesso.")
             self.log_action('conectar_dobot', {'porta': porta, 'resultado': 'sucesso'})
             return True

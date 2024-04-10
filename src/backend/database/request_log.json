@@ -4688,6 +4688,24 @@
             "user_agent": "Thunder Client (https://www.thunderclient.com)",
             "username": "Placeholder"
         },
+        "558": {
+            "client_ip": "10.128.0.37",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-10 10:30:23",
+            "url": "/pico_data",
+            "user_agent": "python-httpx/0.27.0",
+            "username": "Placeholder"
+        },
+        "559": {
+            "client_ip": "10.128.0.37",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-10 10:30:26",
+            "url": "/pico_data",
+            "user_agent": "python-httpx/0.27.0",
+            "username": "Placeholder"
+        },
         "56": {
             "client_ip": "10.128.0.36",
             "method": "POST",
@@ -4695,6 +4713,96 @@
             "timestamp": "2024-04-09 15:51:14",
             "url": "/pico_data",
             "user_agent": "n/a",
+            "username": "Placeholder"
+        },
+        "560": {
+            "client_ip": "10.128.0.37",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-10 10:30:29",
+            "url": "/pico_data",
+            "user_agent": "python-httpx/0.27.0",
+            "username": "Placeholder"
+        },
+        "561": {
+            "client_ip": "10.128.0.37",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-10 10:35:00",
+            "url": "/pico_data",
+            "user_agent": "python-httpx/0.27.0",
+            "username": "Placeholder"
+        },
+        "562": {
+            "client_ip": "10.128.0.37",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-10 10:35:12",
+            "url": "/pico_data",
+            "user_agent": "python-httpx/0.27.0",
+            "username": "Placeholder"
+        },
+        "563": {
+            "client_ip": "10.128.0.37",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-10 10:35:24",
+            "url": "/pico_data",
+            "user_agent": "python-httpx/0.27.0",
+            "username": "Placeholder"
+        },
+        "564": {
+            "client_ip": "10.128.0.37",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-10 10:35:49",
+            "url": "/pico_data",
+            "user_agent": "python-httpx/0.27.0",
+            "username": "Placeholder"
+        },
+        "565": {
+            "client_ip": "10.128.0.37",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-10 10:35:59",
+            "url": "/pico_data",
+            "user_agent": "python-httpx/0.27.0",
+            "username": "Placeholder"
+        },
+        "566": {
+            "client_ip": "10.128.0.37",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-10 10:36:10",
+            "url": "/pico_data",
+            "user_agent": "python-httpx/0.27.0",
+            "username": "Placeholder"
+        },
+        "567": {
+            "client_ip": "10.128.0.37",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-10 10:36:32",
+            "url": "/pico_data",
+            "user_agent": "python-httpx/0.27.0",
+            "username": "Placeholder"
+        },
+        "568": {
+            "client_ip": "10.128.0.37",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-10 10:36:42",
+            "url": "/pico_data",
+            "user_agent": "python-httpx/0.27.0",
+            "username": "Placeholder"
+        },
+        "569": {
+            "client_ip": "10.128.0.37",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-10 10:36:52",
+            "url": "/pico_data",
+            "user_agent": "python-httpx/0.27.0",
             "username": "Placeholder"
         },
         "57": {
@@ -4706,6 +4814,100 @@
             "user_agent": "n/a",
             "username": "Placeholder"
         },
+        "570": {
+            "client_ip": "10.128.0.37",
+            "method": "GET",
+            "query_params": {
+                "kit_code": "2"
+            },
+            "timestamp": "2024-04-10 10:34:48",
+            "url": "/montar_kit/",
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            "username": "Placeholder"
+        },
+        "571": {
+            "client_ip": "10.128.0.37",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-10 10:42:22",
+            "url": "/pico_data",
+            "user_agent": "python-httpx/0.27.0",
+            "username": "Placeholder"
+        },
+        "572": {
+            "client_ip": "10.128.0.37",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-10 10:42:33",
+            "url": "/pico_data",
+            "user_agent": "python-httpx/0.27.0",
+            "username": "Placeholder"
+        },
+        "573": {
+            "client_ip": "10.128.0.37",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-10 10:42:44",
+            "url": "/pico_data",
+            "user_agent": "python-httpx/0.27.0",
+            "username": "Placeholder"
+        },
+        "574": {
+            "client_ip": "10.128.0.37",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-10 10:43:08",
+            "url": "/pico_data",
+            "user_agent": "python-httpx/0.27.0",
+            "username": "Placeholder"
+        },
+        "575": {
+            "client_ip": "10.128.0.37",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-10 10:43:18",
+            "url": "/pico_data",
+            "user_agent": "python-httpx/0.27.0",
+            "username": "Placeholder"
+        },
+        "576": {
+            "client_ip": "10.128.0.37",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-10 10:43:28",
+            "url": "/pico_data",
+            "user_agent": "python-httpx/0.27.0",
+            "username": "Placeholder"
+        },
+        "577": {
+            "client_ip": "10.128.0.37",
+            "method": "GET",
+            "query_params": {
+                "kit_code": "4"
+            },
+            "timestamp": "2024-04-10 10:42:09",
+            "url": "/montar_kit/",
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            "username": "Placeholder"
+        },
+        "578": {
+            "client_ip": "10.128.0.37",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-10 10:44:51",
+            "url": "/pico_data",
+            "user_agent": "python-httpx/0.27.0",
+            "username": "Placeholder"
+        },
+        "579": {
+            "client_ip": "10.128.0.37",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-10 10:45:02",
+            "url": "/pico_data",
+            "user_agent": "python-httpx/0.27.0",
+            "username": "Placeholder"
+        },
         "58": {
             "client_ip": "10.128.0.36",
             "method": "POST",
@@ -4713,6 +4915,80 @@
             "timestamp": "2024-04-09 15:51:19",
             "url": "/pico_data",
             "user_agent": "n/a",
+            "username": "Placeholder"
+        },
+        "580": {
+            "client_ip": "10.128.0.37",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-10 10:45:13",
+            "url": "/pico_data",
+            "user_agent": "python-httpx/0.27.0",
+            "username": "Placeholder"
+        },
+        "581": {
+            "client_ip": "10.128.0.37",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-10 10:51:15",
+            "url": "/pico_data",
+            "user_agent": "python-httpx/0.27.0",
+            "username": "Placeholder"
+        },
+        "582": {
+            "client_ip": "10.128.0.37",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-10 10:51:26",
+            "url": "/pico_data",
+            "user_agent": "python-httpx/0.27.0",
+            "username": "Placeholder"
+        },
+        "583": {
+            "client_ip": "10.128.0.37",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-10 10:51:36",
+            "url": "/pico_data",
+            "user_agent": "python-httpx/0.27.0",
+            "username": "Placeholder"
+        },
+        "584": {
+            "client_ip": "10.128.0.37",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-10 10:52:02",
+            "url": "/pico_data",
+            "user_agent": "python-httpx/0.27.0",
+            "username": "Placeholder"
+        },
+        "585": {
+            "client_ip": "10.128.0.37",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-10 10:52:12",
+            "url": "/pico_data",
+            "user_agent": "python-httpx/0.27.0",
+            "username": "Placeholder"
+        },
+        "586": {
+            "client_ip": "10.128.0.37",
+            "method": "GET",
+            "query_params": {},
+            "timestamp": "2024-04-10 10:52:22",
+            "url": "/pico_data",
+            "user_agent": "python-httpx/0.27.0",
+            "username": "Placeholder"
+        },
+        "587": {
+            "client_ip": "10.128.0.37",
+            "method": "GET",
+            "query_params": {
+                "kit_code": "4"
+            },
+            "timestamp": "2024-04-10 10:51:04",
+            "url": "/montar_kit/",
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
             "username": "Placeholder"
         },
         "59": {

@@ -54,7 +54,7 @@ app.add_middleware(
 
 
 #Sistema de Logs
-db_logs_bot = TinyDB('../logs-db/bot-log.json')
+db_logs_bot = TinyDB('../logs-db/bot-log.json', indent=4)
 
 # Função para adicionar logs
 def add_log(message):
