@@ -102,7 +102,7 @@ IMPORTANTE - Para que a solução funcione corretamente, é necessário que o Ra
 
 Após seguir todos os passos, a solução estará pronta para ser utilizada.
 
-
+<div align="center">
 **Figura 5:** Tela - Selecionar extração de arquivos
 
 ![imagem](../../../static/img/como-executar/extraindo-arquivos.png)
