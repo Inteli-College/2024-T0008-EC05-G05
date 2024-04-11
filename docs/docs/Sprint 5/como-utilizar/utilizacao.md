@@ -53,6 +53,12 @@ Para utilizar o frontend e o backend, siga os passos abaixo:
 
 Após seguir todos os passos, a solução estará pronta para ser utilizada.
 
+:::danger
+
+IMPORTANTE - Para que a solução funcione corretamente, é necessário que o Raspberry Pico esteja ligado e o sensor de distância esteja conectado ao Raspberry Pico. Além disso, é necessário que o robô esteja ligado e conectado ao computador.
+
+:::
+
 
 
 
