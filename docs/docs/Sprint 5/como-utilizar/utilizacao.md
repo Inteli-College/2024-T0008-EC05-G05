@@ -3,6 +3,7 @@ title: Como utilizar a solução
 sidebar_position: 3
 ---
 
+Durante esta sprint
 
 # Mudanças:
 Durante essa Sprint algumas mudanças foram feitas no processo de execução do projeto, tanto para Linux/MacOS, quanto para Windws.
@@ -167,4 +168,3 @@ Dentro do CMD, digite o comando abaixo e aperte `Enter`. Isso fará que mais 3 C
 ```bash
 python main.py
 ```
-
