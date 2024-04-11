@@ -12,7 +12,99 @@ O backend consiste em duas APIs desenvolvidas em Python utilizando o framework F
 Para acessar as APIs, basta navegar até a pasta src/backend/api, onde estão localizados os arquivos WebToRobot.py e Stock.py. Cada API possui uma função específica, detalhada ao longo desta documentação. Recomenda-se também explorar a seção de Arquitetura da Solução para obter uma visão macro do projeto.
 
 ## API WebToRobot 
-to-do
+Esta API é responável por realizar a comunicação do front-end com o braço robôtico, permitindo a execução dos comandos com os elementos da aplicação web.
+
+Vale ressaltar que esse API está dividida em algumas paretes:
+- Conexão com o robô;
+- Movimentação do robô;
+- Registros de ações;
+
+### Rotas da API
+
+#### Conexão com o robô
+
+Nessa área, estão as rotas de conexão com o braço robótico:
+
+- /conectar_dobot/  ~>  Faz a conexão automática com o braço, caso ele esteja conectado à uma porta do computador;
+- /conectar_dobot_porta/ ~> Concta o robô com o cpmputador, com uma porta específica, passada na hora da conexão;
+
+<div align="center">
+
+**Imgem 1:** Rotas de conexão com o braço robótico
+
+![imagem](../../../static/img/apis/conectart-robo.png)
+
+**Fonte:** Desenvolvido pelo grupo Cardio-Bot
+</div>
+
+#### Movimentação
+
+Aqui, é a rota de movimentação do braço para a posição salva dos itens.
+
+<div align="center">
+
+**Imgem 2:** Parte 1 :  Rota de movimentação do braço robótico
+
+![imagem](../../../static/img/apis/mover-posicao-1.png)
+
+**Fonte:** Desenvolvido pelo grupo Cardio-Bot
+</div>
+
+<div align="center">
+
+**Imgem 3:** Parte 2 :  Rota de movimentação do braço robótico
+
+![imagem](../../../static/img/apis/mover-posicao-2.png)
+
+**Fonte:** Desenvolvido pelo grupo Cardio-Bot
+</div>
+
+#### Leitura QRCode
+
+Nessa parte do códiga, é onde está a rota de leitura do QRCode do produto.
+
+Ela permite o salvamento dos dados daquele item em um arquivo JSON `src/backend/api/dados_qr.json`, que registra informações que são:
+- Data e hora da leitura do código QR;
+- Informações do código QR;
+
+<div align="center">
+
+**Imgem 4:**  Rota de leitura do QRCode
+
+![imagem](../../../static/img/apis/capturar-qrcode.png)
+
+**Fonte:** Desenvolvido pelo grupo Cardio-Bot
+</div>
+
+
+#### Conexão com sensor ultrassônico
+
+Essa rota é responsável por conectar com o sensor ultrassônico e verificar se o item pego pelo braço, de fato foi pego.
+
+<div align="center">
+
+**Imgem 5:** Rota leitura de dados do sensor
+
+![imagem](../../../static/img/apis/detectar-item.png)
+
+**Fonte:** Desenvolvido pelo grupo Cardio-Bot
+</div>
+
+
+#### Montar Kit
+
+Aqui é realizada a montatem do kits. Esse comando é enviado pelo front.
+
+
+<div align="center">
+
+**Imgem 6:** Rota de montagem dos kits
+
+![imagem](../../../static/img/apis/montar-kit.png)
+
+**Fonte:** Desenvolvido pelo grupo Cardio-Bot
+</div>
+
 
 ## API Stock
 

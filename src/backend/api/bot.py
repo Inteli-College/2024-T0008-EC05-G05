@@ -24,8 +24,6 @@ dobot = Dobot()
 # Inicializa o QReader
 qreader = QReader()
 
-# Vatriaveis do sensor d
-
 def ip_address():
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
