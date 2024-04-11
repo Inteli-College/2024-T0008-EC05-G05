@@ -131,6 +131,9 @@ Dentro do CMD, digite o comando abaixo. Isso fará que mais 3 CMDs apareçam.
 python main.py
 ```
 
+Após isso, vá até o arquivo `src/frontend/src/components/kit_description_popup/KitDescriptionPopup.js` e substitua o valor de `ip_servidor` pelo IPV4 do seu computador. Isso vai fazer com que o frontend consiga se comunicar com o backend do robô e com o Raspberry Pico.
+
+
 **Pronto**, o sistema está funcionando.
 
 
@@ -173,23 +176,14 @@ Nos estamos utilizando o MicroPython para programar o Raspberry Pico.
 Após seguir todos os passos, o sensor de distância estará pronto para ser utilizado e pode ser ligado utilizando alguma fonte de energia, como um power bank.
 
 
-## Frontend e Backend
-
-Para utilizar o frontend e o backend, siga os passos abaixo:
-
-1. Vá no diretorio raiz do projeto e execute o comando `python main.py`.
-    1.1 Caso você não tenha o Python instalado, você pode baixar o executável [aqui](https://www.python.org/downloads/).
-    1.2 Esse comando vai iniciar 3 terminais, um para o frontend, um para o backend e um para o servidor de comunicação com o Raspberry Pico e robô.
-2. Vá até o arquivo `src/frontend/src/components/kit_description_popup/KitDescriptionPopup.js` e substitua o valor de `ip_servidor` pelo IPV4 do seu computador.
-    2.1 Isso vai fazer com que o frontend consiga se comunicar com o backend do robô e com o Raspberry Pico.
-3. Abra o navegador e acesse o endereço `http://localhost:3000/`.
-
-Após seguir todos os passos, a solução estará pronta para ser utilizada.
-
 :::danger
 
 IMPORTANTE - Para que a solução funcione corretamente, é necessário que o Raspberry Pico esteja ligado e o sensor de distância esteja conectado ao Raspberry Pico. Além disso, é necessário que o robô esteja ligado e conectado ao computador.
 
 :::
+
+Após seguir todos os passos, a solução estará pronta para ser utilizada.
+
+
 
 
