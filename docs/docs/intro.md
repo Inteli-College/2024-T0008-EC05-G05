@@ -26,3 +26,9 @@ Nessa segunda sprint, houve um aprofundamento maior no desenvolvimento do fluxo 
 
 ### Sprint 3
 Na terceira sprint começamos a trabalhar com os periféricos que nos auxiliarão na solução. Foram adotados uma câmera para ler QRcodes e o sensor ultrassônico acoplado a um microcontrolador. Além disso, começamos a modelar o front e o backend da nossa solução.
+
+### Sprint 4
+Na quarta sprint, houve um refinamento maior no desenvolvimento do frontend do projeto e a adição de algumas telas como a tela "Dashboard", além de melhorias na integração do backend e frontend da interface do projeto.
+
+### Sprint 5
+Na quinta sprint, houve melhorias no projeto como refinamento final de telas, a finalização da integração entre backend e frontend da interface, a adição do sistema de logs nos códigos e a entrega final do projeto.

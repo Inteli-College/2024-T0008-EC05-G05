@@ -1,8 +1,8 @@
 {
-    "label": "Relatorio sprint 5",
+    "label": "Versão Final do Projeto",
     "position": 3,
     "link": {
         "type": "generated-index",
-        "description": "Nesta seção estará a documentação das atividades realizadas na Sprint 5"
+        "description": "Nesta seção é possível acompanhar a versão final do Frontend, Backend e Sistemas de logs."
     }
 }

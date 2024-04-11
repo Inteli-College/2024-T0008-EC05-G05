@@ -1,0 +1,8 @@
+{
+    "label": "Problemas comuns",
+    "position": 2,
+    "link": {
+        "type": "generated-index",
+        "description": "Nesta seção será explicado como resolver os problemas mais comuns que podem ocorrer durante a utilização do nosso sistema"
+    }
+}
