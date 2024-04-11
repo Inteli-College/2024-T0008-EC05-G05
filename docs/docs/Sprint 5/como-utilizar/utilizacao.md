@@ -12,16 +12,10 @@ Tendo em mente que o projeto roda em cima da linguagem Python, é preciso que o 
 
 Os systemas operacionais suportados nesse projeto são:
 - Windows 10/11
-- Linux (preferível Ubuntu 22.04.4)
 
-## Executando o projeto 
-Aqui serão mostrados os passos que devem ser feitos para a execução do projeto, desde a instalação dos arquivos necessários, até como colocar o programa para rodar.
+## Intalações de arquivos
 
-**OBS:** Esse tutorial cobre apenas os sistemas operacionais listados no tópico de Requerimentos.
-
-### Windows
-
-#### Intalações de arquivos
+### Python
 Caso o computador ainda não possuia Python, acesse aqui: **[Instladaor Python](https://www.python.org/ftp/python/3.12.3/python-3.12.3-amd64.exe)**.
 
 Em seguida, acesse o gerenciador de arquivos, na pasta de Downloads, e execute o arquivo.
@@ -66,83 +60,7 @@ Acessando o seguinte link, será feito o download do zip do projeto: [2024-T0008
 
 Agora abra o gerenciador de arquivos para, e extraia a pasta, para fazer isso, clique com o potão direito do mouse em cima do nome da pasta e aperte em extrair tudo:
 
-<div align="center">
-
-**Figura 4:** Tela - Selecionar extração de arquivos
-
-![imagem](../../../static/img/como-executar/extraindo-arquivos.png)
-
-**Fonte:** Elaborado pela equipe Cardio Bot
-
-</div> 
-
-Ao realizar essa etapa, aparecerá a tela de extração dos arquivos. Nela será preciso escolher a pasta de destino da extração e inicialinar a extração.
-
-Para selecionar a pasta de destino, basta colocar a rota da pasta na barra superior, marcada de azul.
-
-Já para executar, aperter `Enter` ou aperter em `Extrair`, marcado de vermelho.
-
-<div align="center">
-
-**Figura 5:** Tela - Extraindo arquivos
-
-![imagem](../../../static/img/como-executar/executar-extracao-arquivos.png)
-
-**Fonte:** Elaborado pela equipe Cardio Bot
-
-</div> 
-
-
-Pronto, todos os arquivos foram instalados, agora será mostrada a execução do projeto.
-
-
-#### Execução do projeto
-
-Primeiro, acesse a pasta que que foi feita a extração dos arquivos e nela clique com o botão direito do mouse e abra um terminal.
-
-<div align="center">
-
-**Figura 6:** Tela - Acessando pasta do projeto
-
-![imagem](../../../static/img/como-executar/acessando-arquivos-projeto.png)
-
-**Fonte:** Elaborado pela equipe Cardio Bot
-
-</div> 
-
-<div align="center">
-
-**Figura 7:** Tela - Iniciando DMC
-
-![imagem](../../../static/img/como-executar/iniciando-cmd.png)
-
-**Fonte:** Elaborado pela equipe Cardio Bot
-
-</div> 
-
-
-Dentro do CMD, digite o comando abaixo. Isso fará que mais 3 CMDs apareçam. 
-
-- O primeiro CMD executa o front-end;
-- O segundo CMD executa a API do braço robótico;
-- O terceiro CMD executa a API de estoque e logs do sistema;
-
-```bash
-python main.py
-```
-
-Após isso, vá até o arquivo `src/frontend/src/components/kit_description_popup/KitDescriptionPopup.js` e substitua o valor de `ip_servidor` pelo IPV4 do seu computador. Isso vai fazer com que o frontend consiga se comunicar com o backend do robô e com o Raspberry Pico.
-
-
-**Pronto**, o sistema está funcionando.
-
-
-### Linux
-=======
-Aqui você encontrará um guia de como utilizar a solução desenvolvida pelo grupo.
-
 ## Raspberry Pico (Sensor de Distância)
-
 Para utilizar o sensor de distância, siga os passos abaixo:
 
 **Primeiro Passo: Montar o circuito do Raspberry Pico**
@@ -151,9 +69,9 @@ A seguir é apresentado o esquema elétrico do circuito do Raspberry Pico:
 
 <div align="center"> 
 
-**Esquema elétrico dos periféricos** 
+**Figura 4 - Esquema elétrico dos periféricos** 
 
-![Esquema elétrico dos periféricos](/../static/img/esquema-circuito/circuito-elétrico.jpg)
+![Esquema elétrico dos periféricos](../../../static/img/esquema-circuito/circuito-elétrico.jpg)
 
 **Fonte:** Elaborado pela equipe Cardio-Bot 
 
@@ -185,5 +103,68 @@ IMPORTANTE - Para que a solução funcione corretamente, é necessário que o Ra
 Após seguir todos os passos, a solução estará pronta para ser utilizada.
 
 
+**Figura 5:** Tela - Selecionar extração de arquivos
 
+![imagem](../../../static/img/como-executar/extraindo-arquivos.png)
+
+**Fonte:** Elaborado pela equipe Cardio Bot
+
+</div> 
+
+Ao realizar essa etapa, aparecerá a tela de extração dos arquivos. Nela será preciso escolher a pasta de destino da extração e inicialinar a extração.
+
+Para selecionar a pasta de destino, basta colocar a rota da pasta na barra superior, marcada de azul.
+
+Já para executar, aperter `Enter` ou aperter em `Extrair`, marcado de vermelho.
+
+<div align="center">
+
+**Figura 6:** Tela - Extraindo arquivos
+
+![imagem](../../../static/img/como-executar/executar-extracao-arquivos.png)
+
+**Fonte:** Elaborado pela equipe Cardio Bot
+
+</div> 
+
+
+Pronto, todos os arquivos foram instalados, agora será mostrada a execução do projeto.
+
+
+#### Execução do projeto
+
+Após isso, vá até o arquivo `src/frontend/src/components/kit_description_popup/KitDescriptionPopup.js` e substitua o valor de `ip_servidor` pelo IPV4 do seu computador. Isso vai fazer com que o frontend consiga se comunicar com o backend do robô e com o Raspberry Pico.
+
+Em seguida, acesse a pasta que que foi feita a extração dos arquivos e nela clique com o botão direito do mouse e abra um terminal.
+
+<div align="center">
+
+**Figura 7:** Tela - Acessando pasta do projeto
+
+![imagem](../../../static/img/como-executar/acessando-arquivos-projeto.png)
+
+**Fonte:** Elaborado pela equipe Cardio Bot
+
+</div> 
+
+<div align="center">
+
+**Figura 8:** Tela - Iniciando DMC
+
+![imagem](../../../static/img/como-executar/iniciando-cmd.png)
+
+**Fonte:** Elaborado pela equipe Cardio Bot
+
+</div> 
+
+
+Dentro do CMD, digite o comando abaixo e aperte `Enter`. Isso fará que mais 3 CMDs apareçam. 
+
+- O primeiro CMD executa o front-end;
+- O segundo CMD executa a API do braço robótico;
+- O terceiro CMD executa a API de estoque e logs do sistema;
+
+```bash
+python main.py
+```
 
