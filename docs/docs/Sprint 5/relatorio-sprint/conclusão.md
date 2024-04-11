@@ -33,4 +33,3 @@ Nessa seção, serão repassados todos os requisitos funcionais e não funcionai
 | RNF-07               | Escalabilidade da Solução                | O robô deve ser capaz de regular a velocidade com o qual trabalha baseado na demanda de kits. Visando aumentar sua eficiência e escalabilidade da solução.                            | Não atingiu.                     |
 | RNF-08               | Acessibilidade da Interface              | A interface que permite a interação com o robô deve ser simplificada. Tendo em mente o acesso rápido e fácil as informações e seguindo as boas práticas de UX e UI.                | Atingiu - a interface é simplificada.                    |
 | RNF-09               | Documentação e Operacional               | Implementação de uma documentação que ensine o passo a passo de como configurar e já começar a utilizar o robô no menor tempo possível.                                                  | Atingiu.                  |
-
