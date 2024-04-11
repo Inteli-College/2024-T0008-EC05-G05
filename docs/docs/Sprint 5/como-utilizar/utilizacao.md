@@ -3,6 +3,139 @@ title: Como utilizar a solução
 sidebar_position: 3
 ---
 
+
+# Mudanças:
+Durante essa Sprint algumas mudanças foram feitas no processo de execução do projeto, tanto para Linux/MacOS, quanto para Windws.
+
+## Requisições:
+Tendo em mente que o projeto roda em cima da linguagem Python, é preciso que o computador a tenha instalada, na sua versao 3.12.3 .
+
+Os systemas operacionais suportados nesse projeto são:
+- Windows 10/11
+- Linux (preferível Ubuntu 22.04.4)
+
+## Executando o projeto 
+Aqui serão mostrados os passos que devem ser feitos para a execução do projeto, desde a instalação dos arquivos necessários, até como colocar o programa para rodar.
+
+**OBS:** Esse tutorial cobre apenas os sistemas operacionais listados no tópico de Requerimentos.
+
+### Windows
+
+#### Intalações de arquivos
+Caso o computador ainda não possuia Python, acesse aqui: **[Instladaor Python](https://www.python.org/ftp/python/3.12.3/python-3.12.3-amd64.exe)**.
+
+Em seguida, acesse o gerenciador de arquivos, na pasta de Downloads, e execute o arquivo.
+
+<div align="center">
+
+**Figura 1:** Arquivo executor
+
+![imagem](../../../static/img/como-executar/arquivo-executor.png)
+
+**Fonte:** Elaborado pela equipe Cardio Bot
+</div>
+
+Se o computador já possuir a linguágem python instalada, aparecerá a janela a baixo.
+
+Nesse caso, vá direto para o tópico de [Execução do projeto](#execução-do-projeto)
+
+<div align="center">
+
+**Figura 2:** Tela -  Pytho já instalado
+
+![imagem](../../../static/img/como-executar/python-baixado-anteriormente.png)
+
+**Fonte:** Elaborado pela equipe Cardio Bot
+
+</div> 
+
+
+Se esse não for o caso, a seguinte janela irá aparecer, clique na área `Install Now`, se o sistema estiver em inglês, `Intale Agora`, para o sistema em português.
+
+<div align="center">
+
+**Figura 3:** Tela - Intalando Python
+
+![imagem](../../../static/img/como-executar/instalador-python.png)
+
+**Fonte:** Elaborado pela equipe Cardio Bot
+
+</div> 
+
+Acessando o seguinte link, será feito o download do zip do projeto: [2024-T0008-EC05-G05-5.0.0](https://github.com/Inteli-College/2024-T0008-EC05-G05/archive/refs/tags/v4.0.0.zip)
+
+Agora abra o gerenciador de arquivos para, e extraia a pasta, para fazer isso, clique com o potão direito do mouse em cima do nome da pasta e aperte em extrair tudo:
+
+<div align="center">
+
+**Figura 4:** Tela - Selecionar extração de arquivos
+
+![imagem](../../../static/img/como-executar/extraindo-arquivos.png)
+
+**Fonte:** Elaborado pela equipe Cardio Bot
+
+</div> 
+
+Ao realizar essa etapa, aparecerá a tela de extração dos arquivos. Nela será preciso escolher a pasta de destino da extração e inicialinar a extração.
+
+Para selecionar a pasta de destino, basta colocar a rota da pasta na barra superior, marcada de azul.
+
+Já para executar, aperter `Enter` ou aperter em `Extrair`, marcado de vermelho.
+
+<div align="center">
+
+**Figura 5:** Tela - Extraindo arquivos
+
+![imagem](../../../static/img/como-executar/executar-extracao-arquivos.png)
+
+**Fonte:** Elaborado pela equipe Cardio Bot
+
+</div> 
+
+
+Pronto, todos os arquivos foram instalados, agora será mostrada a execução do projeto.
+
+
+#### Execução do projeto
+
+Primeiro, acesse a pasta que que foi feita a extração dos arquivos e nela clique com o botão direito do mouse e abra um terminal.
+
+<div align="center">
+
+**Figura 6:** Tela - Acessando pasta do projeto
+
+![imagem](../../../static/img/como-executar/acessando-arquivos-projeto.png)
+
+**Fonte:** Elaborado pela equipe Cardio Bot
+
+</div> 
+
+<div align="center">
+
+**Figura 7:** Tela - Iniciando DMC
+
+![imagem](../../../static/img/como-executar/iniciando-cmd.png)
+
+**Fonte:** Elaborado pela equipe Cardio Bot
+
+</div> 
+
+
+Dentro do CMD, digite o comando abaixo. Isso fará que mais 3 CMDs apareçam. 
+
+- O primeiro CMD executa o front-end;
+- O segundo CMD executa a API do braço robótico;
+- O terceiro CMD executa a API de estoque e logs do sistema;
+
+```bash
+python main.py
+```
+
+**Pronto**, o sistema está funcionando.
+
+
+### Linux
+=======
 Aqui você encontrará um guia de como utilizar a solução desenvolvida pelo grupo.
 
 ## Raspberry Pico (Sensor de Distância)
@@ -52,7 +185,5 @@ Para utilizar o frontend e o backend, siga os passos abaixo:
 3. Abra o navegador e acesse o endereço `http://localhost:3000/`.
 
 Após seguir todos os passos, a solução estará pronta para ser utilizada.
-
-
 
 
