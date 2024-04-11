@@ -1,5 +1,5 @@
 ---
-title: Armazenamento
+title: Armazenamento dos Dados
 sidebar_position: 6
 ---
 
