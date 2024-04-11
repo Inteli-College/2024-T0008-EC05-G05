@@ -1,6 +1,6 @@
 ---
-title: Conclusão 
-sidebar_position: 3
+title: Requisitos atendidos 
+sidebar_position: 2
 ---
 
 Nessa seção, serão repassados todos os requisitos funcionais e não funcionais, e qual o nível de completude de cada um deles.

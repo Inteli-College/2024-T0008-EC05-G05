@@ -1,6 +1,6 @@
 ---
 title: Como utilizar a solução
-sidebar_position: 3
+sidebar_position: 1
 ---
 
 Durante esta sprint

@@ -1,15 +1,10 @@
 ---
-title: Backend
-sidebar_position: 2
+title: Logs
+sidebar_position: 3
 ---
 
-##APIs
 
-###Stock.py
-
-###Bot.py
-
-##Sistema de logs
+## Sistema de logs
 
 Os logs de um sistema são registros que indicam de forma um pouco mais detalhada as ações realizadas. Dentro do contexto do nosso projeto, um exemplo de log seria o detalhamento da data e hora de modificação de um kit, qual kit foi modificado, e qual usuário realizou esta ação.
 

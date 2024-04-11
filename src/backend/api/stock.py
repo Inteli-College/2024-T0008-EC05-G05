@@ -143,23 +143,6 @@ def get_logs(period: str):
     return [Log(date=entry['date'], user_action=entry['user_action']) for entry in filtered_kits]
 
 
-@app.get("/log/itens/{period}", response_model=List[ItemSimple])
-async def get_items(period: str):
-    items = get_items_in_date_range(period)
-    print(items)
-    return items
-
-@app.get("/log/kits/{period}", response_model=List[KitSimple])
-async def get_kits(period: str):
-    kits = get_kits_in_date_range(period)
-    print(kits)
-    return kits
-
-@app.get("/log/logs/{period}", response_model=List[Log])
-async def get_log_entries(period: str):
-    log_entries = get_logs(period)
-    return log_entries
-
 # Function to get data (kits, items, logs) for a specified period
 def get_data_in_date_range(period: str, table_name: str, date_key: str, quantity_key: str) -> List[BaseModel]:
     table = db_kits.table(table_name)
@@ -177,6 +160,25 @@ def get_data_in_date_range(period: str, table_name: str, date_key: str, quantity
         raise HTTPException(status_code=400, detail="Invalid period")
 
     filtered_data = table.search(Query()[date_key] >= start_date.strftime('%Y-%m-%d'))
+
+
+
+@app.get("/log/itens/{period}", response_model=List[ItemSimple])
+async def get_items(period: str):
+    items = get_items_in_date_range(period)
+    print(items)
+    return items
+
+@app.get("/log/kits/{period}", response_model=List[KitSimple])
+async def get_kits(period: str):
+    kits = get_kits_in_date_range(period)
+    print(kits)
+    return kits
+
+@app.get("/log/logs/{period}", response_model=List[Log])
+async def get_log_entries(period: str):
+    log_entries = get_logs(period)
+    return log_entries
 
 @app.get("/log/logs/{period}", response_model=List[Log])
 async def get_log_entries(period: str):
